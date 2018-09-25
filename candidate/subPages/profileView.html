@@ -1,0 +1,179 @@
+<div ng-controller="profileViewCtrl">
+	<div class="row" style="margin-bottom: 10px;">
+		<div class="col-md-12">
+			<div class="btn-group pull-right">
+				<button type="button" ng-show="profileEdit_add" class="btn btn-primary padding-left-right">
+					<span class="glyphicon glyphicon-edit"></span>Add</button>
+				<button ng-show="profileEdit_edit" ng-click="editProfile()" class="btn btn-primary padding-left-right">
+					<span class="glyphicon glyphicon-edit"></span>Edit</button>
+				<button type="button" ng-show="profileEdit_save" class="btn btn-primary padding-left-right">
+					<span class="glyphicon glyphicon-save"></span>Save</button>
+				<button type="button" ng-show="profileEdit_cancel" class="btn btn-primary padding-left-right">
+					<span class="glyphicon glyphicon-remove"></span>Cancel</button>
+			</div>
+		</div>
+	</div>
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<div class="panel-heading">Profile Overview</div>
+			<div class="panel-body">
+				<md-content class="md-padding" layout-xs="column" layout="row">
+					<div flex-xs flex-gt-xs="100" layout="column">
+						<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+							<md-card-title>
+								<md-card-title-text>
+									<span class="md-headline">Name here</span>
+									<span class="md-subhead">Large</span>
+								</md-card-title-text>
+								<md-card-title-media>
+									<div class="md-media-lg card-media">
+										<img src="images/imei.png" width="100px" height="140px">
+									</div>
+								</md-card-title-media>
+							</md-card-title>
+						</md-card>
+					</div>
+				</md-content>
+
+
+
+				<div class="col-md-2" style="font-size: 24px; font-weight: bold;">Name</div>
+				<div class="col-md-5" style="font-size: 26px;">
+					<span class="profile_over_text"><input type="text" class="form-control" name="fname"></span>
+					<span class="profile_over_view">
+						<?php echo $row["fname"] ?></span>
+				</div>
+				<div class="col-md-3">
+					<img src="<?php echo $row[" profilePhoto "] ?>" width="100px" height="140px">
+				</div>
+				<div class="col-md-2">
+					<form action="uploadPhoto.php" method="post" enctype="multipart/form-data" style="float: right;">
+						<input type="file" name="fileToUpload" style="width: 90px;" id="fileToUpload">
+						<button type="submit" name="photoUpload" class="btn btn-info">
+							<span class="glyphicon glyphicon-search"></span> Upload
+						</button>
+					</form>
+				</div>
+				<div style="clear: both;"></div>
+				<div class="col-md-3 dashTitle">Resume Heading</div>
+				<div class="col-md-9 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="ResumeHeading"></span>
+					<span class="profile_over_view">
+						<?php echo $row["ResumeHeading"]; ?></span>
+				</div>
+
+				<div class="col-md-3 dashTitle">Current Designation</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="CurrentDesignation"></span>
+					<span class="profile_over_view">
+						<?php echo $row["CurrentDesignation"] ?></span>
+				</div>
+
+				<div class="col-md-3 dashTitle">Current Comapany</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="CurrentComapany"></span>
+					<span class="profile_over_view">
+						<?php echo $row["CurrentComapany"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">Total Experiance</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="TotalExp"></span>
+					<span class="profile_over_view">
+						<?php echo $row["TotalExp"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">LinkedIn URL</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="linked"></span>
+					<span class="profile_over_view">
+						<?php echo $row["linked"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">Mobile</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="mobile"></span>
+					<span class="profile_over_view">
+						<?php echo $row["mobile"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">Email</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="email"></span>
+					<span class="profile_over_view">
+						<?php echo $row["email"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">Pincode</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="pincode"></span>
+					<span class="profile_over_view">
+						<?php echo $row["pincode"] ?></span> </div>
+
+				<div class="col-md-3 dashTitle">Gender</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_select">
+						<select class="form-control" name="gender" style="margin-top: 10px;">
+							<option value="male">Male</option>
+							<option value="female">female</option>
+							<option value="other">other</option>
+						</select>
+					</span>
+					<span class="profile_over_select_view">
+						<?php echo $row["gender"] ?></span>
+				</div>
+
+				<div class="col-md-3 dashTitle">DOB</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input style="margin-top: 10px; " type="date" class="form-control" name="month"></span>
+					<span class="profile_over_view">
+						<?php 
+	      	//$date = date_create($row["month"]);
+			//echo date_format($date, 'Y-m-d');
+			echo $row["month"];
+	    ?>
+					</span>
+				</div>
+
+				<div class="col-md-3 dashTitle">Address line 1</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="address1"></span>
+					<span class="profile_over_view">
+						<?php echo $row["address1"] ?></span>
+				</div>
+
+				<div class="col-md-3 dashTitle">Address line 2</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="address2"></span>
+					<span class="profile_over_view">
+						<?php echo $row["address2"] ?></span>
+				</div>
+
+
+				<div class="col-md-3 dashTitle">Address line 3</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="address3"></span>
+					<span class="profile_over_view">
+						<?php echo $row["address3"] ?></span>
+				</div>
+
+				<div class="col-md-3 dashTitle">Town</div>
+				<div class="col-md-3 dashContent">
+					<span class="profile_over_text"><input type="text" class="form-control" name="town"></span>
+					<span class="profile_over_view">
+						<?php echo $row["town"] ?></span>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+	$('.globalStyles input').keydown(function (e) {
+		if (e.keyCode == 13) {
+			var inputs = $(this).parents("form").eq(0).find(":input");
+			if (inputs[inputs.index(this) + 1] != null) {
+				inputs[inputs.index(this) + 1].focus();
+			}
+			e.preventDefault();
+			return false;
+		}
+	});
+</script>
