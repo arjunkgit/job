@@ -1,0 +1,23 @@
+<div ng-controller="uploadResumeCtrl">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Upload Resume </div>
+            <div class="panel-body">
+            <div class="col-md-6" ng-show="uploadResumeData.resumeUploadURL != ''">
+                Download resume : <a href="{{uploadResumeData.resumeUploadURL}}">{{uploadResumeData.resumeUploadName}}</a>  
+            </div>
+            <div class="col-md-6" ng-show="uploadResumeData.resumeUploadURL == ''">
+                    You have not uploaded any CVs.
+            </div>
+            <div class="col-md-6">
+            <form action="uploadResume.php" method="post" enctype="multipart/form-data" style="float: right;">
+                <input type="file"  name="resumeFileToUpload" style="margin-bottom: 10px;"  id="resumeFileToUpload">
+                <button type="submit" name="resumeUpload" class="btn btn-info" style="width: 100%;">
+                <span class="glyphicon glyphicon-search"></span> Upload
+                </button>
+            </form>
+            </div>
+            </div> 	
+        </div> 
+    </div>	
+</div>
