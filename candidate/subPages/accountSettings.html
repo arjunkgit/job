@@ -1,0 +1,38 @@
+<div ng-controller="accountSettingsCtrl">
+	<div class="panel-group">
+		<div class="panel panel-default">
+			<!-- 0 = false ***  1 = true -->
+			<div class="panel-heading">Account Settings</div>
+			<div class="panel-body">
+				<div class="dashContent">
+					<div ng-show="!accountSettingsData.activatePro">
+						<div style="text-align: center;border: 1px solid #e9e9e9;background: #ffe5e5;padding: 10px;margin-bottom: 10px;">
+							<h2>Your account has been deactivated</h2>
+							<p>(Your profile will not be visible to our recruiter untill you activate)</p>
+						</div>
+						<a href="funcs.php/activatePro" class="btn btn-default" onclick="return confirm('Are you sure?')">
+							<span class="glyphicon glyphicon-add"></span>Activate Account
+						</a>
+						<p>Note : To visible to the employer.</p> <br/>
+					</div>
+					<div ng-show="!accountSettingsData.deactivatePro">
+						<div style="text-align: center;border: 1px solid #e9e9e9;background: #ecfeff;padding: 10px;margin-bottom: 10px;">
+							<h2>Your account has been activated !</h2>
+							<p>(Your profile is visible to our recruiter)</p>
+						</div>
+						<a href="funcs.php/deactivatePro" class="btn btn-default" onclick="return confirm('Are you sure?')">
+							<span class="glyphicon glyphicon-remove"></span>Deactivate Account
+						</a>
+						<p>Note : To not be visible to the employer</p><br/>
+					</div>
+					<div>
+						<a class="btn btn-default" href="funcs.php/deletePro" onclick="return confirm('Are you surely want to delete your account ?')">
+							<span class="glyphicon glyphicon-remove"></span>Delete Account
+						</a>
+						<p>Note : Deleting your account would delete all your data and account information which cann't be retrieved back.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
