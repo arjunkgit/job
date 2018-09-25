@@ -1,0 +1,149 @@
+<div ng-controller="projectDetailsCtrl">
+<style>
+.md-select-menu-container{
+    z-index: 9999;
+}
+</style>
+    <!-- Pop up for add/update starts-->
+    <!-- Trigger the modal with a button -->
+
+    <!-- Modal -->
+    <div id="addProjectDetailsPopup" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-ng-click="closeEmpDetails()" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add/Update Project Details</h4>
+                </div>
+                <div class="modal-body">
+                    <md-content layout-padding>
+                        <div>
+                            <form class="globalStyles" name="profileEditForm">
+                                <div style="clear:both;"></div>
+                                <md-input-container class="md-block">
+                                    <label>Project Title</label>
+                                    <input type="text" required  ng-model="empShowDetailsData.projectTitle" ng-disabled="isDisable">
+                                </md-input-container>
+                                <md-input-container class="md-block">
+                                    <label>Client</label>
+                                    <input type="text"   ng-model="empShowDetailsData.client" ng-disabled="isDisable">
+                                </md-input-container>
+                                <md-input-container class="md-block" >
+                                    <label>Duration</label>
+                                    <md-select name="duration" ng-model="empShowDetailsData.duration" ng-disabled="isDisable">
+                                        <md-option value="0 to 6 Months">0 to 6 Months</md-option>
+                                        <md-option value="6 month to 1 Year">6 month to 1 Year</md-option>
+                                        <md-option value="1 to 2 Year">1 to 2 Year</md-option>
+                                        <md-option value="2 to 3 Year">2 to 3 Year</md-option>
+                                        <md-option value="3 to 4 Year">3 to 4 Year</md-option>
+                                        <md-option value="4 to 5 Year">4 to 5 Year</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <md-input-container class="md-block" style="margin-top: 20px;">
+                                    <label>Project Details</label>
+                                    <textarea style="min-height: 80px;" maxlength="5990" ng-model="empShowDetailsData.projectDetails" ng-disabled="isDisable">
+                                    </textarea>
+                                </md-input-container>
+                            </form>
+                        </div>
+                    </md-content>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" ng-disabled="profileEditForm.$invalid" data-ng-click="updateEmpDetails(empShowDetailsData.id, empShowDetailsData)" ng-show="cancelBtn" class="btn btn-primary"
+                        data-dismiss="modal">Add/Update Project Details</button>
+                    <button type="button" data-ng-click="closeEmpDetails()" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Pop up for add/update ends-->
+
+    <div id="ResultData" class="alert  alert-dismissable">
+        <span class=""></span>
+        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">×</button>
+        <span id="ResultMessage"></span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group pull-right">
+                <button type="button" ng-show="addBtn" ng-click="addEmpDetails()" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-edit"></span>Add</button>
+                <button ng-show="editBtn" ng-click="editProfile()" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-edit"></span>Edit</button>
+                <button type="button" ng-show="saveBtn" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-save"></span>Save</button>
+                <button type="button" ng-show="cancelBtn" ng-click="cancelEmpDetails()" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-remove"></span>Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="panel-group" id="projectDetailsPopup">
+        <div class="panel panel-default">
+            <div class="panel-heading">Project Details</div>
+            <div class="panel-body">
+                <div ng-show="showAddEmpDetails">
+                </div>
+                <div>                
+                    <ul class="list-group" id="groupEmp">
+                        <li ng-show="empSelectedDetailsData == undefined || empSelectedDetailsData == ''" class="list-group-item" style="text-align:center;border: 1px solid white !important;">
+                            <div>
+                                No Project History Available
+                            </div>                        
+                        </li>
+                        <li class="list-group-item" ng-repeat="empData in empSelectedDetailsData track by $id(empData)">
+                            <md-content style="overflow: inherit;">
+                                <div>
+                                    <div class="row empListRow">
+                                        <div class="col-md-3 empListCol1">
+                                            Project Title
+                                        </div>
+                                        <div class="col-md-9 empListCol2">
+                                            {{empData.projectTitle}}
+                                        </div>
+                                    </div>
+                                    <div class="row empListRow">
+                                        <div class="col-md-3 empListCol1">
+                                            Client 
+                                        </div>
+                                        <div class="col-md-9 empListCol2">
+                                            {{empData.client}}
+                                        </div>
+                                    </div>
+                                    <div class="row empListRow">
+                                        <div class="col-md-3 empListCol1">
+                                            Duration
+                                        </div>
+                                        <div class="col-md-9 empListCol2">
+                                            {{empData.duration}}
+                                        </div>
+                                    </div>
+                                    <div class="row empListRow">
+                                        <div class="col-md-3 empListCol1">
+                                            Project Details
+                                        </div>
+                                        <div class="col-md-9 empListCol2">
+                                            {{empData.projectDetails}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-content>
+                            <div class="modal-footer" ng-show="isFullProfile">
+                                <button type="button"  data-ng-click="updateIndEmpDetails(empData.id, empData)" class="btn btn-primary">Update</button>
+                                <button type="button"   data-ng-click="deleteIndEmpDetails(empData.id, $index)" class="btn btn-primary">Delete</button>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
