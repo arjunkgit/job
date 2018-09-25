@@ -1,0 +1,55 @@
+<div ng-controller="profileSummaryCtrl">
+    <div id="ResultData" class="alert  alert-dismissable">
+        <span class=""></span>
+        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">×</button>
+        <span id="ResultMessage"></span>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="btn-group pull-right">
+                <button type="button" ng-show="addBtn" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-edit"></span>Add</button>
+                <button ng-show="editBtn" ng-click="editProfileSummary()" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-edit"></span>Edit</button>
+                <button type="button" ng-show="saveBtn" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-save"></span>Save</button>
+                <button type="button" ng-show="cancelBtn" ng-click="cancelProfileSummary()" class="btn btn-primary padding-left-right">
+                    <span class="glyphicon glyphicon-remove"></span>Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">Profile Summary</div>
+            <div class="panel-body">
+                <md-content layout-padding>
+                    <div>
+                        <form name="profileSummaryForm" class="globalStyles">
+                            <md-input-container class="md-block">
+                                <label>Summary</label>
+                                <textarea ng-disabled="isDisable" ng-model="profileSummaryData.summary" name="summary"></textarea>
+                            </md-input-container>
+                            <md-button ng-disabled="profileSummaryForm.$invalid" ng-show="cancelBtn" data-loading-text="Updating Profile..."
+                                type="button" class="md-raised md-primary" data-ng-click="updateProfile()">
+                                Update Profile
+                            </md-button>
+                        </form>
+                    </div>
+                </md-content>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.globalStyles input').keydown(function (e) {
+        if (e.keyCode == 13) {
+            var inputs = $(this).parents("form").eq(0).find(":input");
+            if (inputs[inputs.index(this) + 1] != null) {
+                inputs[inputs.index(this) + 1].focus();
+            }
+            e.preventDefault();
+            return false;
+        }
+    });
+</script>
