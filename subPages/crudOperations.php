@@ -88,33 +88,16 @@ function saveUserData(){
 	 } 
 	else{	
 		$empusername = $_SESSION['empusername'];	
-		$query1 = "SELECT `createNewEmpLimit`  FROM defaultValues WHERE `email`='$email'";		
+		$query1 = "SELECT `createNewEmpLimit`  FROM defaultValues WHERE `email`='$empusername'";		
 		$jobsPosted = "SELECT `createdBy` FROM candidateregdata WHERE `createdBy` = '$empusername'";
-
 		$result = mysqli_query($con, $query1);
 		$resultPostedJobs = mysqli_query($con, $jobsPosted);
-
-		$limit = mysqli_fetch_assoc($result);
-
- 
-		// $limitQuery = "SELECT `createNewEmpLimit` FROM employerregdata WHERE `email`='$email'";
-		// $limitSQL = mysqli_query($con, $limitQuery);
-		// $limitData = mysqli_fetch_assoc($limitSQL);
-		// echo $limitQuery;
-
-		// $createdByQuery = "SELECT `createdBy` FROM candidateregdata WHERE `createdBy`='$_SESSION["empusername"]'";
-		// $createdBySQL = mysqli_query($con, $createdByQuery);
-		// $createdByData = mysqli_fetch_assoc($createdBySQL);
-		// echo $createdByData;
-
-		if (mysqli_num_rows($resultPostedJobs) >= $limitData['createNewEmpLimit']){
+		$limitData = mysqli_fetch_assoc($result);
+		if (mysqli_num_rows($resultPostedJobs) >= $limitData['createNewEmpLimit']   ){
 			echo "You have exceded the Job Post Limit. Please contact your Admin.";
 		}else{
 			$query = "INSERT INTO candidateregdata ( `fname`,`email`,`password`,`activatePro`,createdBy) VALUES ('$username','$email', '".md5($password)."','1','$empEmail')";
 			if (mysqli_query($con, $query)) {
-					//insert default values
-					// $queryLimit = "INSERT into `defaultValues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '0')";
-					// mysqli_query($con,$queryLimit);
 					echo "User added successfully";
 				} else {
 					echo "Error in updating record";
@@ -197,7 +180,10 @@ $query = "UPDATE employerRegData SET `companyname` = '$companyname', `indtype` =
 			break;
 		default:
 			invalidRequest();
+
+
 		}
+
 
 //		echo json_encode($data);
 
@@ -396,6 +382,17 @@ $query = "UPDATE employerRegData SET `companyname` = '$companyname', `indtype` =
 			invalidRequest();
 			
 		}
+
+
 //		echo json_encode($data);
+
 }
+
+
+
 ?>
+
+
+
+
+
