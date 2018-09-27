@@ -19,7 +19,7 @@
         $address3 = $_POST['address3'];
         $town = $_POST['town'];
         $country = $_POST['country'];
-        $phone = $_POST['phone'];
+        $phone = $_POST['phome'];
         $mobile = $_POST['mobile'];
         $linked = $_POST['linked'];
         
@@ -32,12 +32,13 @@
          }
          else
          {
-            $query = "INSERT into `candidateRegData` (email,password,title,fname,lname,day,month,year,address1,address2,address3,town,country,phone,mobile,linked,activatePro,createdBy) VALUES ('$email', '".md5($password)."','$title','$fname','$lname','$day','$month','$year','$address1','$address2','$address3','$town','$country','$phone','$mobile','$linked','1','$email')";
+$query = "INSERT into `candidateRegData` (email,password,title,fname,lname,day,month,year,address1,address2,address3,town,country,phone,mobile,linked,activatePro,deactivatePro,deletePro,createdBy) VALUES ('$email', '".md5($password)."','$title','$fname','$lname','$day','$month','$year','$address1','$address2','$address3','$town','$country','$phone','$mobile','$linked',1,0,0,'$email')";
 
-        $result = mysqli_query($con,$query);
 
-        if($result){
-        echo "<div style='text-align: center;background-color: white;margin: 10px;padding: 20px;' class='form1'><h3 style='color: green;'>You are registered successfully.</h3><br/>Click here to login <a href='index.php'>Home Page</a></div>";
+$result = mysqli_query($con,$query);
+
+if($result){
+echo "<div style='text-align: center;background-color: white;margin: 10px;padding: 20px;' class='form1'><h3 style='color: green;'>You are registered successfully.</h3><br/>Click here to login <a href='index.php'>Home Page</a></div>";
 	 }
 
 }
@@ -49,4 +50,6 @@
     echo "<div style='text-align: center;background-color: white;border: 1px solid #b1b1b1;padding: 20px;' class='form1'><h3>Username or password is wrong.</h3><br/>Login again <a href='index.php'>Home Page</a></div>";
 }
 ?>
+
+	
 </div>
