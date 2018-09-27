@@ -200,6 +200,27 @@ echo "Currently the account deleting facility has been disabled. Contact admin f
 mysqli_close($con);
 }
 
+// **************** Add applied jobs ***************
+function addAppliedJobs ($urlParams) {
+require_once("db.php");
+$email = $_SESSION["username"];
+$appliedJobID = $_POST["appliedJobID"];
+$jobsPostedBy = $_POST["jobsPostedBy"];
+$sql = "INSERT INTO  `jobsApplied` (userEmail,jobsPostId,jobsPostedBy) VALUES ('$email', '$appliedJobID', '$jobsPostedBy')";
+	
+if ($con->query($sql) === TRUE) {
+    echo "Job applied successfully";
+	header("refresh:1; url=/job/currentOpenings.php"); 
+	exit;
+} else {
+    echo "Error in applying job";
+	header("refresh:1; url=/job/currentOpenings.php"); 
+	exit;
+}
+mysqli_close($con);
+}
+
+
 ?>
 </h3>
 </div>
