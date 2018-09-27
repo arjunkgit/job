@@ -36,7 +36,7 @@
          {
 
 //insert default values
-$queryLimit = "INSERT into `defaultValues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '1')";
+$queryLimit = "INSERT into `defaultValues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '5')";
 mysqli_query($con,$queryLimit);
 
 $query = "INSERT into `employerRegData` (email,password,companyname,indtype,companyorconsult,contactpername,designation,officeaddress,country,city,pincode,mobile,alteremail,gst,agree,getemail,trn_date) VALUES ('$email', '".md5($password)."','$companyname','$indtype','$companyorconsult','$contactpername','$designation','$officeaddress','$country','$city','$pincode','$mobile','$alteremail','$gst','$agree','$getemail','$trn_date')";
