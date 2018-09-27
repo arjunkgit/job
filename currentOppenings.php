@@ -92,7 +92,7 @@
 						{
 					?>					
 					<div class="col-md-12">  
-						<button type="button" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
+						<button type="button" jobsPostedBy="<?php echo $row["email"]; ?>" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
 					</div>
 					<?php
 						}else{
@@ -155,8 +155,16 @@ $(document).ready(function(){
 });
 
 $(document).on("click",".jobApplyBtn", function () {
-   var clickedBtnID = $(this).attr('jobID'); // or var clickedBtnID = this.id
-
+   var appliedJobID = $(this).attr('jobID'); 
+   var jobsPostedBy = $(this).attr('jobsPostedBy');
+    $.post("funcs.php/addAppliedJobs",
+    {
+        appliedJobID: appliedJobID,
+        jobsPostedBy : jobsPostedBy
+    },
+    function(data){
+		console.log(data);
+    });
 });
 
 </script>
