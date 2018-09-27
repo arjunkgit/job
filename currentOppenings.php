@@ -81,7 +81,7 @@
 			    <div class="panel panel-primary">
 			      <div class="panel-heading"><h5><?php echo $row["jobName"]; ?></h5></div>
 			      <div class="panel-body" style="padding: 0px;">
-			      	<div class="jobID"><?php echo $row["jobID"] ?></div>
+			      	<div class="jobID"></div>
 			      	<div class="current-location col-md-12 current-body-font"><p>Location : <?php echo $row["city"]; ?></p></div>
 			        <div class="current-role col-md-12 current-body-font"><p>Experiance : <?php echo $row["jobExp"]; ?></p></div>
 			        <div class="current-skill col-md-12 current-body-font"><p>Qualification : <?php echo $row["qua"]; ?></p></div>
@@ -92,7 +92,7 @@
 						{
 					?>					
 					<div class="col-md-12">  
-						<button type="button" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
+						<button type="button" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
 					</div>
 					<?php
 						}else{
@@ -152,13 +152,12 @@ $(document).ready(function(){
         $("#myModal").modal();
     });
 
-$(".jobsApplied").click(function(){
-}); 
-
-
 });
 
+$(document).on("click",".jobApplyBtn", function () {
+   var clickedBtnID = $(this).attr('jobID'); // or var clickedBtnID = this.id
 
+});
 
 </script>
 
