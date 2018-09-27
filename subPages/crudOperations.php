@@ -80,7 +80,7 @@ function saveUserData(){
 		
 	$password = stripslashes($_POST['user']['userPass']);
 	$password = mysqli_real_escape_string($con,$password);
-	$checkEmail = "SELECT * FROM `candidateregdata` WHERE email='$email'";
+	$checkEmail = "SELECT * FROM `candidateRegData` WHERE email='$email'";
 	$checkResult = mysqli_query($con,$checkEmail);
 	$checkRow = mysqli_num_rows($checkResult);
 	if($checkRow==1){
@@ -89,14 +89,14 @@ function saveUserData(){
 	else{	
 		$empusername = $_SESSION['empusername'];	
 		$query1 = "SELECT `createNewEmpLimit`  FROM defaultValues WHERE `email`='$empusername'";		
-		$jobsPosted = "SELECT `createdBy` FROM candidateregdata WHERE `createdBy` = '$empusername'";
+		$jobsPosted = "SELECT `createdBy` FROM candidateRegData WHERE `createdBy` = '$empusername'";
 		$result = mysqli_query($con, $query1);
 		$resultPostedJobs = mysqli_query($con, $jobsPosted);
 		$limitData = mysqli_fetch_assoc($result);
 		if (mysqli_num_rows($resultPostedJobs) >= $limitData['createNewEmpLimit']   ){
 			echo "You have exceded the Job Post Limit. Please contact your Admin.";
 		}else{
-			$query = "INSERT INTO candidateregdata ( `fname`,`email`,`password`,`activatePro`,createdBy) VALUES ('$username','$email', '".md5($password)."','1','$empEmail')";
+			$query = "INSERT INTO candidateRegData ( `fname`,`email`,`password`,`activatePro`,createdBy) VALUES ('$username','$email', '".md5($password)."','1','$empEmail')";
 			if (mysqli_query($con, $query)) {
 					echo "User added successfully";
 				} else {
