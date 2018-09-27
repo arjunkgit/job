@@ -68,7 +68,7 @@ function updateUserRecord(){
     require_once ("db.php");
 
     switch ($tableName) {
-    case "candidateregdata":
+    case "candidateRegData":
     $email = $_SESSION['username'];
     $CurrentComapany = $_POST['user']['CurrentComapany'];
     $CurrentDesignation = $_POST['user']['CurrentDesignation'];
@@ -103,7 +103,7 @@ function updateUserRecord(){
     $town = $_POST['user']['town'];
     $year = $_POST['user']['year'];
     
-    $query = "UPDATE candidateregdata SET `CurrentComapany` = '$CurrentComapany',`CurrentDesignation` = '$CurrentDesignation',`ResumeHeading` = '$ResumeHeading',`TotalExp` = '$TotalExp',`activatePro` = '$activatePro',`address1` = '$address1',`address2` = '$address2',`address3` = '$address3',`client` = '$client',`country` = '$country',`deactivatePro` = '$deactivatePro',`deletePro` = '$deletePro',`duration` = '$duration',`empDetails` = '$empDetails',`dob` = '$dob',`fname` = '$fname',`gender` = '$gender',`linked` = '$linked',`lname` = '$lname',`mobile` = '$mobile',`phone` = '$phone',`pincode` = '$pincode',`proDetails` = '$proDetails',`proTitle` = '$proTitle',`profilePhoto` = '$profilePhoto',`resumeUploadName` = '$resumeUploadName',`summary` = '$summary',`title` = '$title',`town` = '$town',`year` = '$year' WHERE `email` = '$email'";
+    $query = "UPDATE candidateRegData SET `CurrentComapany` = '$CurrentComapany',`CurrentDesignation` = '$CurrentDesignation',`ResumeHeading` = '$ResumeHeading',`TotalExp` = '$TotalExp',`activatePro` = '$activatePro',`address1` = '$address1',`address2` = '$address2',`address3` = '$address3',`client` = '$client',`country` = '$country',`deactivatePro` = '$deactivatePro',`deletePro` = '$deletePro',`duration` = '$duration',`empDetails` = '$empDetails',`dob` = '$dob',`fname` = '$fname',`gender` = '$gender',`linked` = '$linked',`lname` = '$lname',`mobile` = '$mobile',`phone` = '$phone',`pincode` = '$pincode',`proDetails` = '$proDetails',`proTitle` = '$proTitle',`profilePhoto` = '$profilePhoto',`resumeUploadName` = '$resumeUploadName',`summary` = '$summary',`title` = '$title',`town` = '$town',`year` = '$year' WHERE `email` = '$email'";
     if (mysqli_query($con, $query)) {
             echo "success";
     } else {
