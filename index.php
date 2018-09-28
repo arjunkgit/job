@@ -26,6 +26,40 @@
     <link href="css/font-awesome.css" rel="stylesheet">
     <!----font-Awesome----->
 
+<style>
+.jobSearch input[type=text] {
+    padding: 10px !important;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    background: #eafdff;
+}
+
+.jobSearch button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #247177;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.jobSearch button:hover {
+    background: #144245;
+}
+
+.jobSearch::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+</style>
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation" >
@@ -37,6 +71,12 @@
 	<?php include('topMenu.php'); ?>
 </div>
 </nav>
+<div class="container">
+<form class="jobSearch" action="searchPage.php">
+  <input type="text" placeholder="Search.. EX: Software Engineer, Wipro, BE" name="search">
+  <button type="submit">Find Jobs</button>
+</form>
+</div>
 <?php include('slider.php'); ?>
 <?php include('currentOpen.php'); ?>
 <?php include('ourClient.php'); ?>
