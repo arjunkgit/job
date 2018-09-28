@@ -48,7 +48,7 @@
 		<div class="col-md-3">
 			<?php include('ourServicesLeft.php'); ?>			
 		</div>
-		<div id="currentBox" class="col-md-6">
+		<div id="currentBox" class="col-md-6" style="padding: 2px;">
 		<?php
 		 require_once("db.php");
 
@@ -77,44 +77,13 @@
 		    while($row = $res_data->fetch_assoc()) {
 		//	 echo "id: " . $row["id"]. " - Name: " . $row["fname"]. " " . $row["lname"]. "<br>";
 		?>
-			<div class="col-md-6">
-			    <div class="panel panel-primary">
-			      <div class="panel-heading"><h5><?php echo $row["jobName"]; ?></h5></div>
-			      <div class="panel-body" style="padding: 0px;">
-			      	<div class="jobID"></div>
-			      	<div class="current-location col-md-12 current-body-font"><p>Location : <?php echo $row["city"]; ?></p></div>
-			        <div class="current-role col-md-12 current-body-font"><p>Experiance : <?php echo $row["jobExp"]; ?></p></div>
-			        <div class="current-skill col-md-12 current-body-font"><p>Qualification : <?php echo $row["qua"]; ?></p></div>
-			        <div class="current-postedby col-md-12 current-body-font"><p>Min Salary : <?php echo $row["minSalary"]; ?></p></div>
-			        <div class="current-postedby col-md-12 current-body-font"><p>Max Salary : <?php echo $row["maxSalary"]; ?></p></div>
-					<?php
-						if (isset($_SESSION["username"]))
-						{
-					?>					
-					<div class="col-md-12">  
-						<button type="button" jobsPostedBy="<?php echo $row["email"]; ?>" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
-					</div>
-					<?php
-						}else{
-					?>
-					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Login</button>
-					</div>
-					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Register</button>
-					</div>					
-					<?php							
-						}
-					?>
-					<br>
-			      </div>
-			    </div>
+			<div class="col-md-12" style="padding: 2px;"> 
 			</div>
 		<?php
 			}
 		}
 		?>		
-		<div>
+		<div  style="clear: both;">
 		    <ul class="pagination">
 		        <li><a href="?pageno=1">&laquo;&laquo; First</a></li>
 		        <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
@@ -157,13 +126,18 @@ $(document).ready(function(){
 $(document).on("click",".jobApplyBtn", function () {
    var appliedJobID = $(this).attr('jobID'); 
    var jobsPostedBy = $(this).attr('jobsPostedBy');
+   var currentButton = $(this);
     $.post("funcs.php/addAppliedJobs",
     {
         appliedJobID: appliedJobID,
         jobsPostedBy : jobsPostedBy
     },
     function(data){
-		console.log(data);
+        if(data.trim() == "success"){
+            console.log(data.trim());
+            $(currentButton).text("Applied");
+            $(currentButton).prop("disabled",true);
+        }
     });
 });
 
