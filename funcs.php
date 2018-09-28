@@ -1,21 +1,5 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Actions</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="jobs" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container">
-<div class="row"> 
-<div class="col-md-12" style="text-align: center;">
-<h3>	
 <?php
 session_start();
-
 //0 **************** Basic Format ***************
 //--   1   2         3     4    5   
 //-- /job/funcs.php/func2/arg1/arg2
@@ -206,25 +190,16 @@ require_once("db.php");
 $email = $_SESSION["username"];
 $appliedJobID = $_POST["appliedJobID"];
 $jobsPostedBy = $_POST["jobsPostedBy"];
-$sql = "INSERT INTO  `jobsApplied` (userEmail,jobsPostId,jobsPostedBy) VALUES ('$email', '$appliedJobID', '$jobsPostedBy')";
-	
+$sql = "INSERT INTO  `jobsApplied` (userEmail,jobsPostId,jobsPostedBy) VALUES ('$email', '$appliedJobID', '$jobsPostedBy')";	
 if ($con->query($sql) === TRUE) {
-    echo "Job applied successfully";
+    echo "success";
 	header("refresh:1; url=/job/currentOpenings.php"); 
 	exit;
 } else {
-    echo "Error in applying job";
+    echo "error";
 	header("refresh:1; url=/job/currentOpenings.php"); 
 	exit;
 }
 mysqli_close($con);
 }
-
-
 ?>
-</h3>
-</div>
-</div>	
-</div>
-</body>
-</html>
