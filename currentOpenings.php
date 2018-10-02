@@ -78,6 +78,57 @@
 		//	 echo "id: " . $row["id"]. " - Name: " . $row["fname"]. " " . $row["lname"]. "<br>";
 		?>
 			<div class="col-md-12" style="padding: 2px;"> 
+			    <div class="panel panel-primary">
+			      <div class="panel-heading"><h5><?php echo $row["jobName"]; ?></h5></div>
+			      <div class="panel-body" style="padding: 0px;">
+			      	<div class="jobID"></div>
+			      	<div class="current-location col-md-12 current-body-font"><p>Location : <?php echo $row["city"]; ?></p></div>
+			        <div class="current-role col-md-12 current-body-font"><p>Experiance : <?php echo $row["jobExp"]; ?></p></div>
+			        <div class="current-skill col-md-12 current-body-font"><p>Qualification : <?php echo $row["qua"]; ?></p></div>
+			        <div class="current-postedby col-md-12 current-body-font"><p>Min Salary : <?php echo $row["minSalary"]; ?></p></div>
+			        <div class="current-postedby col-md-12 current-body-font"><p>Max Salary : <?php echo $row["maxSalary"]; ?></p></div>
+					<?php
+						if (isset($_SESSION["username"]))
+						{
+					?>		
+					<div class="col-md-12">
+                    <?php   
+                        $userEmail = $_SESSION["username"];	
+                        $rowJobs = $row["jobID"];
+                        $jobsappliedQuery = "SELECT '$userEmail' FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";	
+                        $jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
+                        if(mysqli_num_rows($jobsPostedResult) > 0){
+                            $isJobApplied = "yes";
+                        }else{
+                            $isJobApplied = "no";
+                        }
+
+                        if($isJobApplied == "yes" ){
+                        ?> 
+                            <button type="button" disabled="disabled" class="btn btn-primary btn-sm btn-block">Applied</button>
+                        <?php                                
+                        }else{
+                        ?> 
+                            <button type="button" jobsPostedBy="<?php echo $row["email"]; ?>" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
+                        <?php
+                        }
+                    ?>
+					</div>
+					<?php
+						}else{
+					?>
+					<div class="col-md-6">  
+						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Login</button>
+					</div>
+					<div class="col-md-6">  
+						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Register</button>
+					</div>					
+					<?php							
+						}
+					?>
+					<br>
+			      </div>
+			    </div>
 			</div>
 		<?php
 			}
