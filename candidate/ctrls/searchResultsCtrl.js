@@ -18,10 +18,8 @@ searchResultsApp.controller("searchResultsCtrl", function($scope, $rootScope,pos
         });
     };
 
-
-
-
 //ini getdetails
+console.log($scope.searchKey);
 if($scope.searchKey != undefined && $scope.searchKey != ""){
     $scope.getSearchResults();
 }else{

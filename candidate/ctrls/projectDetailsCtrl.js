@@ -35,10 +35,9 @@ candidateApp.controller("projectDetailsCtrl", function ($scope, $rootScope, post
 
     //get emp details
     $scope.getEmpDetails = function () {
-        var getEmpDetailsData = { "tableName": "projecthistory", "type": "getUserData" };
+        var getEmpDetailsData = { "tableName": "projectHistory", "type": "getUserData" };
         var cat2 = postData.getUserData(getEmpDetailsData);
         cat2.then(function (response) {
-            console.log(response);
             $scope.empSelectedDetailsData = response.data;
             $scope.isDisable = true;
             $rootScope.showLoader = false;
@@ -86,9 +85,7 @@ candidateApp.controller("projectDetailsCtrl", function ($scope, $rootScope, post
             id = "";
             data.id = id;
         }
-        console.log("data - ");
-        console.log(data);
-        var addOrUpdateEmpDetailsParams = { "user": data, "tableName": "projecthistory", "type": "addOrUpdateProjectHistory" };
+        var addOrUpdateEmpDetailsParams = { "user": data, "tableName": "projectHistory", "type": "addOrUpdateProjectHistory" };
         var cat = postData.crud(addOrUpdateEmpDetailsParams);
         cat.then(function (response) {
             console.log(response);
@@ -116,7 +113,7 @@ candidateApp.controller("projectDetailsCtrl", function ($scope, $rootScope, post
                 "id" : id,
                 "index" : index
             }
-            var deleteEmpDetailsDataParams = { "user": data, "tableName": "projecthistory", "type": "deleteEmpHistory" };
+            var deleteEmpDetailsDataParams = { "user": data, "tableName": "projectHistory", "type": "deleteEmpHistory" };
             var cat = postData.crud(deleteEmpDetailsDataParams);
             cat.then(function (response) {
                 if(response == "deleted"){

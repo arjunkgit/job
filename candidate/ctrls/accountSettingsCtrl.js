@@ -15,6 +15,8 @@ candidateApp.controller("accountSettingsCtrl", function ($scope, $rootScope, pos
             $rootScope.showLoader = false;
         });
     };
+
+
     //ini
     $scope.getAccountSettings();
 

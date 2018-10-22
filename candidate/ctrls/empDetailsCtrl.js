@@ -35,7 +35,7 @@ candidateApp.controller("empDetailsCtrl", function ($scope, $rootScope, postData
 
     //get emp details
     $scope.getEmpDetails = function () {
-        var getEmpDetailsData = { "tableName": "emphistory", "type": "getUserData" };
+        var getEmpDetailsData = { "tableName": "empHistory", "type": "getUserData" };
         var cat2 = postData.getUserData(getEmpDetailsData);
         cat2.then(function (response) {
             console.log(response);

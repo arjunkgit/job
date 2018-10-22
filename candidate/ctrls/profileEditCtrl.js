@@ -26,9 +26,10 @@ candidateApp.controller("profileEditCtrl", function ($scope,$rootScope, $filter,
         $scope.isDisable = true;
     };
 
-    var getUserData = { "tableName": "candidateregdata", "type": "getUserData" };
+    var getUserData = { "tableName": "candidateRegData", "type": "getUserData" };
     var cat2 = postData.getUserData(getUserData);
     cat2.then(function (response) {
+    	console.log(response);
         $scope.profileEditData = response.data[0];
         $scope.profileEditDataCopy = response.data[0];
 
@@ -65,7 +66,7 @@ candidateApp.controller("profileEditCtrl", function ($scope,$rootScope, $filter,
         profileEditData.dob = formatDateToString($scope.profileEditData.dob);
         console.log(profileEditData);
         $scope.profileEditData.dob = new Date(profileEditData.dob);
-        var updateUserDataParams = { "user": profileEditData, "tableName": "candidateregdata", "type": "updateUserRecord" };
+        var updateUserDataParams = { "user": profileEditData, "tableName": "candidateRegData", "type": "updateUserRecord" };
         var cat = postData.crud(updateUserDataParams);
         cat.then(function (response) {
             if(response == "success"){
