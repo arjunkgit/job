@@ -131,12 +131,14 @@ $deactivateProValue = 0;
 $email = $_SESSION["username"];
 $sql = "UPDATE candidateRegData set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
-    echo "Your account has been activated successfully";
-	header("refresh:1; url=../dashboard.php#/accountSettings"); 
+//    echo "Your account has been activated successfully";
+    header("Location: ../dashboard.php#/accountSettings");
+//	header("refresh:1; url=../dashboard.php#/accountSettings"); 
 	exit;
 } else {
-    echo "Error in account settings. Please try again.";
-	header("refresh:2; url=../dashboard.php#/accountSettings"); 
+//    echo "Error in account settings. Please try again.";
+    header("Location: ../dashboard.php#/accountSettings");
+//	header("refresh:2; url=../dashboard.php#/accountSettings"); 
 	exit;
 }
 mysqli_close($con);
@@ -153,12 +155,14 @@ $activateProValue = 0;
 $email = $_SESSION["username"];
 $sql = "UPDATE candidateRegData set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
-    echo "Your account has been Deactivated successfully";
-	header("refresh:2; url=../dashboard.php#/accountSettings"); 
+//    echo "Your account has been Deactivated successfully";
+    header("Location: ../dashboard.php#/accountSettings");
+//	header("refresh:2; url=../dashboard.php#/accountSettings"); 
 	exit;
 } else {
-    echo "Error in account. Please try again.";
-	header("refresh:1; url=../dashboard.php#/accountSettings"); 
+//    echo "Error in account. Please try again.";
+    header("Location: ../dashboard.php#/accountSettings");
+//	header("refresh:1; url=../dashboard.php#/accountSettings"); 
 	exit;
 }
 mysqli_close($con);
@@ -173,11 +177,13 @@ $email = $_SESSION["username"];
 $sql = "UPDATE candidateRegData set ".$deletePro."='".$deleteProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
 echo "Currently the account deleting facility has been disabled. Contact admin for more details.";
-//    echo "Your account has been Deleted successfully";
+ //    echo "Your account has been Deleted successfully";
+//    header("Location: ../dashboard.php#/accountSettings");
 	header("refresh:4; url=../dashboard.php#/accountSettings"); 
 	exit;
 } else {
-    echo "Error in deleting your account.";
+  echo "Error in deleting your account.";
+//    header("Location: ../dashboard.php#/accountSettings");
 	header("refresh:1; url=../dashboard.php#/accountSettings"); 
 	exit;
 }

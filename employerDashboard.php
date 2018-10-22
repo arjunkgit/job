@@ -120,6 +120,24 @@
                     </div>
                 </div>
             </div>
+
+<!--
+
+                <td data-title="'Job Id'" filter="{jobID: 'number'}" filter-data="jobID" sortable="'jobID'">
+                    {{ row.jobID }}</td>
+                <td data-title="'Description'" filter="{jobDesc: 'text'}" sortable="'jobDesc'">
+                    {{ row.jobDesc }}</td>
+
+                <td data-title="'State'" filter="{state: 'text'}" sortable="'state'">
+                    {{ row.state }}</td>
+
+                <td data-title="'Min Sal'" filter="{minSalary: 'number'}" sortable="'minSalary'">
+                    {{ row.minSalary }}</td>
+                <td data-title="'Max Sal'" filter="{maxSalary: 'number'}" sortable="'maxSalary'">
+                    {{ row.maxSalary }}</td>
+
+-->
+
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">View Jobs</div>
@@ -129,24 +147,16 @@
                                 <table ng-table="tableParams" show-filter="true" class="table table-condensed table-bordered table-striped">
                                     <tbody>
                                         <tr ng-repeat="row in $data track by $index">
-                                            <td data-title="'Job Id'" filter="{jobID: 'number'}" filter-data="jobID" sortable="'jobID'">
-                                                {{ row.jobID }}</td>
                                             <td data-title="'Job Name'" filter="{jobName: 'text'}" filter-data="jobName" sortable="'jobName'">
                                                 {{ row.jobName }}</td>
-                                            <td data-title="'Description'" filter="{jobDesc: 'text'}" sortable="'jobDesc'">
-                                                {{ row.jobDesc }}</td>
-                                            <td data-title="'Min Sal'" filter="{minSalary: 'number'}" sortable="'minSalary'">
-                                                {{ row.minSalary }}</td>
-                                            <td data-title="'Max Sal'" filter="{maxSalary: 'number'}" sortable="'maxSalary'">
-                                                {{ row.maxSalary }}</td>
                                             <td data-title="'Experiance'" filter="{jobExp: 'text'}" sortable="'jobExp'">
                                                 {{ row.jobExp }}</td>
                                             <td data-title="'Qualification'" filter="{qua: 'text'}" sortable="'qua'">
                                                 {{ row.qua }}</td>
                                             <td data-title="'City'" filter="{city: 'text'}" sortable="'city'">
                                                 {{ row.city }}</td>
-                                            <td data-title="'State'" filter="{state: 'text'}" sortable="'state'">
-                                                {{ row.state }}</td>
+                                            <td data-title="'candidates Applied'" filter="{candidateApplied: 'text'}" sortable="'candidateApplied'">
+                                                {{ row.candidateApplied }}</td>
                                             <td data-title="'Action'">
                                                 <button class="btn btn-info btn-sm" data-ng-click="editUser(row)" style="cursor: pointer;">
                                                     <span class="glyphicon glyphicon-edit"></span>

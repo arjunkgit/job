@@ -73,8 +73,8 @@
 </nav>
 <div class="container">
 <form class="jobSearch" action="searchPage.php">
-  <input type="text" placeholder="Search.. EX: Software Engineer, Wipro, BE" name="search">
-  <button type="submit">Find Jobs</button>
+  <input type="text" placeholder="Search Job.. EX: Software Engineer, Support ..." name="search">
+  <button type="submit">Search</button>
 </form>
 </div>
 <?php include('slider.php'); ?>

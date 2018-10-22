@@ -38,6 +38,7 @@ $query = "INSERT into `candidateRegData` (email,password,title,fname,lname,day,m
 $result = mysqli_query($con,$query);
 
 if($result){
+	echo $query;
 echo "<div style='text-align: center;background-color: white;margin: 10px;padding: 20px;' class='form1'><h3 style='color: green;'>You are registered successfully.</h3><br/>Click here to login <a href='index.php'>Home Page</a></div>";
 	 }
 

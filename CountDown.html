@@ -1,0 +1,96 @@
+<html>
+  
+  <head>
+      <style type="text/css">
+#scg-nyc-wrapper{color:gray;line-height:normal;text-align:center;cursor:pointer;padding:2px;background:rgba(255, 255, 255, 0.5);}
+.scg-nyc-digits-wrapper{display:inline-block;vertical-align:bottom}
+.scg-nyc-digits-type{font-size:13px}
+.scg-nyc-digit > span{background:#fff none repeat scroll 0 0;border:1px solid rgba(0,0,0,0.1);border-radius:5px;box-shadow:1px 1px 1px #d1c1c1;display:inline-block;padding:2px 7px;margin:0 1px}
+.scg-nyc-sep{padding:5px 0;animation:sep-blinks 1s linear infinite;-moz-animation:sep-blinks 1s linear infinite;-webkit-animation:sep-blinks 1s linear infinite;}
+@keyframes sep-blinks {
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+@-moz-keyframes sep-blinks {
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+@-webkit-keyframes sep-blinks {
+0%{opacity:1}
+50%{opacity:0}
+100%{opacity:1}
+}
+</style>
+    </head>
+  <body>
+
+<div id="scg-nyc-wrapper">
+   
+    <div class="scg-nyc-digits-wrapper scg-nyc-sep"> : </div>
+    <div class="scg-nyc-digits-wrapper">
+        <div class="scg-nyc-digits-type">Hours</div>
+        <div class="scg-nyc-digit" id="scg-clock-hr">
+            <span>0</span><span>0</span>
+        </div>
+    </div>
+    <div class="scg-nyc-digits-wrapper scg-nyc-sep"> : </div>
+    <div class="scg-nyc-digits-wrapper">
+        <div class="scg-nyc-digits-type">Minutes</div>
+        <div class="scg-nyc-digit" id="scg-clock-mins">
+            <span>0</span><span>0</span>
+        </div>
+    </div>
+    <div class="scg-nyc-digits-wrapper scg-nyc-sep"> : </div>
+    <div class="scg-nyc-digits-wrapper">
+        <div class="scg-nyc-digits-type">Seconds</div>
+        <div class="scg-nyc-digit" id="scg-clock-secs">
+            <span>0</span><span>0</span>
+        </div>
+    </div>
+</div>
+<script type="text/JavaScript">
+function startTimer() {
+    /**
+     New Year 2018 Countdown Timer
+     Author: 5um17
+     url: http://www.secretsofgeeks.com/
+    **/
+    var newyr=new Date("January 1, 2018 00:00:00");
+    var newyeartime=newyr.getTime();
+    var todaytm=new Date();
+    var todaytime=todaytm.getTime();
+    var timeleft=newyeartime-todaytime;
+    var leftdays = timeleft/86400000;
+    var lefthr=23-todaytm.getHours();
+    var leftmin=59-todaytm.getMinutes();
+    var leftsec=59-todaytm.getSeconds();
+    if (Math.floor(leftdays) <= -1) {
+        document.getElementById('scg-nyc-msg').innerHTML="It's New Year Time, Friends!<br/>Happy New Year 2018";
+        return;
+    } else {
+        document.getElementById('scg-clock-days').innerHTML= scgWrapChars(Math.floor(leftdays), -3);
+        document.getElementById('scg-clock-hr').innerHTML= scgWrapChars(lefthr, -2);
+        document.getElementById('scg-clock-mins').innerHTML= scgWrapChars(leftmin, -2);
+        document.getElementById('scg-clock-secs').innerHTML= scgWrapChars(leftsec, -2);
+    }
+    setTimeout('startTimer()',999);
+}
+eval(atob('c3RhcnRUaW1lcigpO2RvY3VtZW50LmdldEVsZW1lbnRCeUlkKCJzY2ctbnljLXdyYXBwZXIiKS5vbmNsaWNrPWZ1bmN0aW9uKCl7d2luZG93LmxvY2F0aW9uPSJodHRwOi8vd3d3LnNlY3JldHNvZmdlZWtzLmNvbS8yMDExLzEyL25ldy15ZWFyLWNvdW50ZG93bi1jbG9jay5odG1sP215cmVmPW55In0='));
+
+/**
+ * Wrap each word in span Ref: http://stackoverflow.com/a/15602535/2384623
+ */
+function scgWrapChars(str, pad) {
+    str = (Math.pow(10, Math.abs(pad)) + str.toString()).slice(pad);
+    return str.replace(/\w/g, "<span>$&</span>");
+}
+</script>
+    </body>
+</+html>
+
+
+
+
+

@@ -109,7 +109,7 @@
                         <?php                                
                         }else{
                         ?> 
-                            <button type="button" jobsPostedBy="<?php echo $row["email"]; ?>" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
+          					<button type="button" jobsPostedBy="<?php echo $row["email"]; ?>" jobID="<?php echo $row["jobID"]; ?>" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
                         <?php
                         }
                     ?>

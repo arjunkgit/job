@@ -12,21 +12,8 @@
     <script type="application/x-javascript"> 
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="css/bootstrap3.3.7.min.css">
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <!-- <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script> -->
-    <script src="js/jquery-1.11.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-    <link href="css/editor.css" rel='stylesheet' type='text/css' />
- 
-	<link href="editor.css" type="text/css" rel="stylesheet"/>
-    <!----font-Awesome----->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
+	<?php include('headFiles.html'); ?>
 
 <style>
 .jobSearch input[type=text] {
@@ -85,7 +72,7 @@
     }
     ?>
 </div>
-<?php include('candidate/views/searchResultsMain.php'); ?>
+<?php include('candidate/view/searchResultsMain.php'); ?>
 <?php include('footer.php'); ?>
 
 <script>
@@ -123,3 +110,4 @@ function setResult(resultType, resultData){
 
 </body>
 </html>
+	
