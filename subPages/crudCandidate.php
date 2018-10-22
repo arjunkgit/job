@@ -177,7 +177,6 @@ function addOrUpdateProjectHistory(){
     }else{
         $query = "UPDATE $tableName SET `projectTitle` = '$projectTitle', `client` = '$client',`duration` = '$duration',`projectDetails` = '$projectDetails'  WHERE `id` = $projectDetailsId";
     }
-    echo $query;
     if (mysqli_query($con, $query)) {
         if(!empty($projectDetailsId))
         //updated

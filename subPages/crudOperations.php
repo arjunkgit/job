@@ -197,7 +197,10 @@ function deleteData($jobId){
 		case "jobsPost":
 		if(empty($jobId)) throw new Exception( "Invalid User." );
 		$query = "DELETE FROM jobsPost WHERE `jobId` = $jobId";
-		if (mysqli_query($con, $query)) {
+		$query1 = "DELETE FROM jobsApplied WHERE `jobsPostId` = $jobId";
+
+
+		if (mysqli_query($con, $query) && mysqli_query($con, $query1)) {
 			echo "Job Id = " . $jobId . "deleted successfully";
 		} else {
 		    echo "Error in deleting record";
@@ -244,16 +247,24 @@ function deleteData($jobId){
 
 function getData(){
 		$email = $_SESSION['empusername'];
-		$jobsPost = $_POST['tableName'];		
+		$jobsPost = $_POST['tableName'];
+		$userEmail = "user2@gmail.com";		
 		require_once ("db.php");
 		switch ($jobsPost) {
 		case "jobsPost":
+
 		$query = "SELECT * FROM `jobsPost` WHERE `email`='$email'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
+
 		while ($row = mysqli_fetch_assoc($result)) {
-			$data['data'][] = $row;
+		$jobsPostIdTemp = $row['jobID'];
+		$query1 = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `userEmail`='$userEmail' AND `jobsPostId`='$jobsPostIdTemp'";
+		$result1 = mysqli_query($con, $query1);
+		$candidateApplied = mysqli_num_rows($result1);
+		$row["candidateApplied"] = $candidateApplied;
+	    $data['data'][] = $row;
 		}
 		echo json_encode($data);				
 		}	
