@@ -236,7 +236,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 					var getJobs = {"tableName":"jobsPost",  "type":"getData"};	
 					var cat2 = postData.getPostedJobs(getJobs);
 				    cat2.then(function(response) {
-						console.log(response.data);
+						console.log(response);
 				        $scope.data = response.data;
 						$scope.tableParams = new NgTableParams({page: 1, count: 5, sorting : {title:"desc"}},{data: $scope.data});
 						$scope.showLoader = false;				
