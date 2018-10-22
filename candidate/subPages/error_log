@@ -1,0 +1,28 @@
+[02-Oct-2018 14:08:25 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 58
+[02-Oct-2018 14:08:25 UTC] PHP Notice:  Undefined variable: con in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:08:25 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:08:25 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 61
+[02-Oct-2018 14:08:25 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:08:25 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:04 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 58
+[02-Oct-2018 14:10:04 UTC] PHP Notice:  Undefined variable: con in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:04 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:04 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 61
+[02-Oct-2018 14:10:04 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:04 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:19 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 58
+[02-Oct-2018 14:10:19 UTC] PHP Notice:  Undefined variable: con in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:19 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:19 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 61
+[02-Oct-2018 14:10:19 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:19 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:33 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 58
+[02-Oct-2018 14:10:33 UTC] PHP Notice:  Undefined variable: con in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:33 UTC] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 60
+[02-Oct-2018 14:10:33 UTC] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, null given in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 61
+[02-Oct-2018 14:10:33 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 14:10:33 UTC] PHP Notice:  Undefined variable: row in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 73
+[02-Oct-2018 17:22:26 UTC] PHP Notice:  session_start(): A session had already been started - ignoring in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 150
+[02-Oct-2018 17:22:44 UTC] PHP Notice:  session_start(): A session had already been started - ignoring in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 150
+[02-Oct-2018 17:23:40 UTC] PHP Notice:  session_start(): A session had already been started - ignoring in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 150
+[02-Oct-2018 17:23:51 UTC] PHP Notice:  session_start(): A session had already been started - ignoring in /home/fwf5dc1f3nec/public_html/job/candidate/subPages/searchResults.php on line 150

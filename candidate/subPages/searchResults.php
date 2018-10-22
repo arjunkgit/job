@@ -1,24 +1,25 @@
 <?php
 	session_start();
 ?>
+
 <div ng-controller="searchResultsCtrl">
     <div id="ResultData" class="alert  alert-dismissable">
         <span class=""></span>
-        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">Ã—</button>
+        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">×</button>
         <span id="ResultMessage"></span>
     </div>
 
     <div>
         <form class="jobSearch" action="searchPage.php">
-            <input type="text" ng-model="searchKey" placeholder="Search.. EX: Software Engineer, Wipro, BE" name="search">
-            <button type="submit">.</button>
+            <input type="text" ng-model="searchKey" placeholder="Search.. EX: Software Engineer, Support" name="search">
+            <button type="submit">Search</button>
         </form>
     </div>
     <br>
     <div ng-show="!searchKey" style="text-align: center;">
         Type and search your jobs
     </div>
-    <div class="col-md-6" ng-repeat="jobs in searchResultsData" style="padding: 2px;">
+    <div class="col-md-6" ng-repeat="jobs in searchResultsData" >
         <div class="panel-group">
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -50,10 +51,11 @@
                     </div>
 <?php
 if(isset($_SESSION["username"])){
-?>
-                    <div class="col-md-12">
-                        <button type="button" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
-                    </div>
+					?>		
+					<div class="col-md-12">
+                        <button type="button" ng-show="jobs.isJobApplied" disabled="disabled" class="btn btn-primary btn-sm btn-block">Applied</button>
+          				<button type="button" ng-show="!jobs.isJobApplied" jobsPostedBy="{{jobs.email}}" jobID="{{jobs.jobID}}" class="btn btn-primary btn-sm btn-block jobApplyBtn">Apply</button>
+					</div>
 <?php
 }else{
 ?>
@@ -92,4 +94,22 @@ if(isset($_SESSION["username"])){
             return false;
         }
     });
+$(document).on("click",".jobApplyBtn", function () {
+   var appliedJobID = $(this).attr('jobid'); 
+   var jobsPostedBy = $(this).attr('jobspostedby');
+   var currentButton = $(this);
+    $.post("funcs.php/addAppliedJobs",
+    {
+        appliedJobID: appliedJobID,
+        jobsPostedBy : jobsPostedBy
+    },
+    function(data){
+        if(data.trim() == "success"){
+            console.log(data.trim());
+            $(currentButton).text("Applied");
+            $(currentButton).prop("disabled",true);
+        }
+    });
+});
+
 </script>
