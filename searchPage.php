@@ -72,7 +72,7 @@
     }
     ?>
 </div>
-<?php include('candidate/view/searchResultsMain.php'); ?>
+<?php include('candidate/views/searchResultsMain.php'); ?>
 <?php include('footer.php'); ?>
 
 <script>
