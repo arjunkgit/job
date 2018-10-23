@@ -31,7 +31,7 @@
 <?php
 if (isset($_SESSION["username"]))
 {
-	include('candidate/view/candidateDashboardMain.php');
+	include('candidate/views/candidateDashboardMain.php');
 //	include('candidateDashboard.php');
 }
 else
