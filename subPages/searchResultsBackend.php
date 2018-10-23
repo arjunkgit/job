@@ -28,7 +28,11 @@ function getSearchData(){
     $tableName = $_POST['tableName'];
     $jobName = $_POST['jobName'];    
     require_once ("db.php");
-	$userEmail = $_SESSION["username"];	
+    if(isset($_SESSION["username"])){
+        $userEmail = $_SESSION["username"];	
+    }else{
+        $userEmail = "*";
+    }
 
         $query = "SELECT * FROM `$tableName` WHERE (`jobName` LIKE  '%$jobName%' OR `jobDesc` LIKE  '%$jobName%')  ";
         $result = mysqli_query($con, $query);
@@ -36,8 +40,12 @@ function getSearchData(){
         $data = array();
         while ($row = mysqli_fetch_assoc($result)) {
             	$rowJobs = $row["jobID"];
-				$jobsappliedQuery = "SELECT '$userEmail' FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";	
-				$jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
+                if(isset($_SESSION["username"])){
+                    $jobsappliedQuery = "SELECT '$userEmail' FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";	
+                }else{
+                    $jobsappliedQuery = "SELECT * FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";
+                }
+                $jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
 				if(mysqli_num_rows($jobsPostedResult) > 0){
 				$isJobApplied = true;
 				}else{
