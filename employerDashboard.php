@@ -16,6 +16,12 @@
 		.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
     text-align: center !important;
 }
+.ShowAsLink{
+    padding: 5px;
+    cursor: pointer;
+    background: #247177;
+    color: white;
+}
 
 </style>
 <div class="container" ng-app="myApp" ng-controller="myCtrl">
@@ -138,6 +144,7 @@
 
 -->
 
+<!-- selectdiv5-->
             <div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">View Jobs</div>
@@ -156,7 +163,8 @@
                                             <td data-title="'City'" filter="{city: 'text'}" sortable="'city'">
                                                 {{ row.city }}</td>
                                             <td data-title="'candidates Applied'" filter="{candidateApplied: 'text'}" sortable="'candidateApplied'">
-                                                {{ row.candidateApplied }}</td>
+                                                <a  ng-click="selectDivs(5,row.jobID)" class="ShowAsLink">{{ row.candidateApplied }}</a>
+                                                </td>
                                             <td data-title="'Action'">
                                                 <button class="btn btn-info btn-sm" data-ng-click="editUser(row)" style="cursor: pointer;">
                                                     <span class="glyphicon glyphicon-edit"></span>
@@ -257,7 +265,7 @@
                 </div>
             </div>
 
-						<div class="panel-group">
+    		<div class="panel-group">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span ng-show="!editUserMode">Add New User</span>
@@ -336,7 +344,36 @@
                 </div>
             </div>
 
-					</div>
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Candidates Applied</div>
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
+                            <div class="table-responsive">
+                                <table ng-table="tableParams" show-filter="true" class="table table-condensed table-bordered table-striped">
+                                    <tbody>
+                                    <tr ng-repeat="row in $data track by $index">
+                                            <td data-title="'Job ID'" filter="{jobPostId: 'text'}" filter-data="jobPostId" sortable="'jobPostId'">
+                                                {{ row.jobsPostId }}</td>
+                                            <td data-title="'Job Posted By'" filter="{jobsPostedBy: 'text'}" sortable="'jobsPostedBy'">
+                                                {{ row.jobsPostedBy }}</td>
+                                            <td data-title="'Candidate User ID'" filter="{userEmail: 'text'}" sortable="'candidateName'">
+                                                {{ row.userEmail }}</td>
+                                            <td data-title="'View Full Profile'">
+                                                <button class="btn btn-info btn-sm" data-ng-click="viewFullProfile(row)" style="cursor: pointer;">
+                                                    <span class="glyphicon glyphicon-edit"></span>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+		</div>
     </div>
 </div>
 
