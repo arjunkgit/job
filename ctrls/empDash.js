@@ -222,7 +222,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	};
 	
  
-	$scope.selectDivs = function (a){		
+	$scope.selectDivs = function (a,jobid){		
 		var totalDivs = $(".panel-group").length;
 		var i = 0; 
 		for(i=0;i<totalDivs; i++){
@@ -280,6 +280,22 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 						  $scope.showLoader = false;
 					  }); 
 				  }
+				
+				  if(currentDiv == 5){	
+					  console.log(jobid);
+					$scope.showLoader = true;
+					$scope.editMode = false;
+					$scope.editUserMode = false;
+					  var getJobs = {"jobId": jobid,"tableName":"candidateAppliedList",  "type":"getData"};	
+					  var cat2 = postData.getPostedJobs(getJobs);
+					  cat2.then(function(response) {
+						  console.log(response.data);
+						  $scope.data = response.data;
+						  $scope.tableParams = new NgTableParams({page: 1, count: 5, sorting : {title:"desc"}},{data: $scope.data});
+						  $scope.showLoader = false;				
+					  }); 
+				  }		  
+
 				if(currentDiv == 0){
 					$scope.editMode = false;				
 					$scope.editUserMode = false;				
