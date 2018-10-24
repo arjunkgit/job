@@ -244,15 +244,29 @@ function deleteData($jobId){
 		}
 
 }
-
 function getData(){
 		$email = $_SESSION['empusername'];
 		$jobsPost = $_POST['tableName'];
-		$userEmail = "user2@gmail.com";		
+		$userEmail = "user2@gmail.com";	
+
 		require_once ("db.php");
 		switch ($jobsPost) {
-		case "jobsPost":
+		case "candidateAppliedList":
+		$jobId = $_POST['jobId'];
+		$query = "SELECT * FROM `jobsapplied` WHERE `jobsPostId`=$jobId";
+		$result = mysqli_query($con, $query);		
+		if (mysqli_num_rows($result) > 0) {	
+		$data = array();
+		while ($row = mysqli_fetch_assoc($result)) {
+			$data['data'][] = $row;
+		}
+		echo json_encode($data);				
+		}	
+		mysqli_close($con);
 
+		break;
+
+		case "jobsPost":
 		$query = "SELECT * FROM `jobsPost` WHERE `email`='$email'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
