@@ -160,7 +160,7 @@ font-size: 14px;
 
  
  <!-- Main Ctrls -->
- <script src="candidate/ctrls/cadidateDashboardCtrl.js"></script>
+ <script src="candidate/ctrls/candidateDashboardCtrl.js"></script>
 
  <!-- all services -->
  <script src="candidate/services/postDataService.js"></script>
