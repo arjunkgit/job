@@ -17,6 +17,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 		$scope.isEdit = true;	
 	};
 
+	$scope.globalJobId = 0;
 	$scope.template = {
 			name : "myName",
 			jobId: null,
@@ -87,7 +88,8 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	
 	};
 
-	$scope.updateUser = function(){		
+	$scope.updateUser = function(){
+		console.log("logg");
 	$scope.showLoader = true;  
 	var paramsObj = {"user" : $scope.tempUser , "tableName":"jobsPost",  "type":"saveData"};
 	console.log($scope.tempUser);	
@@ -201,8 +203,11 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	}
 		$(".panel-group").eq(0).show();
 	};
-
+	$scope.viewFullProfile = function(jobId){
+		$scope.selectDivs(6);
+	};
 	$scope.editUser = function(job){
+		console.log("a");
 		$scope.tempUser = {
 			jobId: job.jobID,
 			jobName: job.jobName,
@@ -220,8 +225,14 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 		$scope.fromEdit = true;		
 		$scope.selectDivs(0);		
 	};
-	
- 
+	$scope.checkk = function(){
+		alert('alerted!');
+	  };
+
+	$scope.tryy = function(){
+		console.log("were");
+	};
+
 	$scope.selectDivs = function (a,jobid){		
 		var totalDivs = $(".panel-group").length;
 		var i = 0; 
@@ -230,6 +241,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 				$(".panel-group").eq(i).show();
 				currentDiv = i;
 				if(currentDiv == 1){	
+				  console.log("1");
 				  $scope.showLoader = true;
 		          $scope.editMode = false;
 		          $scope.editUserMode = false;
@@ -243,7 +255,8 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 				    }); 
 				}
 				if(currentDiv == 2){	
-				  $scope.showLoader = true;
+					console.log("2");
+					$scope.showLoader = true;
 		          $scope.editMode = false;
 		          $scope.editUserMode = false;
 					var getProfile = {"tableName":"employerRegData",  "type":"getData"};	
@@ -281,20 +294,52 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 					  }); 
 				  }
 				
-				  if(currentDiv == 5){	
-					  console.log(jobid);
+				  if(currentDiv == 5){
 					$scope.showLoader = true;
 					$scope.editMode = false;
 					$scope.editUserMode = false;
 					  var getJobs = {"jobId": jobid,"tableName":"candidateAppliedList",  "type":"getData"};	
 					  var cat2 = postData.getPostedJobs(getJobs);
 					  cat2.then(function(response) {
-						  console.log(response.data);
-						  $scope.data = response.data;
-						  $scope.tableParams = new NgTableParams({page: 1, count: 5, sorting : {title:"desc"}},{data: $scope.data});
-						  $scope.showLoader = false;				
+						  console.log(response);
+						  if(typeof response.data != 'undefined'){
+							console.log(response.data);
+							$scope.data = response.data;
+							$scope.tableParams = new NgTableParams({page: 1, count: 5, sorting : {title:"desc"}},{data: $scope.data});
+							$scope.showLoader = false;  
+						  }else{
+							var noData = [];
+							noData.push({
+								userEmail: "No Data", 
+								jobsPostId: "No Data", 
+								jobsPostedBy: "No Data" 
+							});
+							console.log(noData);
+							$scope.data = noData;
+							$scope.tableParams = new NgTableParams({page: 1, count: 5, sorting : {title:"desc"}},{data: $scope.data});
+							$scope.showLoader = false;
+						  }
 					  }); 
 				  }		  
+
+				  if(currentDiv == 6){	
+					$scope.showLoader = true;
+					$scope.editMode = false;
+					$scope.editUserMode = false;
+					  var getProfile = {"email" : jobid, "tableName":"getFullUserData",  "type":"getData"};	
+					  var cat3 = postData.getPostedJobs(getProfile);
+					  $scope.globalJobId = jobid;
+					  cat3.then(function(response) {
+						  if(typeof response != 'undefined'){
+							  console.log(response);
+							$scope.fullUserData = response.candidateData[0];
+							console.log($scope.fullUserData);
+							$scope.fullEmpHistory = response.empHistory;
+							$scope.fullProjectHistory = response.projectHistory;						  
+							$scope.showLoader = false; 
+						  }
+					  });
+				}	
 
 				if(currentDiv == 0){
 					$scope.editMode = false;				
