@@ -248,9 +248,54 @@ function deleteData($jobId){
 function getData(){
 		$email = $_SESSION['empusername'];
 		$jobsPost = $_POST['tableName'];
-		$userEmail = "user2@gmail.com";		
 		require_once ("db.php");
 		switch ($jobsPost) {
+		case "getFullUserData":
+		$email2 = $_POST["email"];
+		$query = "SELECT *, NULL AS password  FROM `candidateRegData` WHERE `email`='$email2'";
+		$result = mysqli_query($con, $query);		
+		if (mysqli_num_rows($result) > 0) {	
+		$data = array();
+		while ($row = mysqli_fetch_assoc($result)) {
+			$data['candidateData'][] = $row;
+		}
+		}
+		//emp history
+		$query2 = "SELECT * FROM `emphistory` WHERE `email`='$email2'";
+		$result2 = mysqli_query($con, $query2);		
+		if (mysqli_num_rows($result2) > 0) {	
+		$data2 = array();
+		while ($row2 = mysqli_fetch_assoc($result2)) {
+			$data['empHistory'][] = $row2;
+		}						
+		}
+		//project history
+		$query2 = "SELECT * FROM `projecthistory` WHERE `email`='$email2'";
+		$result2 = mysqli_query($con, $query2);		
+		if (mysqli_num_rows($result2) > 0) {	
+		$data2 = array();
+		while ($row2 = mysqli_fetch_assoc($result2)) {
+			$data['projectHistory'][] = $row2;
+		}						
+		}
+		echo json_encode($data);	
+		mysqli_close($con);
+		break;
+
+		case "candidateAppliedList":
+		$jobsPostIdTemp = $_POST['jobId'];
+		$query = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
+		$result = mysqli_query($con, $query);		
+		if (mysqli_num_rows($result) > 0) {	
+		$data = array();
+		while ($row = mysqli_fetch_assoc($result)) {
+			$data['data'][] = $row;
+		}
+		echo json_encode($data);				
+		}	
+		mysqli_close($con);
+
+		break;
 		case "jobsPost":
 
 		$query = "SELECT * FROM `jobsPost` WHERE `email`='$email'";
@@ -260,7 +305,7 @@ function getData(){
 
 		while ($row = mysqli_fetch_assoc($result)) {
 		$jobsPostIdTemp = $row['jobID'];
-		$query1 = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `userEmail`='$userEmail' AND `jobsPostId`='$jobsPostIdTemp'";
+		$query1 = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
 		$result1 = mysqli_query($con, $query1);
 		$candidateApplied = mysqli_num_rows($result1);
 		$row["candidateApplied"] = $candidateApplied;
