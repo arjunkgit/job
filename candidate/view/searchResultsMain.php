@@ -85,14 +85,20 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 .empListCol1{
     color: #00569c !important;
 
+text-align: right;
+
 }
 .empListCol2{
     color: #5c5c5c !important;
 }
 .empListRow{
-    border-bottom: 1px solid #9f9f9f;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    border-bottom: 1px solid #eee;
+
+padding-bottom: 2px;
+
+padding-top: 2px;
+
+font-size: 14px;
 }
 .fullProfileViewLimits{
     min-height: 80px;
@@ -140,23 +146,18 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
 
-  <script src="js/angular-animate.min.js"></script>
-  <script src="js/angular-aria.min.js"></script>
-  <script src="js/angular-messages.min.js"></script>
- -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-  <!-- Angular Material Library -->
-  <!-- 
   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>  
 
+ -->
+  <!-- Angular Material Library -->
+  <script src="js/angular-animate.min.js"></script>
+  <script src="js/angular-aria.min.js"></script>
+  <script src="js/angular-messages.min.js"></script>
+
   <script src="js/angular-material.min.js"></script>
   <script src="js/ng-table.min.js"></script> 
-  -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>  
+
 
  
  <!-- Main Ctrls -->
