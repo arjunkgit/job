@@ -1,5 +1,7 @@
 <div style="background-color: #847b7b; width: 100%;height: 100%;padding: 0px;margin: 0px">
-	 <?php
+     <?php
+     error_reporting(E_ERROR | E_PARSE);
+
      if (isset($_REQUEST['registrationSubmit'])){
 
 		require('db.php');
@@ -20,12 +22,12 @@
         $mobile = $_POST['mobile'];
         $alteremail = $_POST['alteremail'];
         $gst = $_POST['gst'];
-
+        
         $agree = $_POST['agree'];
         $getemail = $_POST['getemail'];
      
 		$trn_date = date("Y-m-d H:i:s");
-        $checkEmail = "SELECT * FROM `employerRegData` WHERE email='$email'";
+        $checkEmail = "SELECT * FROM `employerregdata` WHERE email='$email'";
 
 		$checkResult = mysqli_query($con,$checkEmail);
 		$checkRow = mysqli_num_rows($checkResult);
@@ -36,10 +38,10 @@
          {
 
 //insert default values
-$queryLimit = "INSERT into `defaultValues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '1')";
+$queryLimit = "INSERT into `defaultvalues` (email,jobspostLimit,createNewEmpLimit) VALUES ('$email', '10', '1')";
 mysqli_query($con,$queryLimit);
 
-$query = "INSERT into `employerRegData` (email,password,companyname,indtype,companyorconsult,contactpername,designation,officeaddress,country,city,pincode,mobile,alteremail,gst,agree,getemail,trn_date) VALUES ('$email', '".md5($password)."','$companyname','$indtype','$companyorconsult','$contactpername','$designation','$officeaddress','$country','$city','$pincode','$mobile','$alteremail','$gst','$agree','$getemail','$trn_date')";
+$query = "INSERT into `employerregdata` (email,password,companyname,indtype,companyorconsult,contactpername,designation,officeaddress,country,city,pincode,mobile,alteremail,gst,agree,getemail,trn_date) VALUES ('$email', '".md5($password)."','$companyname','$indtype','$companyorconsult','$contactpername','$designation','$officeaddress','$country','$city','$pincode','$mobile','$alteremail','$gst','$agree','$getemail','$trn_date')";
 $result = mysqli_query($con,$query);
 if ( false===$result ) {
 printf("error: %s\n", mysqli_error($con));
