@@ -13,17 +13,7 @@
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-    <link href='//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900'
-        rel='stylesheet' type='text/css'>
-    <!----font-Awesome----->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
+	<?php include('headFiles.html'); ?>
     <style>
     	.jobID {
 			display : none;	
@@ -60,18 +50,18 @@
         $no_of_records_per_page = 10;
         $offset = ($pageno-1) * $no_of_records_per_page;
 
-        $total_pages_sql = "SELECT COUNT(*) FROM jobsPost";
+        $total_pages_sql = "SELECT COUNT(*) FROM jobspost";
         $result = mysqli_query($con,$total_pages_sql);
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-        $sql = "SELECT * FROM jobsPost LIMIT $offset, $no_of_records_per_page";
+        $sql = "SELECT * FROM jobspost LIMIT $offset, $no_of_records_per_page";
 //        $res_data = mysqli_query($con,$sql);
 //        while($row = mysqli_fetch_array($res_data)){
          		
 		
 //		$email = $_SESSION['username'];
-		//$sql = "SELECT * from jobsPost";
+		//$sql = "SELECT * from jobspost";
 		$res_data = mysqli_query($con, $sql);
 		if ($res_data->num_rows > 0) {
 		    while($row = $res_data->fetch_assoc()) {
@@ -82,11 +72,14 @@
 			      <div class="panel-heading"><h5><?php echo $row["jobName"]; ?></h5></div>
 			      <div class="panel-body" style="padding: 0px;">
 			      	<div class="jobID"></div>
-			      	<div class="current-location col-md-12 current-body-font"><p>Location : <?php echo $row["city"]; ?></p></div>
-			        <div class="current-role col-md-12 current-body-font"><p>Experiance : <?php echo $row["jobExp"]; ?></p></div>
-			        <div class="current-skill col-md-12 current-body-font"><p>Qualification : <?php echo $row["qua"]; ?></p></div>
-			        <div class="current-postedby col-md-12 current-body-font"><p>Min Salary : <?php echo $row["minSalary"]; ?></p></div>
-			        <div class="current-postedby col-md-12 current-body-font"><p>Max Salary : <?php echo $row["maxSalary"]; ?></p></div>
+					<div class="current-role col-md-12 current-body-font"><p style="color: #ababab;"> <?php if($row["jobExp"] != "" ){ ?> <span class="glyphicon glyphicon-list-alt"></span> <?php echo $row["jobExp"]; ?> <?php } ?> <?php if($row["city"] != ""){ ?> <span class="glyphicon glyphicon-map-marker"></span> <?php echo $row["city"]; ?> <?php } ?> </p></div>
+				<div class="current-skill col-md-12 current-body-font"><?php if($row["qua"] != ""){ ?> <p>Qualification : <?php echo $row["qua"]; ?></p> <?php } ?></div>
+					<?php if($row["minSalary"] != "" || !empty($row["minSalary"])){
+					?>
+						<div class="current-postedby col-md-12 current-body-font"><p class="salarySnippet">₹<?php echo $row["minSalary"]; echo " to  ₹"; echo $row["maxSalary"];?></p></div>
+					<?php
+					}
+					?>			        
 					<?php
 						if (isset($_SESSION["username"]))
 						{
@@ -95,10 +88,17 @@
                     <?php   
                         $userEmail = $_SESSION["username"];	
                         $rowJobs = $row["jobID"];
-                        $jobsappliedQuery = "SELECT '$userEmail' FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";	
-                        $jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
+                        $jobsappliedQuery = "SELECT userEmail FROM jobsapplied WHERE jobsPostId=$rowJobs";	
+						$jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
                         if(mysqli_num_rows($jobsPostedResult) > 0){
-                            $isJobApplied = "yes";
+							while ($row1 = mysqli_fetch_array($jobsPostedResult)) {
+								if($row1['userEmail'] == $userEmail){
+									$isJobApplied = "yes";
+									break;
+								}else{
+									$isJobApplied = "no";
+								}
+							}
                         }else{
                             $isJobApplied = "no";
                         }
@@ -117,12 +117,13 @@
 					<?php
 						}else{
 					?>
+					<div style="margin: 20px;padding: 15px;"></div>
 					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Login</button>
+						<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px;" onClick="openModel()">Login</button>
 					</div>
 					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" onClick="openModel()">Register</button>
-					</div>					
+						<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px; float: right;" onClick="openModel()">Register</button>
+					</div>
 					<?php							
 						}
 					?>
