@@ -22,7 +22,7 @@
     border: 1px solid grey;
     float: left;
     width: 80%;
-    background: #eafdff;
+
 }
 
 .jobSearch button {
@@ -35,7 +35,6 @@
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    margin-top: 10px;
 }
 
 .jobSearch button:hover {
@@ -50,6 +49,7 @@
 #searchKey{
     display: none;
 }
+
 </style>
 
 </head>
@@ -72,7 +72,7 @@
     }
     ?>
 </div>
-<?php include('candidate/views/searchResultsMain.php'); ?>
+<?php include('candidate/view/searchResultsMain.php'); ?>
 <?php include('footer.php'); ?>
 
 <script>
