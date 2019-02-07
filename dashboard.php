@@ -12,10 +12,7 @@
     <script type="application/x-javascript"> 
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
-
 	<?php include('headFiles.html'); ?>
-    
-
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -31,7 +28,7 @@
 <?php
 if (isset($_SESSION["username"]))
 {
-	include('candidate/views/candidateDashboardMain.php');
+	include('candidate/view/candidateDashboardMain.php');
 //	include('candidateDashboard.php');
 }
 else
