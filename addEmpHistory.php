@@ -2,10 +2,10 @@
 session_start();
 require_once("db.php");
 $email = $_SESSION["username"];
-$empHistory = $_POST["empHistory"];
-echo $empHistory;
+$emphistory = $_POST["emphistory"];
+echo $emphistory;
 // sql to insertData a record
-$sql = "INSERT INTO  `empHistory` (email,empHistory) VALUES ('$email', '$empHistory')";
+$sql = "INSERT INTO  `emphistory` (email,emphistory) VALUES ('$email', '$emphistory')";
 echo "<br>"; 
 echo $sql;
 if (mysqli_query($con, $sql)) {
