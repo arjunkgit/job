@@ -1,4 +1,4 @@
-﻿<div class="container pmarginTop90px">
+<div class="container-fluid pmarginTop90px" style="background: #21444c;margin-top: 10px;">
 <div class="grid_1">
 <h3>
     Current Openings</h3>
