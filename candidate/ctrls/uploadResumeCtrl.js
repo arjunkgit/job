@@ -1,4 +1,4 @@
-candidateApp.controller("uploadResumeCtrl", function($scope, $rootScope, postData, $filter, $http, NgTableParams) {
+candidateApp.controller("uploadResumeCtrl", function ($scope, $rootScope, postData, $filter, $http, NgTableParams) {
     $rootScope.showLoader = true;
     $scope.uploadResumeData = {};
 
@@ -12,11 +12,11 @@ candidateApp.controller("uploadResumeCtrl", function($scope, $rootScope, postDat
             $rootScope.showLoader = false;
         });
     };
- 
+
     //ini getdetails
     $scope.getResumeData();
     //ctrls ends
 
     //ctrls ends
-    });
-    
+});
+
