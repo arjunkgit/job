@@ -41,9 +41,9 @@ function getSearchData(){
         while ($row = mysqli_fetch_assoc($result)) {
             	$rowJobs = $row["jobID"];
                 if(isset($_SESSION["username"])){
-                    $jobsappliedQuery = "SELECT `userEmail` FROM jobsApplied WHERE `jobsPostId`='$rowJobs' AND `userEmail`='$userEmail'";	
+                    $jobsappliedQuery = "SELECT `userEmail` FROM jobsapplied WHERE `jobsPostId`='$rowJobs' AND `userEmail`='$userEmail'";	
                 }else{
-                    $jobsappliedQuery = "SELECT * FROM jobsApplied WHERE `jobsPostId`='$rowJobs'";
+                    $jobsappliedQuery = "SELECT * FROM jobsapplied WHERE `jobsPostId`='$rowJobs'";
                 }
                 $jobsPostedResult = mysqli_query($con, $jobsappliedQuery);
 				if(mysqli_num_rows($jobsPostedResult) > 0){
@@ -75,7 +75,7 @@ function updateUserRecord(){
     require_once ("db.php");
 
     switch ($tableName) {
-    case "candidateRegData":
+    case "candidateregdata":
     $email = $_SESSION['username'];
     $CurrentComapany = $_POST['user']['CurrentComapany'];
     $CurrentDesignation = $_POST['user']['CurrentDesignation'];
@@ -110,7 +110,7 @@ function updateUserRecord(){
     $town = $_POST['user']['town'];
     $year = $_POST['user']['year'];
     
-    $query = "UPDATE candidateRegData SET `CurrentComapany` = '$CurrentComapany',`CurrentDesignation` = '$CurrentDesignation',`ResumeHeading` = '$ResumeHeading',`TotalExp` = '$TotalExp',`activatePro` = '$activatePro',`address1` = '$address1',`address2` = '$address2',`address3` = '$address3',`client` = '$client',`country` = '$country',`deactivatePro` = '$deactivatePro',`deletePro` = '$deletePro',`duration` = '$duration',`empDetails` = '$empDetails',`dob` = '$dob',`fname` = '$fname',`gender` = '$gender',`linked` = '$linked',`lname` = '$lname',`mobile` = '$mobile',`phone` = '$phone',`pincode` = '$pincode',`proDetails` = '$proDetails',`proTitle` = '$proTitle',`profilePhoto` = '$profilePhoto',`resumeUploadName` = '$resumeUploadName',`summary` = '$summary',`title` = '$title',`town` = '$town',`year` = '$year' WHERE `email` = '$email'";
+    $query = "UPDATE candidateregdata SET `CurrentComapany` = '$CurrentComapany',`CurrentDesignation` = '$CurrentDesignation',`ResumeHeading` = '$ResumeHeading',`TotalExp` = '$TotalExp',`activatePro` = '$activatePro',`address1` = '$address1',`address2` = '$address2',`address3` = '$address3',`client` = '$client',`country` = '$country',`deactivatePro` = '$deactivatePro',`deletePro` = '$deletePro',`duration` = '$duration',`empDetails` = '$empDetails',`dob` = '$dob',`fname` = '$fname',`gender` = '$gender',`linked` = '$linked',`lname` = '$lname',`mobile` = '$mobile',`phone` = '$phone',`pincode` = '$pincode',`proDetails` = '$proDetails',`proTitle` = '$proTitle',`profilePhoto` = '$profilePhoto',`resumeUploadName` = '$resumeUploadName',`summary` = '$summary',`title` = '$title',`town` = '$town',`year` = '$year' WHERE `email` = '$email'";
     if (mysqli_query($con, $query)) {
             echo "success";
     } else {
@@ -139,7 +139,7 @@ function addOrUpdateEmpHistory(){
     require_once ("db.php");
 
     $empDetailsId = $_POST['user']['id'];
-    $empHistory = $_POST['user']['empHistory'];
+    $emphistory = $_POST['user']['emphistory'];
     $workedCompany = $_POST['user']['workedCompany'];
     $workedYear = $_POST['user']['workedYear'];
     $workedMonth = $_POST['user']['workedMonth'];
@@ -148,9 +148,9 @@ function addOrUpdateEmpHistory(){
     $workedCurrentJob = $_POST['user']['workedCurrentJob'];
     
     if(empty($empDetailsId)){
-        $query = "INSERT INTO $tableName (`id`,`email`, `empHistory`, `workedCompany`, `workedYear`,`workedMonth`,`workedJoinDate`,`workedEndDate`, `workedCurrentJob`) VALUES ('$empDetailsId', '$email', '$empHistory', '$workedCompany' , '$workedYear' , '$workedMonth', '$workedJoinDate', '$workedEndDate', '$workedCurrentJob')";
+        $query = "INSERT INTO $tableName (`id`,`email`, `emphistory`, `workedCompany`, `workedYear`,`workedMonth`,`workedJoinDate`,`workedEndDate`, `workedCurrentJob`) VALUES ('$empDetailsId', '$email', '$emphistory', '$workedCompany' , '$workedYear' , '$workedMonth', '$workedJoinDate', '$workedEndDate', '$workedCurrentJob')";
     }else{
-        $query = "UPDATE $tableName SET `empHistory` = '$empHistory', `workedCompany` = '$workedCompany',`workedYear` = '$workedYear',`workedMonth` = '$workedMonth',  `workedJoinDate` = '$workedJoinDate',`workedEndDate` = '$workedEndDate',`workedCurrentJob` = '$workedCurrentJob'  WHERE `id` = $empDetailsId";
+        $query = "UPDATE $tableName SET `emphistory` = '$emphistory', `workedCompany` = '$workedCompany',`workedYear` = '$workedYear',`workedMonth` = '$workedMonth',  `workedJoinDate` = '$workedJoinDate',`workedEndDate` = '$workedEndDate',`workedCurrentJob` = '$workedCurrentJob'  WHERE `id` = $empDetailsId";
     }
     if (mysqli_query($con, $query)) {
         if(!empty($empDetailsId))
@@ -184,7 +184,6 @@ function addOrUpdateProjectHistory(){
     }else{
         $query = "UPDATE $tableName SET `projectTitle` = '$projectTitle', `client` = '$client',`duration` = '$duration',`projectDetails` = '$projectDetails'  WHERE `id` = $projectDetailsId";
     }
-    echo $query;
     if (mysqli_query($con, $query)) {
         if(!empty($projectDetailsId))
         //updated
