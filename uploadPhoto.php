@@ -17,7 +17,7 @@ if (isset($_SESSION["username"]))
 //	        echo "File is an image - " . $check["mime"] . ".";
 	        $uploadOk = 1;
 			if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-				$query = "UPDATE `candidateRegData` SET `profilePhoto`='$target_file' WHERE email='$emailOriginal'";
+				$query = "UPDATE `candidateregdata` SET `profilePhoto`='$target_file' WHERE email='$emailOriginal'";
 				$result = mysqli_query($con,$query);
 			        if($result){
 			        	//". basename( $_FILES["fileToUpload"]["name"]). "
