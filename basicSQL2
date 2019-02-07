@@ -1,0 +1,400 @@
+-- phpMyAdmin SQL Dump
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 07, 2019 at 04:59 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 7.0.9
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `jobdata`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `adminregdata`
+--
+
+CREATE TABLE `adminregdata` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `aName` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `adminregdata`
+--
+
+INSERT INTO `adminregdata` (`id`, `email`, `password`, `aName`) VALUES
+(1, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `candidateregdata`
+--
+
+CREATE TABLE `candidateregdata` (
+  `id` int(3) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `title` varchar(5) NOT NULL,
+  `fname` varchar(30) DEFAULT NULL,
+  `lname` varchar(12) NOT NULL,
+  `dob` text NOT NULL,
+  `day` int(11) NOT NULL,
+  `month` varchar(10) NOT NULL,
+  `year` int(4) NOT NULL,
+  `address1` varchar(20) NOT NULL,
+  `address2` varchar(20) NOT NULL,
+  `address3` varchar(20) NOT NULL,
+  `town` varchar(15) NOT NULL,
+  `country` varchar(15) NOT NULL,
+  `phone` int(12) NOT NULL,
+  `mobile` int(12) NOT NULL,
+  `linked` varchar(30) NOT NULL,
+  `ResumeHeading` varchar(180) NOT NULL,
+  `CurrentDesignation` varchar(15) NOT NULL,
+  `gender` varchar(10) NOT NULL,
+  `TotalExp` varchar(10) NOT NULL,
+  `CurrentComapany` varchar(20) NOT NULL,
+  `pincode` int(11) DEFAULT NULL,
+  `summary` varchar(500) NOT NULL,
+  `empDetails` varchar(1000) NOT NULL,
+  `proTitle` varchar(30) NOT NULL,
+  `client` varchar(30) NOT NULL,
+  `duration` varchar(10) NOT NULL,
+  `proDetails` varchar(500) NOT NULL,
+  `profilePhoto` varchar(300) NOT NULL,
+  `resumeUploadURL` varchar(1000) NOT NULL,
+  `resumeUploadName` varchar(500) NOT NULL,
+  `activatePro` int(2) NOT NULL,
+  `deactivatePro` int(2) NOT NULL,
+  `deletePro` int(2) NOT NULL,
+  `createdBy` varchar(500) NOT NULL,
+  `qua` varchar(33) NOT NULL,
+  `temppassword` int(7) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `candidateregdata`
+--
+
+INSERT INTO `candidateregdata` (`id`, `email`, `password`, `title`, `fname`, `lname`, `dob`, `day`, `month`, `year`, `address1`, `address2`, `address3`, `town`, `country`, `phone`, `mobile`, `linked`, `ResumeHeading`, `CurrentDesignation`, `gender`, `TotalExp`, `CurrentComapany`, `pincode`, `summary`, `empDetails`, `proTitle`, `client`, `duration`, `proDetails`, `profilePhoto`, `resumeUploadURL`, `resumeUploadName`, `activatePro`, `deactivatePro`, `deletePro`, `createdBy`, `qua`, `temppassword`) VALUES
+(68, 'testUser@gmail.com', '33ef37db24f3a27fb520847dcd549e9f', '', 'testUser', '', '', 0, '', 0, '', '', '', '', '', 0, 0, '', '', '', '', 'Fresher', '', NULL, '', '', '', '', '', '', '', '', '', 1, 0, 0, 'emp1@gmail.com', 'M.A', 0),
+(72, 'user3@gmail.com', '92877af70a45fd6a2ed7fe81e1236b78', 'Mr', 'user3', '', '2019-01-07', 0, '', 0, 'ad1', 'ad32', 'ad33', 'aaet', 'india', 23234, 1234123411, '', '', '', '', '', '', 0, 'sr', '', '', '', '', '', '', 'uploadResume/user3emptyData.docx', 'user3emptyData.docx', 1, 0, 0, 'user3@gmail.com', 'M.Sc', 0),
+(61, 'user1@gmail.com', '24c9e15e52afc47c225b757e7bee1f9d', 'Mr', 'user1', 'user lastnam', 'Wed Jan 09 2019 05:30:00 GMT+0530 (India Standard Time)', 2, 'February', 0, '102', '122', 'K nagar', 'bangalore', 'india', 0, 123412344, 'http://wer.com', 'resume heading', 'Project', 'female', '10 + Years', 'wipro', 0, 'Having exp 10+=', '', '', 'Wipro', '', '', 'profilePhotos/user1subham.JPG', 'uploadResume/user1emptyData.docx', 'user1emptyData.docx', 1, 0, 0, 'user1@gmail.com', 'M.A', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `defaultvalues`
+--
+
+CREATE TABLE `defaultvalues` (
+  `id` int(11) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `jobsPostLimit` int(22) NOT NULL,
+  `createNewEmpLimit` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `defaultvalues`
+--
+
+INSERT INTO `defaultvalues` (`id`, `email`, `jobsPostLimit`, `createNewEmpLimit`) VALUES
+(42, 'emp1@gmail.com', 10, 1),
+(41, '', 10, 0),
+(43, 'emp2@gmail.com', 10, 1),
+(44, 'emp3@gmail.com', 10, 1),
+(45, 'emp4@gmail.com', 10, 1),
+(46, 'emp5@gmail.com', 10, 1),
+(47, 'emp6@gmail.com', 10, 1),
+(48, 'emp7@gmail.com', 10, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `emphistory`
+--
+
+CREATE TABLE `emphistory` (
+  `id` int(4) NOT NULL,
+  `email` varchar(350) NOT NULL,
+  `empHistory` varchar(2000) NOT NULL,
+  `workedCompany` varchar(500) NOT NULL,
+  `workedYear` varchar(10) NOT NULL,
+  `workedMonth` varchar(20) NOT NULL,
+  `workedJoinDate` varchar(100) NOT NULL,
+  `workedEndDate` varchar(100) NOT NULL,
+  `workedCurrentJob` varchar(8) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `emphistory`
+--
+
+INSERT INTO `emphistory` (`id`, `email`, `empHistory`, `workedCompany`, `workedYear`, `workedMonth`, `workedJoinDate`, `workedEndDate`, `workedCurrentJob`) VALUES
+(113, 'user3@gmail.com', '', 'sadf dfdfd fdf df', '', '', 'Wed Jan 09 2019 00:00:00 GMT+0530 (India Standard Time)', 'Sat Jan 05 2019 00:00:00 GMT+0530 (India Standard Time)', 'false'),
+(110, 'user1@gmail.com', 'asdf asdfwere', 'old job', '', '', 'Tue Dec 31 2019 00:00:00 GMT+0530 (India Standard Time)', '', 'true'),
+(116, 'user1@gmail.com', 'saf', 'ere r', '', '', 'Thu Feb 14 2019 00:00:00 GMT+0530 (India Standard Time)', 'Thu Feb 07 2019 00:00:00 GMT+0530 (India Standard Time)', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employerregdata`
+--
+
+CREATE TABLE `employerregdata` (
+  `id` int(3) NOT NULL,
+  `email` varchar(30) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `companyname` varchar(20) NOT NULL,
+  `indtype` varchar(20) NOT NULL,
+  `companyorconsult` varchar(20) NOT NULL,
+  `contactpername` varchar(20) NOT NULL,
+  `designation` varchar(20) NOT NULL,
+  `officeaddress` varchar(30) NOT NULL,
+  `country` varchar(20) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `pincode` int(10) NOT NULL,
+  `mobile` int(12) NOT NULL,
+  `alteremail` varchar(30) NOT NULL,
+  `gst` varchar(30) NOT NULL,
+  `agree` varchar(10) NOT NULL,
+  `getemail` varchar(10) NOT NULL,
+  `trn_date` datetime NOT NULL,
+  `jobsPostLimit` int(5) NOT NULL,
+  `createNewEmpLimit` int(5) NOT NULL,
+  `temppassword` int(7) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `employerregdata`
+--
+
+INSERT INTO `employerregdata` (`id`, `email`, `password`, `companyname`, `indtype`, `companyorconsult`, `contactpername`, `designation`, `officeaddress`, `country`, `city`, `pincode`, `mobile`, `alteremail`, `gst`, `agree`, `getemail`, `trn_date`, `jobsPostLimit`, `createNewEmpLimit`, `temppassword`) VALUES
+(56, '', 'd41d8cd98f00b204e9800998ecf8427e', '', '', '', '', '', '', '', '', 0, 0, '', '', '', '', '0000-00-00 00:00:00', 0, 0, 0),
+(57, 'emp1@gmail.com', '86ea3363ba65c10f3f1ef299b126de29', 'cname', 'SelectType', '', 'pname', '', '', 'india', '', 0, 123412341, '', '', '', '', '2019-01-29 08:25:45', 0, 0, 0),
+(58, 'emp2@gmail.com', '41ab3465e911f91509d3fae308f41f76', 'cname', 'SelectType', '', 'a', '', '', 'india', '', 0, 12341, '', '', '', '', '2019-01-29 08:29:54', 0, 0, 0),
+(59, 'emp3@gmail.com', 'd4de43be683c4a47b9e5b52b2f191cb0', 'a1', 'SelectType', '', 'a', '', '', 'india', '', 0, 1231234, '', '', '', '', '2019-01-29 08:33:18', 0, 0, 0),
+(60, 'emp4@gmail.com', '4e2750e6d36e8e7ed970ee705ada5c8f', 's', 'SelectType', '', 'a', '', '', 'india', '', 0, 123, '', '', '', '', '2019-01-29 08:36:04', 0, 0, 0),
+(61, 'emp5@gmail.com', 'ec06b4fc95d91391e662149794b222d3', '123', 'SelectType', '', 'asdf', '', '', 'india', '', 0, 123, '', 'on', 'agree', 'getemail', '2019-01-29 08:38:24', 0, 0, 0),
+(62, 'emp6@gmail.com', '09d57428ae91c05a90dd39a1bd87df34', 'wer', '', '', '', '', '', 'india', '', 0, 0, '', 'on', 'agree', 'getemail', '2019-01-29 08:38:53', 0, 0, 0),
+(63, 'emp7@gmail.com', '77780ab2f57504277c55ad44c1b32519', 'asdf', 'SelectType', '', 'asf', '', '', 'india', '', 0, 123412341, '', 'on', 'agree', 'getemail', '2019-02-04 08:51:22', 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `empusers`
+--
+
+CREATE TABLE `empusers` (
+  `id` int(4) NOT NULL,
+  `userName` varchar(100) NOT NULL,
+  `userEmail` varchar(250) NOT NULL,
+  `userPass` varchar(250) NOT NULL,
+  `empEmail` varchar(250) NOT NULL,
+  `other` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobsapplied`
+--
+
+CREATE TABLE `jobsapplied` (
+  `slno` int(11) NOT NULL,
+  `jobsPostedBy` varchar(33) NOT NULL,
+  `jobsPostId` int(13) NOT NULL,
+  `userEmail` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobsapplied`
+--
+
+INSERT INTO `jobsapplied` (`slno`, `jobsPostedBy`, `jobsPostId`, `userEmail`) VALUES
+(1, 'emp1@gmail.com', 286, 'user1@gmail.com'),
+(6, 'emp1@gmail.com', 286, 'user3@gmail.com'),
+(7, 'emp1@gmail.com', 284, 'user3@gmail.com'),
+(8, 'emp1@gmail.com', 284, 'user1@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobspost`
+--
+
+CREATE TABLE `jobspost` (
+  `email` varchar(255) NOT NULL,
+  `jobID` int(5) NOT NULL,
+  `jobName` varchar(80) NOT NULL,
+  `jobDesc` varchar(1000) NOT NULL,
+  `minSalary` varchar(15) NOT NULL,
+  `maxSalary` varchar(15) NOT NULL,
+  `jobExp` varchar(10) NOT NULL,
+  `qua` varchar(30) NOT NULL,
+  `city` varchar(40) NOT NULL,
+  `state` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobspost`
+--
+
+INSERT INTO `jobspost` (`email`, `jobID`, `jobName`, `jobDesc`, `minSalary`, `maxSalary`, `jobExp`, `qua`, `city`, `state`) VALUES
+('emp1@gmail.com', 287, 'jobtest', '', '', '', '1 - 2 Year', 'B.A', 'bng', ''),
+('emp1@gmail.com', 286, 'Manager', 'manager', '333', '344', '2+', 'B.E', 'Bangalore', 'Karnataka'),
+('emp1@gmail.com', 285, 'Support', 'support', '223', '55551', '0 - 1 Year', 'M.Sc', 'Mysore', 'Karnataka'),
+('emp1@gmail.com', 284, 'software eng', 'soft', '123', '345', '4+', 'MA', 'Bangalore', 'Karnataka');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `projecthistory`
+--
+
+CREATE TABLE `projecthistory` (
+  `id` int(5) NOT NULL,
+  `email` varchar(500) NOT NULL,
+  `projectTitle` varchar(250) NOT NULL,
+  `client` varchar(250) NOT NULL,
+  `duration` varchar(50) NOT NULL,
+  `projectDetails` varchar(500) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `projecthistory`
+--
+
+INSERT INTO `projecthistory` (`id`, `email`, `projectTitle`, `client`, `duration`, `projectDetails`) VALUES
+(46, 'user1@gmail.com', 'prject 1', 'sny', '3 to 4 Year', 'pro detais'),
+(49, 'user3@gmail.com', 'ap', 'ac', '1 to 2 Year', 'asdf');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `adminregdata`
+--
+ALTER TABLE `adminregdata`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `candidateregdata`
+--
+ALTER TABLE `candidateregdata`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `defaultvalues`
+--
+ALTER TABLE `defaultvalues`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `emphistory`
+--
+ALTER TABLE `emphistory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `employerregdata`
+--
+ALTER TABLE `employerregdata`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `empusers`
+--
+ALTER TABLE `empusers`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `jobsapplied`
+--
+ALTER TABLE `jobsapplied`
+  ADD PRIMARY KEY (`slno`);
+
+--
+-- Indexes for table `jobspost`
+--
+ALTER TABLE `jobspost`
+  ADD PRIMARY KEY (`jobID`);
+
+--
+-- Indexes for table `projecthistory`
+--
+ALTER TABLE `projecthistory`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `adminregdata`
+--
+ALTER TABLE `adminregdata`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `candidateregdata`
+--
+ALTER TABLE `candidateregdata`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+--
+-- AUTO_INCREMENT for table `defaultvalues`
+--
+ALTER TABLE `defaultvalues`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+--
+-- AUTO_INCREMENT for table `emphistory`
+--
+ALTER TABLE `emphistory`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+--
+-- AUTO_INCREMENT for table `employerregdata`
+--
+ALTER TABLE `employerregdata`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+--
+-- AUTO_INCREMENT for table `empusers`
+--
+ALTER TABLE `empusers`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `jobsapplied`
+--
+ALTER TABLE `jobsapplied`
+  MODIFY `slno` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `jobspost`
+--
+ALTER TABLE `jobspost`
+  MODIFY `jobID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=289;
+--
+-- AUTO_INCREMENT for table `projecthistory`
+--
+ALTER TABLE `projecthistory`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
