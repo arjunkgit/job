@@ -4,7 +4,7 @@ session_start();
 require_once("db.php");
 $id = $_GET['id'];
 // sql to delete a record
-$sql = "DELETE  from `empHistory` where `id` = $id";
+$sql = "DELETE  from `emphistory` where `id` = $id";
 if (mysqli_query($con, $sql)) {
     mysqli_close($con);
 ?>
