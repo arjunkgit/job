@@ -1,13 +1,13 @@
 candidateApp.controller("accountSettingsCtrl", function ($scope, $rootScope, postData, $filter, $http, NgTableParams) {
     $rootScope.showLoader = true;
- 
-    //get candidateRegData details
+
+    //get candidateregdata details
     $scope.getAccountSettings = function () {
-        var getAccountSettingsData = { "tableName": "candidateRegData", "type": "getUserData" };
+        var getAccountSettingsData = { "tableName": "candidateregdata", "type": "getUserData" };
         var cat2 = postData.getUserData(getAccountSettingsData);
         cat2.then(function (response) {
             console.log(response.data[0]);
-            $scope.accountSettingsData = response.data[0];            
+            $scope.accountSettingsData = response.data[0];
             $scope.accountSettingsData.activatePro == 0 ? $scope.accountSettingsData.activatePro = false : $scope.accountSettingsData.activatePro = true;
             $scope.accountSettingsData.deactivatePro == 0 ? $scope.accountSettingsData.deactivatePro = false : $scope.accountSettingsData.deactivatePro = true;
             $scope.accountSettingsData.deletePro == 0 ? $scope.accountSettingsData.deletePro = false : $scope.accountSettingsData.deletePro = true;
@@ -15,7 +15,6 @@ candidateApp.controller("accountSettingsCtrl", function ($scope, $rootScope, pos
             $rootScope.showLoader = false;
         });
     };
-
 
     //ini
     $scope.getAccountSettings();
