@@ -39,9 +39,7 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 .panel-group {
     margin-bottom: 20px;
-    border: 1px solid lightgray;
     background: white;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
 }
 
  
@@ -321,7 +319,7 @@ if ($result->num_rows > 0) {
 					<br/>
 					<div class="form-group">
 						<label>About Job:</label>
-						<textarea id="empHistory" class="form-control" name="empHistory"></textarea>
+						<textarea id="emphistory" class="form-control" name="emphistory"></textarea>
 					</div>
 					<div class="form-group">
 						<input class="btn btn-primary" type="submit" value="Save Data">			      				
@@ -330,8 +328,8 @@ if ($result->num_rows > 0) {
 		      	</div>
 		      	<span>
 		      		<?php 
-					$empHistory = "SELECT * FROM `empHistory` WHERE `email`='$email'";
-					$empResult = $con->query($empHistory);
+					$emphistory = "SELECT * FROM `emphistory` WHERE `email`='$email'";
+					$empResult = $con->query($emphistory);
 					if ($empResult->num_rows > 0) {
 					    // output data of each row
 						?>
@@ -357,7 +355,7 @@ if ($result->num_rows > 0) {
 							  <?php echo $empRow["workedEndDate"]; ?>
 						  	</div>
 						  	<div class="col-md-12">
-							  <?php echo $empRow["empHistory"]; ?>
+							  <?php echo $empRow["emphistory"]; ?>
 						  	</div>
 						  </div>
 						<div style="text-align: right;">
@@ -371,7 +369,7 @@ if ($result->num_rows > 0) {
 							  <form action="funcs.php/editEmpHistory"  method="post" >	
 							<div class="row">
 							  <div class="col-md-9">
-						  <input type="text" class="form-control" name="empUpdateVal" value="<?php echo $empRow["empHistory"]; ?>" />
+						  <input type="text" class="form-control" name="empUpdateVal" value="<?php echo $empRow["emphistory"]; ?>" />
 							  </div>					  
 								<div class="col-md-3">
 								  <button class="btn btn-primary" style="margin-top: 10px;" 
@@ -449,8 +447,8 @@ if ($result->num_rows > 0) {
 				</div>
 				<div id="groupProjects" class="">		      	 	
 	      		<?php 
-				$projectHistory = "SELECT * FROM `projectHistory` WHERE `email`='$email'";
-				$projectResult = $con->query($projectHistory);
+				$projecthistory = "SELECT * FROM `projecthistory` WHERE `email`='$email'";
+				$projectResult = $con->query($projecthistory);
 				$x = 1; 
 				if ($projectResult->num_rows > 0) {
 					while($projectRow = $projectResult->fetch_assoc()) {
