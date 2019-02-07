@@ -5,7 +5,7 @@
 <div ng-controller="searchResultsCtrl">
     <div id="ResultData" class="alert  alert-dismissable">
         <span class=""></span>
-        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">×</button>
+        <button type="button" class="closeBtn" data-dismiss="alert" aria-lable="close">ï¿½</button>
         <span id="ResultMessage"></span>
     </div>
 
