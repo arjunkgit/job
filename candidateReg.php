@@ -11,9 +11,8 @@
         $title = $_POST['title'];
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
-        $day = $_POST['day'];
-        $month = $_POST['month'];
-        $year = $_POST['year'];
+        $dob = $_POST['dob'];
+ 
         $address1 = $_POST['address1'];
         $address2 = $_POST['address2'];
         $address3 = $_POST['address3'];
@@ -24,7 +23,7 @@
         $linked = $_POST['linked'];
         
 		$trn_date = date("Y-m-d H:i:s");
-        $checkEmail = "SELECT * FROM `candidateRegData` WHERE email='$email'";
+        $checkEmail = "SELECT * FROM `candidateregdata` WHERE email='$email'";
 		$checkResult = mysqli_query($con,$checkEmail);
 		$checkRow = mysqli_num_rows($checkResult);
         if($checkRow==1){
@@ -32,23 +31,17 @@
          }
          else
          {
-$query = "INSERT into `candidateRegData` (email,password,title,fname,lname,day,month,year,address1,address2,address3,town,country,phone,mobile,linked,activatePro,deactivatePro,deletePro,createdBy) VALUES ('$email', '".md5($password)."','$title','$fname','$lname','$day','$month','$year','$address1','$address2','$address3','$town','$country','$phone','$mobile','$linked',1,0,0,'$email')";
-
-
-$result = mysqli_query($con,$query);
-
-if($result){
-    echo "<div style='text-align: center;background-color: white;margin: 10px;padding: 20px;' class='form1'><h3 style='color: green;'>You are registered successfully.</h3><br/>Click here to login <a href='index.php'>Home Page</a></div>";
-	 }
-
-}
-	 
-	 
+        $query = "INSERT into `candidateregdata` (email,password,title,fname,lname,dob,address1,address2,address3,town,country,phone,mobile,linked,activatePro,deactivatePro,deletePro,createdBy) VALUES ('$email', '".md5($password)."','$title','$fname','$lname','$dob','$address1','$address2','$address3','$town','$country','$phone','$mobile','$linked',1,0,0,'$email')";
+        $result = mysqli_query($con,$query);
+            if($result){
+                echo "<div style='text-align: center;background-color: white;margin: 10px;padding: 20px;' class='form1'><h3 style='color: green;'>You are registered successfully.</h3><br/>Click here to login <a href='index.php'>Home Page</a></div>";
+	        }
+        }
     }
     else
     {
-    echo "<div style='text-align: center;background-color: white;border: 1px solid #b1b1b1;padding: 20px;' class='form1'><h3>Username or password is wrong.</h3><br/>Login again <a href='index.php'>Home Page</a></div>";
-}
+        echo "<div style='text-align: center;background-color: white;border: 1px solid #b1b1b1;padding: 20px;' class='form1'><h3>Username or password is wrong.</h3><br/>Login again <a href='index.php'>Home Page</a></div>";
+    }
 ?>
 
 	
