@@ -13,17 +13,7 @@
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
     
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-    <link href='//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900'
-        rel='stylesheet' type='text/css'>
-    <!----font-Awesome----->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
+    <?php include('headFiles.html'); ?>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
