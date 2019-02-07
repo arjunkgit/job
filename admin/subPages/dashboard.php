@@ -14,9 +14,9 @@
 <?php 
 		require_once ("../../db.php");
 		//Queries
-		$totalJobs = "SELECT * FROM `jobsPost`";
-		$totalEmp = "SELECT * FROM `employerRegData`";
-		$totalSeek = "SELECT * FROM `candidateRegData`";
+		$totalJobs = "SELECT * FROM `jobspost`";
+		$totalEmp = "SELECT * FROM `employerregdata`";
+		$totalSeek = "SELECT * FROM `candidateregdata`";
 		
 		//execute
 		$totalJobsResult = mysqli_query($con, $totalJobs);		
@@ -39,3 +39,10 @@
 		  <div class="panel-heading">Panel Heading</div>
 		  <div class="panel-body">Panel Content</div>
 		</div>	
+	</div>	
+</div>
+
+<!-- ctrl ends down-->
+</div>
+
+
