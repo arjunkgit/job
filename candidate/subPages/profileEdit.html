@@ -5,7 +5,7 @@
         <span id="ResultMessage"></span>
     </div>
  
-    <div class="row">
+    <div class="row" style="margin-bottom: 10px;">
         <div class="col-md-12">
             <div class="btn-group pull-right">
                 <button type="button" ng-show="addBtn" class="btn btn-primary padding-left-right">
@@ -58,14 +58,50 @@
                                 <label>Resume Heading</label>
                                 <input type="text" name="ResumeHeading" ng-model="profileEditData.ResumeHeading" ng-disabled="isDisable">
                             </md-input-container>
-                            <md-input-container class="md-block">
-                                <label>Linked URL</label>
-                                <input type="text" name="linked" ng-model="profileEditData.linked" ng-disabled="isDisable">
-                            </md-input-container>
+                            <div layout="row">
+                                <md-input-container flex="50">
+                                    <label>Linked URL</label>
+                                    <input type="text" name="linked" ng-model="profileEditData.linked" ng-disabled="isDisable">
+                                </md-input-container>
+                                <md-input-container flex="50">
+                                <label>Qualification</label>
+                                    <md-select name="qua" data-ng-model='profileEditData.qua' ng-disabled="isDisable" ng-init="profileEditData.qua='NA'">
+                                        <md-option value="NA">Select your qualification</md-option>
+                                        <md-option value="10th">10th</md-option>
+                                        <md-option value="12th">12th</md-option>
+                                        <md-option value="Diploma">Diploma</md-option>
+                                        <md-option value="B.A">B.A</md-option>
+                                        <md-option value="BCA">BCA</md-option>
+                                        <md-option value="B.Com">B.Com</md-option>
+                                        <md-option value="B.Sc">B.Sc</md-option>
+                                        <md-option value="BE">BE</md-option>
+                                        <md-option value="Other Graduation">Other Graduation</md-option>
+                                        <md-option value="M.A">M.A</md-option>
+                                        <md-option value="M.Com">M.Com</md-option>
+                                        <md-option value="M.Sc">M.Sc</md-option>
+                                        <md-option value="MCA">MCA</md-option>
+                                        <md-option value="Other Post Graduation">Other Post Graduation</md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
                             <div layout="row">
                                 <md-input-container flex="50">
                                     <label>Total Experiance</label>
-                                    <input type="text" name="TotalExp" ng-model="profileEditData.TotalExp" ng-disabled="isDisable">
+                                    <md-select name="TotalExp" ng-model="profileEditData.TotalExp" ng-disabled="isDisable" ng-init="profileEditData.TotalExp='NA'">
+                                        <md-option value="NA">Select experiance</md-option>
+                                        <md-option value="Fresher">Fresher</md-option>
+                                        <md-option value="0 - 1 Years">0 - 1 Years</md-option>
+                                        <md-option value="1 - 2 Years">1 - 2 Years</md-option>
+                                        <md-option value="2 - 3 Years">2 - 3 Years</md-option>
+                                        <md-option value="3 - 4 Years">3 - 4 Years</md-option>
+                                        <md-option value="4 - 5 Years">4 - 5 Years</md-option>
+                                        <md-option value="5 - 6 Years">5 - 6 Years</md-option>
+                                        <md-option value="6 - 7 Years">6 - 7 Years</md-option>
+                                        <md-option value="7 - 8 Years">7 - 8 Years</md-option>
+                                        <md-option value="8 - 9 Years">8 - 9 Years</md-option>
+                                        <md-option value="9 - 10 Years">9 - 10 Years</md-option>
+                                        <md-option value="10 + Years">10 + Years</md-option>
+                                    </md-select>
                                 </md-input-container>
                                 <md-input-container flex="50">
                                     <label>Current Designation</label>
