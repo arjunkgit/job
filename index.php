@@ -12,20 +12,8 @@
     <script type="application/x-javascript"> 
 		addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
     </script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!-- Custom Theme files -->
-    <link href="css/style.css" rel='stylesheet' type='text/css' />
-    <link href="css/editor.css" rel='stylesheet' type='text/css' />
- 
-	<link href="editor.css" type="text/css" rel="stylesheet"/>
-    <!----font-Awesome----->
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <!----font-Awesome----->
-
+<link href="https://fonts.googleapis.com/css?family=Lobster|Open+Sans" rel="stylesheet">
+	<?php include('headFiles.html'); ?>
 <style>
 .jobSearch input[type=text] {
     padding: 10px !important;
@@ -33,7 +21,7 @@
     border: 1px solid grey;
     float: left;
     width: 80%;
-    background: #eafdff;
+    border-radius: 0px;
 }
 
 .jobSearch button {
@@ -46,7 +34,7 @@
     border: 1px solid grey;
     border-left: none;
     cursor: pointer;
-    margin-top: 10px;
+
 }
 
 .jobSearch button:hover {
@@ -58,30 +46,33 @@
     clear: both;
     display: table;
 }
+.searchBringFront{
+    position: relative;
+    z-index: 999;
+}
 </style>
 
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation" >
-<div class="container">
-	<?php include('loginwindow.php'); ?>
-	<?php include('loginmenu.php'); ?>
-</div>
-<div class="container">
-	<?php include('topMenu.php'); ?>
-</div>
+    <div class="container">
+        <?php include('loginwindow.php'); ?>
+        <?php include('loginmenu.php'); ?>
+    </div>
+    <div class="container">
+        <?php include('topMenu.php'); ?>
+    </div>
 </nav>
-<div class="container">
-<form class="jobSearch" action="searchPage.php">
-  <input type="text" placeholder="Search Job.. EX: Software Engineer, Support ..." name="search">
-  <button type="submit">Search</button>
-</form>
+<div class="container searchBringFront">
+    <form class="jobSearch" action="searchPage.php">
+    <input type="text" placeholder="Search Job.. EX: Software Engineer, Support ..." name="search">
+    <button type="submit">Search</button>
+    </form>
 </div>
 <?php include('slider.php'); ?>
 <?php include('currentOpen.php'); ?>
 <?php include('ourClient.php'); ?>
 <?php include('footer.php'); ?>
-
 <script>
 $(document).ready(function(){
     $("#myBtn").click(function(){
