@@ -1,15 +1,15 @@
 var searchResultsApp = angular.module("searchResultsAppModule", ['ngMaterial', 'ngRoute', 'ngTable', 'ngMessages']);
-searchResultsApp.controller("searchResultsCtrl", function($scope, $rootScope,postSearchData, $filter, $http,NgTableParams) {
+searchResultsApp.controller("searchResultsCtrl", function ($scope, $rootScope, postSearchData, $filter, $http, NgTableParams) {
     $scope.searchKey = $("#searchKey").text().trim();
     $scope.showLoader = false;
     $scope.searchResultsData = {
 
     };
 
-    $scope.getSearchResults = function(){
+    $scope.getSearchResults = function () {
         $rootScope.showLoader = true;
         var jobName = $scope.searchKey;
-        var getSearchResultsData = { jobName,  "tableName": "jobsPost", "type": "getSearchData" };
+        var getSearchResultsData = { jobName, "tableName": "jobspost", "type": "getSearchData" };
         var cat2 = postSearchData.getSearchData(getSearchResultsData);
         cat2.then(function (response) {
             console.log(response);
@@ -18,49 +18,49 @@ searchResultsApp.controller("searchResultsCtrl", function($scope, $rootScope,pos
         });
     };
 
-//ini getdetails
-console.log($scope.searchKey);
-if($scope.searchKey != undefined && $scope.searchKey != ""){
-    $scope.getSearchResults();
-}else{
+    //ini getdetails
+    console.log($scope.searchKey);
+    if ($scope.searchKey != undefined && $scope.searchKey != "") {
+        $scope.getSearchResults();
+    } else {
 
-}
-//ctrls ends
+    }
+    //ctrls ends
 });
 
-searchResultsApp.filter('custom', function() {
-  return function(input, search) {
-    if (!input) return input;
-    if (!search) return input;
-    var expected = ('' + search).toLowerCase();
-    var result = {};
-    angular.forEach(input, function(value, key) {
-      var actual = ('' + value).toLowerCase();
-      if (actual.indexOf(expected) !== -1) {
-        result[key] = value;
-      }
-    });
-    return result;
-  }
+searchResultsApp.filter('custom', function () {
+    return function (input, search) {
+        if (!input) return input;
+        if (!search) return input;
+        var expected = ('' + search).toLowerCase();
+        var result = {};
+        angular.forEach(input, function (value, key) {
+            var actual = ('' + value).toLowerCase();
+            if (actual.indexOf(expected) !== -1) {
+                result[key] = value;
+            }
+        });
+        return result;
+    }
 });
 
 searchResultsApp.run(function ($rootScope) {
     $rootScope.$on('$routeChangeSuccess', function (e, current, pre) {
         globalCurrentPath = current.originalPath;
-        if(current.originalPath == "/"){
+        if (current.originalPath == "/") {
 
-        }else{
+        } else {
 
         }
-        });
+    });
 });
 
 //ng config
-searchResultsApp.config(function($routeProvider) {
+searchResultsApp.config(function ($routeProvider) {
     $routeProvider
-    .when("/", { 
-        templateUrl : "candidate/subPages/searchResults.php"
-    })
+        .when("/", {
+            templateUrl: "candidate/subPages/searchResults.php"
+        })
     // .when("/profileEdit", {
     //     templateUrl : "candidate/subPages/profileEdit.html"
     // })
