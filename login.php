@@ -17,24 +17,41 @@
 		$email = $_POST['email'];
 		$password = stripslashes($_REQUEST['password']);
 		$password = mysqli_real_escape_string($con,$password);
-	//Checking is user existing in the database or not
-        $query = "SELECT * FROM `candidateRegData` WHERE email='$email' and password='".md5($password)."' ";
-		$result = mysqli_query($con,$query);
-		$rows = mysqli_num_rows($result);
-        if($rows==1){
+		//Checking is user existing in the database or not
+        $query1 = "SELECT * FROM `candidateregdata` WHERE email='$email' and password='".md5($password)."' ";
+		$result1 = mysqli_query($con,$query1);
+		$row1 = mysqli_num_rows($result1);
+        if($row1==1){
 			$_SESSION['username'] = $email;
 			header("Location: dashboard.php"); // Redirect user to index.php
-            }else{
-	echo "<div class='form'><h3>Username/password is incorrect.</h3><br/>Click here to <a href='index.php'>Login</a> again</div>";
-				}
+        }else{
+			//select temp password
+			$query2 = "SELECT * FROM candidateregdata where email='$email'";
+			$result2 = mysqli_query($con, $query2);
+			$row2 = mysqli_fetch_assoc($result2);
+			$temppassword=$row2['temppassword'];
+			//check is temp password used 
+			if($temppassword != 0){
+				$query3 = "SELECT * FROM `candidateregdata` WHERE email='$email' and temppassword='$temppassword' ";
+				$result3 = mysqli_query($con,$query3);
+				$row3 = mysqli_num_rows($result3);
+				if($row3 == 1){
+					 header("Location:changecandidatepassword.php?user=$email"); // Redirect user to index.php
+				}else{
+					echo "<div class='form'><h3>Username/password is incorrect.</h3><br/>Click here to <a href='index.php'>Login</a> again</div>";
+				}	
+			}else{
+				echo "<div class='form'><h3>Username/password is incorrect.</h3><br/>Click here to <a href='index.php'>Login</a> again</div>";
+			}
+		}
     }else{
 ?>
-<div class="form1">
-<h2>Log In</h2>
-<p>Not registered yet? <br> <a href='registration.php'>Register Here</a></p>
-</div>
-<?php 
-} 
+		<div class="form1">
+		<h2>Log In</h2>
+		<p>Not registered yet? <br> <a href='registration.php'>Register Here</a></p>
+		</div>
+		<?php 
+	} 
 ?>
 </div>
 </div>
