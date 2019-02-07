@@ -3,18 +3,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> 
-
+-->
 
 <link rel="stylesheet" href="css/angular-material.min.css">
 <link rel="stylesheet" href="css/ng-table.min.css" />
-<script src="js/angular.min.js"></script>
+<script src="js/angular1.5.5.min.js"></script>
 <script src="js/angular-route.js"></script> 
--->
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.js"></script> 
-
 <style>
 .btn-default.disabled.focus, .btn-default.disabled:focus, .btn-default.disabled:hover, .btn-default[disabled].focus, .btn-default[disabled]:focus, .btn-default[disabled]:hover, fieldset[disabled] .btn-default.focus, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:hover{	
 	background-color: #6aabd5 !important;
@@ -25,7 +19,7 @@
     background-color: #fff;
 }
 .list-group-item{
-    border: 1px solid #bdbdbd !important;
+    border: 1px solid #dedede !important;
     margin-bottom: 10px !important;
 }
 .list-group-projects{
@@ -46,9 +40,7 @@ padding-bottom: 15px;
 
 /*custom style*/
 
-body{
-	background: #fefefe !important;
-}
+
 .bg-shadow{
 	border: 1px solid lightgray;
 background: white;
@@ -62,9 +54,8 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 .panel-group {
     margin-bottom: 20px;
-    border: 1px solid lightgray;
     background: white;
-    box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1), 0 1px 8px 0 rgba(0,0,0,0.12);
 }
 
  #openPopup {
@@ -84,16 +75,16 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
     background: #228f86 !important;
 }
 .empListCol1{
-    color: #00569c !important;
-
-text-align: right;
+    color: #797979 !important;
+    text-align: right;
+    font-size: 12px;
+    font-weight: bold;
 
 }
 .empListCol2{
     color: #5c5c5c !important;
 }
 .empListRow{
-    border-bottom: 1px solid #eee;
 
 padding-bottom: 2px;
 
@@ -105,7 +96,7 @@ font-size: 14px;
     min-height: 80px;
     overflow: hidden;
     margin-bottom: 20px;
-    border: 1px solid #d1d1d1;
+
     max-height: 400px;
 }
 .modal-footer{
@@ -123,7 +114,7 @@ font-size: 14px;
 <!--ng-click="selectDivs(3)"-->
 	<div class="row">
 		<div class="col-md-3 sidebar">
-          <ul class="nav nav-sidebar bg-shadow">
+          <ul class="nav nav-sidebar bg-shadow vqBox">
             <li><a href="#/">Full Profile View</a></li>
             <li><a href="#profileEdit" >Profile Overview</a></li>
             <li><a href="#profileSummary" >Profile Summary</a></li>
@@ -157,7 +148,6 @@ font-size: 14px;
   -->
   <script src="js/angular-material.min.js"></script>
   <script src="js/ng-table.min.js"></script> 
-
  
  <!-- Main Ctrls -->
  <script src="candidate/ctrls/candidateDashboardCtrl.js"></script>
