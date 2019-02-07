@@ -1,20 +1,34 @@
+
+<link rel="stylesheet" href="css/angular-material.min.css">
+<link rel="stylesheet" href="css/ng-table.min.css" />
+<script src="js/angular1.5.5.min.js"></script>
+<script src="js/angular-route.js"></script> 
+<!--
+<link rel="stylesheet" href="css/angular-material.min.css">
+<link rel="stylesheet" href="css/ng-table.min.css" />
+<script src="js/angular1.5.5.min.js"></script>
+<script src="js/angular-route.js"></script> 
+
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.css" />
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+
+-->
 <style>
-    .btn-default.disabled.focus,
-    .btn-default.disabled:focus,
-    .btn-default.disabled:hover,
-    .btn-default[disabled].focus,
-    .btn-default[disabled]:focus,
-    .btn-default[disabled]:hover,
-    fieldset[disabled] .btn-default.focus,
-    fieldset[disabled] .btn-default:focus,
-    fieldset[disabled] .btn-default:hover {
-        background-color: #6aabd5 !important;
-    }
-		.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
-    text-align: center !important;
+.btn-default.disabled.focus,
+.btn-default.disabled:focus,
+.btn-default.disabled:hover,
+.btn-default[disabled].focus,
+.btn-default[disabled]:focus,
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default.focus,
+fieldset[disabled] .btn-default:focus,
+fieldset[disabled] .btn-default:hover {
+    background-color: #6aabd5 !important;
+}
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
+text-align: center !important;
+color: #545454;
 }
 .ShowAsLink{
     padding: 5px;
@@ -30,9 +44,25 @@
     padding: 10px;
     color: black;
     text-align: center;
+    border-bottom: 1px solid #d4d4d4;
+}
+.panel-default>.panel-heading {
+    color: #fff;
+    background-color: #0e5b62;
+    border-color: #ddd;
+    font-size: 14px;
+    font-weight: bold;
+}
+.btn-group-sm>.btn, .btn-sm {
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+    margin-left: 3px;
+    margin-right: 3px;
 }
 </style>
-<div class="container" ng-app="myApp" ng-controller="myCtrl">
+<div class="container" id="mainCtrlEmpDashboard" ng-app="myApp" ng-controller="myCtrl">
     <div id="ResultData" class="alert  alert-dismissable">
         <span class=""></span>
         <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
@@ -45,13 +75,14 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3 sidebar" style="border: 1px solid #ddd;">
-            <ul class="nav nav-sidebar">
+        <div class="col-md-3">
+            <ul class="nav nav-sidebar vqBox">
                 <li><a href="#" ng-click="selectDivs(0)">Post New Job</a></li>
                 <li><a href="#" ng-click="selectDivs(1)">View Posted Jobs</a></li>
                 <li><a href="#" ng-click="selectDivs(2)">Profile Edit</a></li>
                 <li><a href="#" ng-click="selectDivs(3)">Add Users</a></li>
                 <li><a href="#" ng-click="selectDivs(4)">Manage Users</a></li>
+                <li><a href="#" ng-click="selectDivs(7)">Search Candidate</a></li>
             </ul>
         </div>
         <div class="col-md-9">
@@ -80,14 +111,6 @@
                                 </span>
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Min Salary</label>
-                                <input type="text" class="form-control" id="minSalary" name="minSalary" placeholder="Min Salary"
-                                    data-ng-model='tempUser.minSalary'>
-                                <span class="help-block error" data-ng-show="userForm.minSalary.$invalid && userForm.minSalary.$dirty">
-                                    {{getError(userForm.minSalary.$error, 'minSalary')}}
-                                </span>
-                            </div>
-                            <div class="form-group">
                                 <label for="exampleInputEmail1">Max Salary</label>
                                 <input type="text" class="form-control" id="maxSalary" name="maxSalary" placeholder="Max Salary"
                                     data-ng-model='tempUser.maxSalary'>
@@ -97,16 +120,44 @@
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Experiance</label>
-                                <input type="text" class="form-control" id="jobExp" name="jobExp" placeholder="jobExperiance"
-                                    data-ng-model='tempUser.jobExp'>
+                                <select  id="jobExp" name="jobExp" class="form-control form-fixer"  data-ng-model='tempUser.jobExp' ng-init="tempUser.jobExp='NA'">
+                                    <option value="NA">Select experiance</option>
+                                    <option value="Fresher">Fresher</option>
+                                    <option value="0 - 1 Years">0 - 1 Years</option>
+                                    <option value="1 - 2 Years">1 - 2 Years</option>
+                                    <option value="2 - 3 Years">2 - 3 Years</option>
+                                    <option value="3 - 4 Years">3 - 4 Years</option>
+                                    <option value="4 - 5 Years">4 - 5 Years</option>
+                                    <option value="5 - 6 Years">5 - 6 Years</option>
+                                    <option value="6 - 7 Years">6 - 7 Years</option>
+                                    <option value="7 - 8 Years">7 - 8 Years</option>
+                                    <option value="8 - 9 Years">8 - 9 Years</option>
+                                    <option value="9 - 10 Years">9 - 10 Years</option>
+                                    <option value="10 + Years">10 + Years</option>                                    
+                                </select>
                                 <span class="help-block error" data-ng-show="userForm.jobExp.$invalid && userForm.jobExp.$dirty">
                                     {{getError(userForm.jobExp.$error, 'jobExp')}}
                                 </span>
                             </div>
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Job Qualification</label>
-                                <input type="text" class="form-control" id="qua" name="qua" placeholder="Qualification"
-                                    data-ng-model='tempUser.qua'>
+                                <select  id="qua" name="qua" class="form-control form-fixer"  data-ng-model='tempUser.qua' ng-init="tempUser.qua='NA'">
+                                    <option value="NA">Select your qualification</option>
+                                    <option value="10th">10th</option>
+                                    <option value="12th">12th</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="B.A">B.A</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="B.Com">B.Com</option>
+                                    <option value="B.Sc">B.Sc</option>
+                                    <option value="BE">BE</option>
+                                    <option value="Other Graduation">Other Graduation</option>
+                                    <option value="M.A">M.A</option>
+                                    <option value="M.Com">M.Com</option>
+                                    <option value="M.Sc">M.Sc</option>
+                                    <option value="MCA">MCA</option>
+                                    <option value="Other Post Graduation">Other Post Graduation</option>
+                                </select>
                                 <span class="help-block error" data-ng-show="userForm.qua.$invalid && userForm.qua.$dirty">
                                     {{getError(userForm.qua.$error, 'qua')}}
                                 </span>
@@ -182,10 +233,10 @@
                                                 {{ row.city }}</td>
                                             <td data-title="'candidates Applied'" filter="{candidateApplied: 'text'}"
                                                 sortable="'candidateApplied'">
-                                                <a ng-click="selectDivs(5,row.jobID)" class="ShowAsLink">{{
+                                                <a ng-click="selectDivs(5,row.jobID)" class="btn btn-info btn-sm ShowAsLink">{{
                                                     row.candidateApplied }}</a>
                                             </td>
-                                            <td data-title="'Action'">
+                                            <td data-title="'Action'" style="display: inline-flex;">
                                                 <button class="btn btn-info btn-sm" data-ng-click="editUser(row)" style="cursor: pointer;">
                                                     <span class="glyphicon glyphicon-edit"></span>
                                                 </button>
@@ -206,7 +257,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span>View/Edit Profile</span>
-                        <div style="float: right;">
+                        <div style="float: right;margin-top: -5px;">
                             <button type="button" ng-disabled="!isEdit" class="btn btn-default btn-sm" ng-click="isEditable()">
                                 <span class="glyphicon glyphicon-edit"></span>Edit
                             </button>
@@ -408,11 +459,11 @@
 <!-- panel 6 -->
             <div class="panel-group">
                 <div class="panel panel-default">
-                <div class="">
-                    <button class="btn btn-info btn-sm" data-ng-click="selectDivs(1)" style="cursor: pointer;">
+                <!-- <div class="">
+                    <button class="btn btn-info btn-sm" data-ng-click="selectDivs(5)" style="cursor: pointer;">
                         <span class="glyphicon glyphicon-chevron-left">Go Back</span>
                     </button>                        
-                </div>
+                </div> -->
                 <div class="panel-heading">Candidate Full View</div>
                     <div class="panel-body">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
@@ -426,10 +477,10 @@
                                         <span class="profile_over_view">
                                         {{fullUserData.title}} {{fullUserData.fname}} {{fullUserData.lname}}</span>
                                     </div>
-                                    <div class="col-md-2 dashTitle">Data of birth: </div>
+                                    <div class="col-md-2 dashTitle">Date of birth: </div>
                                     <div class="col-md-4 dashContent">
                                         <span class="profile_over_view">
-                                            {{fullUserData.day}}-{{fullUserData.month}}-{{fullUserData.year}}</span>
+                                            {{fullUserData.dob}}</span>
                                     </div>
 
                                     <div class="col-md-2 dashTitle">Address: </div>
@@ -464,8 +515,7 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Candidate Summary</div>
                                 <div class="panel-body">
-                                <div class="col-md-2 dashTitle">Summary: </div>
-                                    <div class="col-md-10 dashContent">
+                                    <div class="col-md-12 dashContent">
                                         <span class="profile_over_view">
                                             {{fullUserData.summary}}</span>
                                     </div>
@@ -476,14 +526,25 @@
                                 <div class="panel-heading">Employement History</div>
                                 <div class="panel-body">
                                     <table class="table table-condensed table-bordered table-striped">
+									 <tr> 
+									   <th>Worked Company</th>
+									   <th>Working in same Job ?</th>
+									   <th>Worked Join Date</th>
+									   <th>Worked End Date</th>
+									   <th>Worked Month</th>
+									   <th>Worked Year</th>
+									   <th>History</th>
+									 </tr>
                                         <tbody>
                                             <tr ng-repeat="emp in fullEmpHistory track by $index">
-                                                <td>History</td>
-                                                <td>{{emp.empHistory}}</td>
-                                                <td>Worked Company</td>
                                                 <td>{{emp.workedCompany}}</td>
-                                                <td>Worked Current Job </td>
-                                                <td>{{emp.workedCurrentJob}}</td>                                                
+                                                <td>{{emp.workedCurrentJob == "true" ? "Yes" : "No"}}</td>
+                                                <td>{{emp.workedJoinDate}}</td>                                                
+                                                <td>{{emp.workedEndDate}}</td>                   
+                                                <td>{{emp.workedMonth}}</td>                 
+                                                <td>{{emp.workedYear}}</td> 
+                                                <td>{{emp.emphistory}}</td>
+                                                
                                             </tr>
                                         </tbody>
                                     </table>
@@ -493,15 +554,100 @@
                             <div class="panel panel-default">
                                 <div class="panel-heading">Project Details</div>
                                 <div class="panel-body">
-
+	                                <table class="table table-condensed table-bordered table-striped">
+									 <tr>
+									   <th>Client</th>
+									   <th>Duration</th>
+									   <th>Project Title</th>
+									   <th>Project Details</th>
+									 </tr>
+	                                    <tbody>
+	                                        <tr ng-repeat="pro in fullProjectHistory track by $index">
+	                                            <td>{{pro.client}}</td>
+	                                            <td>{{pro.duration}}</td>
+	                                            <td>{{pro.projectTitle}}</td>                                                
+	                                            <td>{{pro.projectDetails}}</td>                                                
+	                                        </tr>
+	                                    </tbody>
+	                                </table>
                                 </div>
                             </div>
                             <div class="panel panel-default">
                                 <div class="panel-heading">Resume</div>
                                 <div class="panel-body">
-
+                                    <div class="col-md-12 dashContent" ng-show="resumeAvailable">
+                                        <span class="profile_over_view">
+                                        	Download Candidate Resume  : <a href="{{fullUserData.resumeUploadURL}}">{{fullUserData.resumeUploadName}}</a>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-12 dashContent"  ng-show="!resumeAvailable">
+                                        <span class="profile_over_view">
+                                        No Resume Uploaded
+                                        </span>
+                                    </div>                                    
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<!-- panel 7 -->
+            <div class="panel-group">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Search Candidate</div>
+                    <div class="panel-body">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
+                            <div class="row">
+                                <div class="col-md-4">
+                                <select  id="searchExp" name="jobExp" class="form-control" >
+                                    <option value="NA">Select experiance</option>
+                                    <option value="Fresher">Fresher</option>
+                                    <option value="0 - 1 Years">0 - 1 Years</option>
+                                    <option value="1 - 2 Years">1 - 2 Years</option>
+                                    <option value="2 - 3 Years">2 - 3 Years</option>
+                                    <option value="3 - 4 Years">3 - 4 Years</option>
+                                    <option value="4 - 5 Years">4 - 5 Years</option>
+                                    <option value="5 - 6 Years">5 - 6 Years</option>
+                                    <option value="6 - 7 Years">6 - 7 Years</option>
+                                    <option value="7 - 8 Years">7 - 8 Years</option>
+                                    <option value="8 - 9 Years">8 - 9 Years</option>
+                                    <option value="9 - 10 Years">9 - 10 Years</option>
+                                    <option value="10 + Years">10 + Years</option>                                    
+                                </select>
+                                </div>
+                                <div class="col-md-4">
+                                <select  id="searchQua" name="searchQua" class="form-control form-fixer">
+                                    <option value="NA">Select your qualification</option>
+                                    <option value="10th">10th</option>
+                                    <option value="12th">12th</option>
+                                    <option value="Diploma">Diploma</option>
+                                    <option value="B.A">B.A</option>
+                                    <option value="BCA">BCA</option>
+                                    <option value="B.Com">B.Com</option>
+                                    <option value="B.Sc">B.Sc</option>
+                                    <option value="BE">BE</option>
+                                    <option value="Other Graduation">Other Graduation</option>
+                                    <option value="M.A">M.A</option>
+                                    <option value="M.Com">M.Com</option>
+                                    <option value="M.Sc">M.Sc</option>
+                                    <option value="MCA">MCA</option>
+                                    <option value="Other Post Graduation">Other Post Graduation</option>
+                                </select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button id="searchCandidate" type="button" class="btn btn-primary">Search</button>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                    <div id="target-content"></div>
+
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -511,14 +657,59 @@
     </div>
 </div>
 
-<!-- Angular Material requires Angular.js Libraries -->
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-
-<!-- Angular Material Library -->
-<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>
+  <!-- Angular Material requires Angular.js Libraries -->
+  <!-- 
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+ -->
+ <script src="js/angular-animate.min.js"></script>
+  <script src="js/angular-aria.min.js"></script>
+  <script src="js/angular-messages.min.js"></script>
+  <!-- Angular Material Library -->
+  <!-- 
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ng-table/0.8.3/ng-table.min.js"></script>  
+  -->
+  <script src="js/angular-material.min.js"></script>
+  <script src="js/ng-table.min.js"></script> 
 
 
 <script src="ctrls/empDash.js"></script>
+<script>
+
+// jQuery(document).ready(function() {
+ 
+// // $.ajax({
+//             url: "pagination.php?page=1",
+//             type: 'GET',
+//             async: true,
+//             data:
+//             {
+//                 page : 1
+//             },
+//             beforeSend: function () {
+                
+//             },
+//             complete: function (data) {
+//                 $("#target-content").html(data.responseText);
+//             }
+//         });
+// });
+</script>
+<script>
+
+    jQuery(document).ready(function() {
+    jQuery("#searchCandidate").on('click',function(e){
+	e.preventDefault();
+		jQuery("#target-content").html('loading...');
+		jQuery("#pagination li").removeClass('active');
+		jQuery(this).addClass('active');
+        var searchExp = $("#searchExp").val();
+        var searchQua = $("#searchQua").val();
+        var encodedSearch = encodeURI("pagination.php?page=1&searchExp=" + searchExp + "&searchQua=" + searchQua );  
+        jQuery("#target-content").load(encodedSearch);
+        
+    });
+});
+</script>
