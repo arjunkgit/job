@@ -1,3 +1,8 @@
+/*****************************************
+/* cyrillic-ext  google font*/ 
+  ******************************************/
+/* cyrillic-ext */
+
 
 /*****************************************
   CAndidate customr styles
@@ -17,14 +22,14 @@
 
 .globalStyles md-input-container input[disabled] {
 	font-size: 14px !important;
-	color: #0067ab !important;
+	color: #7b7b7b !important;
 }
 .globalStyles md-input-container textarea[disabled]{
-	color: #0067ab !important;
+	color: #7b7b7b !important;
 	background:white !important;
 }
 .globalStyles md-input-container md-select[disabled] md-select-value{
-	color: #0067ab !important;
+	color: #7b7b7b !important;
 }
 
 
@@ -40,9 +45,15 @@
 	font-size: 14px;
 	margin-right: -25px;	
 }
-/*****************************************
-******************************************/
 
+/*****************************************
+general styles
+******************************************/
+.vqH2{
+	color: rgb(36, 113, 119);
+    font-size: 30px;
+    font-weight: 500;
+}
 .dateSelectors{
 	width: 100%;
     padding: 0px;
@@ -63,9 +74,7 @@
       text-align: center;
       font-size: 30px;
   }
-  .modal-footer {
-      background-color: #f9f9f9;
-  }
+
 
 button.close
 {
@@ -79,7 +88,7 @@ button.close
 }
 /*form controls size padding-left: 10px !important;*/
 input[type="text"], input[type="email"], input[type="password"]{
-	padding: 0px !important;
+	
 	
 }
 
@@ -97,22 +106,42 @@ padding-bottom: 10px;
 }
 /*current open*/
 .currentUp{
-	border: 1px solid #e4e4e4;
-	padding-left: 5px;
-	padding-right: 5px;
+	border: 1px solid #e4e4e4; 
 	min-height: 500px !important;
+	background: white;
 }
 .currentUp > .headings{
 text-align: center;
 background-color: #247177;
 color: white;
-padding-bottom: 10px;
-padding-top: 10px;
+padding-bottom: 5px;
+padding-top: 5px;
 }
+.currentUp2{
+}
+.currentUp2 > .headings2{
+	text-align: center;
+	background-color: #247177;
+	color: white;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	}
 .panel-primary > .panel-heading
 {
-	background-color: #247177 !important;
-	border-color: #247177 !important;
+	background-color: white !important;
+	border-color: white !important;
+}
+.panel-primary>.panel-heading {
+    color: #3a3a3a;
+
+}
+.panel-primary {
+    border-color: #e4e4e4;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1), 0 1px 8px 0 rgba(0,0,0,0.12);
+}
+.vqBox{
+	background: white;
+	box-shadow: 0 1px 4px 0 rgba(0,0,0,0.1), 0 1px 8px 0 rgba(0,0,0,0.12);
 }
 #currentBox .panel-heading > h5{
 	margin-bottom: 0px !important;
@@ -168,7 +197,12 @@ color: #6c6c6c;
 	background-color: black;
 	
 }
-
+.salarySnippet{
+    color: #00825F !important;
+    font-size: 0.875rem;
+    line-height: 1.43rem;
+    font-weight: bold !important;
+}
 .profile_over_view{
 	display: inline-block;
 }
@@ -230,11 +264,11 @@ md-content.md-default-theme, md-content{
   background: #5bc0de;
   border-radius: .4em;
   transition: background .3s;
-  
-  &:hover {
-     cursor: pointer;
-     background: #000;
-  }
+}
+
+.file-upload__label:hover{
+	cursor: pointer;
+	background: #000;
 }
     
 .file-upload__input {
@@ -264,9 +298,9 @@ p
 }
 html, body
 {
-	font-family: 'Roboto' , sans-serif;
-	font-size: 100%;
-	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	background: #f5f5f5;
 }
 body a
 {
@@ -276,16 +310,44 @@ body a
 	-o-transition: 0.5s all;
 	-ms-transition: 0.5s all;
 }
-.navbar-default
-{
+/*
+nav bar remved
 	background-color: #247177 !important;
 	border-color: #128493;
 	border-radius: 0px;
-}
-.navbar-default .navbar-nav > li > a
+
+
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 10000;
+    left: 0px;
+
+	transform: translateZ(0);
+
+*/
+.navbar-default
 {
-	color: #fff;
-	font-weight: 300;
+	background-color: #fff !important;
+    border-color: #f0f0f0;
+    border-radius: 0px;
+	background-color: #FFF;
+	box-shadow: 0 0 5px 2px rgba(0,0,0,.33);
+	margin-bottom: 15px !important;
+}
+
+.navbar-default .navbar-nav > li > a{
+	color: black;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 14px;
+	line-height: 160%;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	display: block;
+	text-decoration: none;
+	white-space: nowrap;
+	position: relative;
 }
 .navbar
 {
@@ -542,15 +604,15 @@ h2.title
 /*-- content-- */
 .grid_1
 {
-	padding: 7em 0 2em;
+	padding: 3em 0 4em;
 }
 .grid_1 h3
 {
-	color: #000;
-	text-align: center;
-	font-size: 2em;
-	font-weight: 400;
-	margin-bottom: 0.5em;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+    margin-bottom: 0.5em;
 }
 .nbs-flexisel-container
 {
@@ -1161,7 +1223,6 @@ span.m_2
 	float: left;
 	width: 32.33%;
 	padding: 5px 20px;
-	font-family: 'Roboto' , sans-serif;
 }
 .button a.tw
 {
@@ -1316,7 +1377,7 @@ i.tw2
 /* -- following --*/
 .single h2::after, .content_bottom h3:after, .grid_1 h3:after, .punderline h3:after, .pcircle-inside-header h3:after, .about_bottom h3:after
 {
-	background: #f15f43;
+	background: #ff4c14;
 	content: "";
 	display: block;
 	height: 5px;
@@ -1657,7 +1718,6 @@ a.btn_1.fa.fa-star-o.icon_2:hover
 }
 .btn_3:after
 {
-	font-family: FontAwesome;
 	content: '\f105';
 	font-size: 14px;
 	margin-left: 4px;
@@ -2084,9 +2144,11 @@ label.col-md-3.control-lable
 }
 .radio label, .checkbox label, label
 {
-	font-size: 0.85em;
-	font-weight: 300;
-	vertical-align: middle;
+    font-size: 12px;
+    font-weight: 600;
+    vertical-align: middle;
+    margin-top: 5px;
+    color: #525252;
 }
 .radios label:first-child
 {
@@ -2353,6 +2415,12 @@ p.m_1
 	min-height: 330px;
 }
 /***** Slider *****/
+.slideBringUp{
+	position: relative;
+    top: -94px;
+    margin: 0px;
+    padding: 0px;
+}
 .wmuSlider.example1
 {
 	height: 300px !important;
@@ -3063,6 +3131,7 @@ p.sm_1
 	{
 		margin-top: 2em;
 	}
+
 	.banner
 	{
 		min-height: 365px;
@@ -3698,7 +3767,7 @@ p.sm_1
 .pcircle-inside-content a
 {
 	color: white;
-	font-size: 1.3em;
+	font-size: 14px;
 	font-weight: 400;
 	transition: 0.5s all;
 	-webkit-transition: 0.5s all;
@@ -3753,14 +3822,17 @@ p.sm_1
 {
 	border: 1px solid #d2d2d2;
 	height: 140px;
+	background: white;
 }
 .popenings-parts h4
 {
-	padding-top: 5px;
-	font-weight: bold;
-	background-color: #247177 !important;
-	padding-bottom: 5px;
-	font-size: 17px;
+	color: black !important;
+    padding-top: 5px;
+    font-weight: bold;
+    background-color: #ffffff !important;
+    padding-bottom: 5px;
+    font-size: 13px;
+    border-bottom: 1px solid #f3acd2;
 }
 
 .popenings-parts
@@ -3777,7 +3849,7 @@ p.sm_1
 }
 .pcircle-main
 {
-	background: #3496ac;
+	background: #1a4f5a;
 	border-radius: 588px;
 	color: white;
 	height: 230px;
@@ -3785,13 +3857,13 @@ p.sm_1
 	width: 240px;
 	display: table;
 	margin: 0px auto;
-	border: 10px solid #297080;
+	border: 10px solid #49737b;
 	-webkit-transition: border 1s; /* For Safari 3.1 to 6.0 */
 	transition: border 1s;
 }
 .pcircle-main:hover
 {
-	border: 10px solid #58c0d8;
+	border: 10px solid #498d9c;
 }
 .pcircle-main p
 {
@@ -3800,7 +3872,7 @@ p.sm_1
 }
 .pbringTop
 {
-	margin-top: -125px;
+	margin-top: -210px;
 	z-index: 1000;
 	position: relative;
 }
@@ -3842,14 +3914,14 @@ width: 300px;
 padding: 44px;
 background-color: #32ccd8;
 }
-input[type='text'], input[type='email'], input[type='password'] 
+/* input[type='text'], input[type='email'], input[type='password'] 
 { 
 border-radius: 2px;
 border: 1px solid #CCC; 
 padding: 10px; color: #333; 
 font-size: 14px;
-margin-top: 10px;
-}
+
+} */
 
 ul.pagination li a{
     color: black;
@@ -3873,13 +3945,11 @@ ul.pagination > li > a{
 	color: #5b564a;
 	margin-top: 15px;
 	font-size: 2.5rem;
-	font-family: Montserrat, Helvetica, Arial, sans-serif;	
 }
 .viSubHeading{
 	text-align: center;
 	color: #747474;
 	margin-top: 5px;
-	font-family: Montserrat, Helvetica, Arial, sans-serif;
 	font-size: 1.25rem;
 }
 
