@@ -9,7 +9,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	$scope.isEdit = true;
 	$scope.post = {};
 	$scope.post.users = [];
-	var tableName = "jobsPost";
+	var tableName = "jobspost";
   	$scope.isEditable = function(){
 		$scope.isEdit = false;	
 	};
@@ -34,12 +34,12 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 		$scope.tempUser = {
 			city: "",
 			jobDesc: "",
-			jobExp: "",
+			jobExp: "NA",
 			jobId: "",
 			jobName: "",
 			maxSalary: "",
 			minSalary: "",
-			qua: "",
+			qua: "NA",
 			state: ""
 			};	
 	}		
@@ -51,7 +51,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	$scope.mydata = "my data here";
 	 
 	$scope.addUser = function(){		
-	var paramsObj = {"user" : $scope.tempUser , "tableName":"jobsPost",  "type":"saveData"};	
+	var paramsObj = {"user" : $scope.tempUser , "tableName":"jobspost",  "type":"saveData"};	
 	var cat = postData.crud(paramsObj);
 	$scope.showLoader = true;
     cat.then(function(data) {
@@ -67,7 +67,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 	
 	};
 	$scope.addUserData = function(){	
-	  var paramsObjUser = {"user" : $scope.tempUserData , "tableName":"empUsers",  "type":"saveUserData"};	
+	  var paramsObjUser = {"user" : $scope.tempUserData , "tableName":"empusers",  "type":"saveUserData"};	
 	  console.log($scope.tempUserData);
 	var cat = postData.crud(paramsObjUser);
 	$scope.showLoader = true;
@@ -89,7 +89,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 
 	$scope.updateUser = function(){		
 	$scope.showLoader = true;  
-	var paramsObj = {"user" : $scope.tempUser , "tableName":"jobsPost",  "type":"saveData"};
+	var paramsObj = {"user" : $scope.tempUser , "tableName":"jobspost",  "type":"saveData"};
 	console.log($scope.tempUser);	
 	var cat = postData.crud(paramsObj);		
     cat.then(function(data) {
@@ -118,7 +118,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 		maxSalary : job.maxSalary
 	};
 
-	var paramsObj = {"user" : $scope.deleteList , "tableName":"jobsPost",  "type":"deleteData"};	
+	var paramsObj = {"user" : $scope.deleteList , "tableName":"jobspost",  "type":"deleteData"};	
 	var cat = postData.crud(paramsObj);	
 	cat.then(function(data) {
 	postData.setResult("success", data);
@@ -137,7 +137,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 			fname : job.fname
 		};
 	
-		var paramsObj = {"user" : $scope.deleteList , "tableName":"candidateRegData",  "type":"deleteData"};	
+		var paramsObj = {"user" : $scope.deleteList , "tableName":"candidateregdata",  "type":"deleteData"};	
 		var cat = postData.crud(paramsObj);	
 		cat.then(function(data) {
 		postData.setResult("success", data);
@@ -177,7 +177,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 		
 	};
 	$scope.showLoader = true;  
-	var paramsObj = {"user" : $scope.profile , "tableName":"employerRegData",  "type":"saveData"};	
+	var paramsObj = {"user" : $scope.profile , "tableName":"employerregdata",  "type":"saveData"};	
 
 	var cat = postData.crud(paramsObj);	
     cat.then(function(data) {
@@ -233,7 +233,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 				  $scope.showLoader = true;
 		          $scope.editMode = false;
 		          $scope.editUserMode = false;
-					var getJobs = {"tableName":"jobsPost",  "type":"getData"};	
+					var getJobs = {"tableName":"jobspost",  "type":"getData"};	
 					var cat2 = postData.getPostedJobs(getJobs);
 				    cat2.then(function(response) {
 						console.log(response.data);
@@ -246,7 +246,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 				  $scope.showLoader = true;
 		          $scope.editMode = false;
 		          $scope.editUserMode = false;
-					var getProfile = {"tableName":"employerRegData",  "type":"getData"};	
+					var getProfile = {"tableName":"employerregdata",  "type":"getData"};	
 					var cat3 = postData.getPostedJobs(getProfile);
 				    cat3.then(function(response) {
 				        $scope.profile = response.data;
@@ -257,7 +257,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 				  $scope.showLoader = true;
 		          $scope.editMode = false;
 		          $scope.editUserMode = false;
-					var getProfile = {"tableName":"employerRegData",  "type":"getData"};	
+					var getProfile = {"tableName":"employerregdata",  "type":"getData"};	
 					var cat3 = postData.getPostedJobs(getProfile);
 				    cat3.then(function(response) {
 				        $scope.profile = response.data;
@@ -271,7 +271,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 					$scope.showLoader = true;
 					$scope.editMode = false;
 					$scope.editUserMode = false;
-					  var getJobs = {"tableName":"candidateRegData",  "type":"getData"};	
+					  var getJobs = {"tableName":"candidateregdata",  "type":"getData"};	
 					  var cat2 = postData.getPostedJobs(getJobs);
 					  cat2.then(function(response) {
 						  console.log(response.data);
@@ -281,6 +281,7 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 					  }); 
 				  }
 				if(currentDiv == 0){
+					console.log(currentDiv);
 					$scope.editMode = false;				
 					$scope.editUserMode = false;				
 					var fromEdit = $scope.fromEdit;
@@ -290,8 +291,9 @@ app.controller("myCtrl", function($scope, $filter, $http,postData,NgTableParams)
 					}else{
 						resetJobObject();
 						$scope.tempUser.jobId = null;
-								}
+						}
 					$scope.fromEdit = false;
+					console.log($scope.tempUser);
 				}
 				
 			}else		
