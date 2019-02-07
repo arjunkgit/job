@@ -21,7 +21,7 @@ function func2 ($urlParams) {
 function addEmpHistory ($urlParams) {
 require_once("db.php");
 $email = $_SESSION["username"];
-$empHistory = $_POST["empHistory"];
+$emphistory = $_POST["emphistory"];
 $workedCompany = $_POST["workedCompany"];
 $workedYear = $_POST["workedYear"];
 $workedMonth = $_POST["workedMonth"];
@@ -29,7 +29,7 @@ $workedJoinDate = $_POST["workedJoinDate"];
 $workedEndDate = $_POST["workedEndDate"];
 $workedCurrentJob = $_POST["workedCurrentJob"];
 
-$sql = "INSERT INTO  `empHistory` (email,empHistory,workedCompany,workedYear,workedMonth,workedJoinDate,workedEndDate,workedCurrentJob) VALUES ('$email', '$empHistory', '$workedCompany','$workedYear','$workedMonth','$workedJoinDate','$workedEndDate','$workedCurrentJob' )";
+$sql = "INSERT INTO  `emphistory` (email,emphistory,workedCompany,workedYear,workedMonth,workedJoinDate,workedEndDate,workedCurrentJob) VALUES ('$email', '$emphistory', '$workedCompany','$workedYear','$workedMonth','$workedJoinDate','$workedEndDate','$workedCurrentJob' )";
 
 if ($con->query($sql) === TRUE) {
     echo "Record has been inseted successfully";
@@ -46,7 +46,7 @@ mysqli_close($con);
 function deleteEmpHistory ($urlParams) {
 require_once("db.php");
 $id = $urlParams[4];
-$sql = "DELETE  from `empHistory` where `id` = $id";
+$sql = "DELETE  from `emphistory` where `id` = $id";
 if (mysqli_query($con, $sql)) {
 	echo "Record Deleted Successfully";
 	header("refresh:1; url=/job/dashboard.php"); 
@@ -64,8 +64,8 @@ require_once("db.php");
 $empUpdateVal = $_POST["empUpdateVal"];
 $editEmpId = $_POST["editEmpId"];
 
-$empHistoryColName = "empHistory";
-$sql = "UPDATE empHistory set ".$empHistoryColName."='".$empUpdateVal."' WHERE id='".$editEmpId."'";
+$empHistoryColName = "emphistory";
+$sql = "UPDATE emphistory set ".$empHistoryColName."='".$empUpdateVal."' WHERE id='".$editEmpId."'";
 if ($con->query($sql) === TRUE) {
     echo "Record has been updated successfully";
 	header("refresh:1; url=/job/dashboard.php"); 
@@ -87,7 +87,7 @@ $projectHistoryClient = $_POST["projectHistoryClient"];
 $projectHistoryDuration = $_POST["projectHistoryDuration"];
 $projectHistoryProjectDetails = $_POST["projectHistoryProjectDetails"];
 
-$sql = "INSERT INTO  `projectHistory` (email,projectTitle,client,duration,projectDetails) VALUES ('$email', '$projectHistoryTitle', '$projectHistoryClient','$projectHistoryDuration','$projectHistoryProjectDetails')";
+$sql = "INSERT INTO  `projecthistory` (email,projectTitle,client,duration,projectDetails) VALUES ('$email', '$projectHistoryTitle', '$projectHistoryClient','$projectHistoryDuration','$projectHistoryProjectDetails')";
 	
 if ($con->query($sql) === TRUE) {
     echo "Record has been inseted successfully";
@@ -104,7 +104,7 @@ mysqli_close($con);
 function deleteProjectHistory ($urlParams) {
 require_once("db.php");
 $id = $urlParams[4];
-$sql = "DELETE  from `projectHistory` where `id` = $id";
+$sql = "DELETE  from `projecthistory` where `id` = $id";
 if (mysqli_query($con, $sql)) {
 	echo "Record Deleted Successfully";
 	header("refresh:1; url=/job/dashboard.php"); 
@@ -129,7 +129,7 @@ $deactivatePro = "deactivatePro";
 $deactivateProValue = 0;
 
 $email = $_SESSION["username"];
-$sql = "UPDATE candidateRegData set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
+$sql = "UPDATE candidateregdata set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
 //    echo "Your account has been activated successfully";
     header("Location: ../dashboard.php#/accountSettings");
@@ -153,7 +153,7 @@ $activatePro = "activatePro";
 $activateProValue = 0;
 
 $email = $_SESSION["username"];
-$sql = "UPDATE candidateRegData set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
+$sql = "UPDATE candidateregdata set ".$activatePro."='".$activateProValue."',".$deactivatePro."='".$deactivateProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
 //    echo "Your account has been Deactivated successfully";
     header("Location: ../dashboard.php#/accountSettings");
@@ -174,13 +174,29 @@ $deletePro = "deletePro";
 $deleteProValue = 0;
 
 $email = $_SESSION["username"];
-$sql = "UPDATE candidateRegData set ".$deletePro."='".$deleteProValue."' WHERE email='".$email."'";
+$sql = "UPDATE candidateregdata set ".$deletePro."='".$deleteProValue."' WHERE email='".$email."'";
 if ($con->query($sql) === TRUE) {
-echo "Currently the account deleting facility has been disabled. Contact admin for more details.";
- //    echo "Your account has been Deleted successfully";
-//    header("Location: ../dashboard.php#/accountSettings");
-	header("refresh:4; url=../dashboard.php#/accountSettings"); 
-	exit;
+	//echo "Currently the account deleting facility has been disabled. Contact admin for more details.";
+	//exit;
+	$email = $_SESSION["username"];	
+	if(empty($email)) throw new Exception( "Invalid User." );
+	$query = "DELETE FROM candidateregdata WHERE `email` = '$email'";
+	$query2 = "DELETE FROM defaultvalues WHERE `email` = '$email'";
+	$query3 = "DELETE FROM jobsapplied WHERE `userEmail` = '$email'";
+	$query4 = "DELETE FROM emphistory WHERE `email` = '$email'";
+	$query5 = "DELETE FROM 	projecthistory WHERE `email` = '$email'";
+
+	if (mysqli_query($con, $query)) {
+		mysqli_query($con, $query2);
+		mysqli_query($con, $query3);
+		mysqli_query($con, $query4);
+		mysqli_query($con, $query5);
+		echo "Your account has been deleted successfully";
+	} else {
+		echo "Error in deleting record";
+	}
+		header("refresh:4; url=../logout.php"); 
+		exit;
 } else {
   echo "Error in deleting your account.";
 //    header("Location: ../dashboard.php#/accountSettings");
@@ -196,7 +212,7 @@ require_once("db.php");
 $email = $_SESSION["username"];
 $appliedJobID = $_POST["appliedJobID"];
 $jobsPostedBy = $_POST["jobsPostedBy"];
-$sql = "INSERT INTO  `jobsApplied` (userEmail,jobsPostId,jobsPostedBy) VALUES ('$email', '$appliedJobID', '$jobsPostedBy')";	
+$sql = "INSERT INTO  `jobsapplied` (userEmail,jobsPostId,jobsPostedBy) VALUES ('$email', '$appliedJobID', '$jobsPostedBy')";	
 if ($con->query($sql) === TRUE) {
     echo "success";
 	header("refresh:1; url=/job/currentOpenings.php"); 
