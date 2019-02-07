@@ -1,5 +1,4 @@
 candidateApp.controller("profileSummaryCtrl", function ($scope, $rootScope, $filter, postData, $http, NgTableParams) {
-
     $scope.showLoader = true;
     $scope.isDisable = true;
     //table - candidateregdata
@@ -22,8 +21,6 @@ candidateApp.controller("profileSummaryCtrl", function ($scope, $rootScope, $fil
     var getProfileSummaryData = { "tableName": "candidateregdata", "type": "getUserData" };
     var cat2 = postData.getUserData(getProfileSummaryData);
     cat2.then(function (response) {
-        console.log("asdf");
-        console.log(response);
         $scope.profileSummaryData = response.data[0];
         if (globalCurrentPath == "/") {
             $rootScope.editBtn = false;
@@ -58,6 +55,5 @@ candidateApp.controller("profileSummaryCtrl", function ($scope, $rootScope, $fil
             }
         });
     };
-
     //end ctrl
 });
