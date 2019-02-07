@@ -80,7 +80,7 @@ function saveUserData(){
 		
 	$password = stripslashes($_POST['user']['userPass']);
 	$password = mysqli_real_escape_string($con,$password);
-	$checkEmail = "SELECT * FROM `candidateRegData` WHERE email='$email'";
+	$checkEmail = "SELECT * FROM `candidateregdata` WHERE email='$email'";
 	$checkResult = mysqli_query($con,$checkEmail);
 	$checkRow = mysqli_num_rows($checkResult);
 	if($checkRow==1){
@@ -88,15 +88,15 @@ function saveUserData(){
 	 } 
 	else{	
 		$empusername = $_SESSION['empusername'];	
-		$query1 = "SELECT `createNewEmpLimit`  FROM defaultValues WHERE `email`='$empusername'";		
-		$jobsPosted = "SELECT `createdBy` FROM candidateRegData WHERE `createdBy` = '$empusername'";
+		$query1 = "SELECT `createNewEmpLimit`  FROM defaultvalues WHERE `email`='$empusername'";		
+		$jobsPosted = "SELECT `createdBy` FROM candidateregdata WHERE `createdBy` = '$empusername'";
 		$result = mysqli_query($con, $query1);
 		$resultPostedJobs = mysqli_query($con, $jobsPosted);
 		$limitData = mysqli_fetch_assoc($result);
 		if (mysqli_num_rows($resultPostedJobs) >= $limitData['createNewEmpLimit']   ){
 			echo "You have exceded the Job Post Limit. Please contact your Admin.";
 		}else{
-			$query = "INSERT INTO candidateRegData ( `fname`,`email`,`password`,`activatePro`,createdBy) VALUES ('$username','$email', '".md5($password)."','1','$empEmail')";
+			$query = "INSERT INTO candidateregdata ( `fname`,`email`,`password`,`activatePro`,createdBy) VALUES ('$username','$email', '".md5($password)."','1','$empEmail')";
 			if (mysqli_query($con, $query)) {
 					echo "User added successfully";
 				} else {
@@ -110,12 +110,12 @@ function saveUserData(){
 function saveData(){
 		$data = array();
 		$email = $_SESSION['empusername'];
-		$jobsPost = $_POST['tableName'];
+		$jobspost = $_POST['tableName'];
 		
 		require_once ("db.php");
  
-		switch ($jobsPost) {
-		case "jobsPost":
+		switch ($jobspost) {
+		case "jobspost":
 
   
 		$jobId = $_POST['user']['jobId'];
@@ -128,8 +128,8 @@ function saveData(){
 		$city = $_POST['user']['city'];
 		$state = $_POST['user']['state'];
 
-		$query1 = "SELECT `jobsPostLimit`  FROM defaultValues WHERE `email`='$email'";		
-		$jobsPosted = "SELECT `jobId` FROM jobsPost WHERE `email`='$email'";
+		$query1 = "SELECT `jobsPostLimit`  FROM defaultvalues WHERE `email`='$email'";		
+		$jobsPosted = "SELECT `jobId` FROM jobspost WHERE `email`='$email'";
 
 		$result = mysqli_query($con, $query1);
 		$resultPostedJobs = mysqli_query($con, $jobsPosted);
@@ -141,9 +141,9 @@ function saveData(){
 		}else{
 
 		if(empty($jobId)){
-			$query = "INSERT INTO jobsPost (`email`,`jobName`, `jobDesc`, `minSalary`,`maxSalary`,`jobExp`,`qua`,`city`,`state`) VALUES ('$email', '$jobName', '$jobDesc' , '$minSalary' , '$maxSalary', '$jobExp', '$qua', '$city', '$state')";
+			$query = "INSERT INTO jobspost (`email`,`jobName`, `jobDesc`, `minSalary`,`maxSalary`,`jobExp`,`qua`,`city`,`state`) VALUES ('$email', '$jobName', '$jobDesc' , '$minSalary' , '$maxSalary', '$jobExp', '$qua', '$city', '$state')";
 		}else{
-			$query = "UPDATE jobsPost SET `jobName` = '$jobName', `jobDesc` = '$jobDesc',`minSalary` = '$minSalary',`maxSalary` = '$maxSalary',  `jobExp` = '$jobExp',`qua` = '$qua',`city` = '$city',`state` = '$state'  WHERE `jobId` = $jobId";
+			$query = "UPDATE jobspost SET `jobName` = '$jobName', `jobDesc` = '$jobDesc',`minSalary` = '$minSalary',`maxSalary` = '$maxSalary',  `jobExp` = '$jobExp',`qua` = '$qua',`city` = '$city',`state` = '$state'  WHERE `jobId` = $jobId";
 		}
 		if (mysqli_query($con, $query)) {
 			if(!empty($jobId))
@@ -157,10 +157,10 @@ function saveData(){
 		}
 			
 			break;
-		case "candidateRegData":
-			candidateRegData();
+		case "candidateregdata":
+			candidateregdata();
 			break;
-		case "employerRegData":
+		case "employerregdata":
 		$email = $_SESSION['empusername'];
 		$companyname = $_POST['user']['companyname'];
 		$indtype = $_POST['user']['indtype'];
@@ -171,7 +171,7 @@ function saveData(){
 		$pincode = $_POST['user']['pincode'];
 		$officeaddress = $_POST['user']['officeaddress'];
 		
-$query = "UPDATE employerRegData SET `companyname` = '$companyname', `indtype` = '$indtype',`companyorconsult` = '$companyorconsult',  `contactpername` = '$contactpername',`designation` = '$designation',`mobile` = '$mobile',`pincode` = '$pincode',`officeaddress` = '$officeaddress'  WHERE `email` = '$email'";
+$query = "UPDATE employerregdata SET `companyname` = '$companyname', `indtype` = '$indtype',`companyorconsult` = '$companyorconsult',  `contactpername` = '$contactpername',`designation` = '$designation',`mobile` = '$mobile',`pincode` = '$pincode',`officeaddress` = '$officeaddress'  WHERE `email` = '$email'";
 		if (mysqli_query($con, $query)) {
 				echo "Record updated successfully";
 		} else {
@@ -192,12 +192,12 @@ $query = "UPDATE employerRegData SET `companyname` = '$companyname', `indtype` =
 function deleteData($jobId){
 		require_once ("db.php");
 		
-		$jobsPost = $_POST['tableName'];
-		switch ($jobsPost) {
-		case "jobsPost":
+		$jobspost = $_POST['tableName'];
+		switch ($jobspost) {
+		case "jobspost":
 		if(empty($jobId)) throw new Exception( "Invalid User." );
-		$query = "DELETE FROM jobsPost WHERE `jobId` = $jobId";
-		$query1 = "DELETE FROM jobsApplied WHERE `jobsPostId` = $jobId";
+		$query = "DELETE FROM jobspost WHERE `jobId` = $jobId";
+		$query1 = "DELETE FROM jobsapplied WHERE `jobsPostId` = $jobId";
 
 
 		if (mysqli_query($con, $query) && mysqli_query($con, $query1)) {
@@ -207,30 +207,38 @@ function deleteData($jobId){
 		}
 
 			break;
-		case "candidateRegData":
+
+		case "candidateregdata":
 		$email = $_POST['user']['email'];
 		$fname = $_POST['user']['fname'];
 		if(empty($email)) throw new Exception( "Invalid User." );
-		$query = "DELETE FROM candidateRegData WHERE `email` = '$email'";
+		$query = "DELETE FROM candidateregdata WHERE `email` = '$email'";
 		$query2 = "DELETE FROM defaultvalues WHERE `email` = '$email'";
+		$query3 = "DELETE FROM jobsapplied WHERE `userEmail` = '$email'";
+		$query4 = "DELETE FROM emphistory WHERE `email` = '$email'";
+		$query5 = "DELETE FROM 	projecthistory WHERE `email` = '$email'";
+
 		if (mysqli_query($con, $query)) {
 			mysqli_query($con, $query2);
+			mysqli_query($con, $query3);
+			mysqli_query($con, $query4);
+			mysqli_query($con, $query5);
 			echo "User - " . $fname . " deleted successfully";
 		} else {
 		    echo "Error in deleting record";
 		}
 			break;
-		case "employerRegData":
-			employerRegData();
+		case "employerregdata":
+			employerregdata();
 			break;
 		case "employerDeleteData":
 
 		if(empty($jobId)) throw new Exception( "Invalid User." );
-		$query = "DELETE FROM employerRegData WHERE `email` = '$jobId'";
+		$query = "DELETE FROM employerregdata WHERE `email` = '$jobId'";
  
 		if (mysqli_query($con, $query)) {
 		//delete default values
-		$queryLimit = "DELETE FROM `defaultValues` WHERE `email` = '$jobId'";
+		$queryLimit = "DELETE FROM `defaultvalues` WHERE `email` = '$jobId'";
 		mysqli_query($con,$queryLimit);
 			
 			echo "Employer deleted successfully";
@@ -247,18 +255,20 @@ function deleteData($jobId){
 
 function getData(){
 		$email = $_SESSION['empusername'];
-		$jobsPost = $_POST['tableName'];
+		$jobspost = $_POST['tableName'];
 		require_once ("db.php");
-		switch ($jobsPost) {
+		switch ($jobspost) {
 		case "getFullUserData":
 		$email2 = $_POST["email"];
-		$query = "SELECT *, NULL AS password  FROM `candidateRegData` WHERE `email`='$email2'";
+		$query = "SELECT *, NULL AS password  FROM `candidateregdata` WHERE `email`='$email2'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
 		while ($row = mysqli_fetch_assoc($result)) {
 			$data['candidateData'][] = $row;
 		}
+		}else{
+			$data = [];
 		}
 		//emp history
 		$query2 = "SELECT * FROM `emphistory` WHERE `email`='$email2'";
@@ -266,25 +276,32 @@ function getData(){
 		if (mysqli_num_rows($result2) > 0) {	
 		$data2 = array();
 		while ($row2 = mysqli_fetch_assoc($result2)) {
-			$data['empHistory'][] = $row2;
-		}						
+			$data2['emphistory'][] = $row2;
+		}
+		}else{
+			$data2 = [];
 		}
 		//project history
-		$query2 = "SELECT * FROM `projecthistory` WHERE `email`='$email2'";
-		$result2 = mysqli_query($con, $query2);		
-		if (mysqli_num_rows($result2) > 0) {	
-		$data2 = array();
-		while ($row2 = mysqli_fetch_assoc($result2)) {
-			$data['projectHistory'][] = $row2;
+		$query3 = "SELECT * FROM `projecthistory` WHERE `email`='$email2'";
+		$result3 = mysqli_query($con, $query3);		
+		if (mysqli_num_rows($result3) > 0) {	
+		$data3 = array();
+		while ($row3 = mysqli_fetch_assoc($result3)) {
+			$data3['projecthistory'][] = $row3;
 		}						
+		}else{
+			$data3 = [];
 		}
-		echo json_encode($data);	
+
+		$obj_merged = (object) array_merge((array) $data, (array) $data2, (array) $data3);
+		
+		echo json_encode($obj_merged);	
 		mysqli_close($con);
 		break;
 
 		case "candidateAppliedList":
 		$jobsPostIdTemp = $_POST['jobId'];
-		$query = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
+		$query = "SELECT * FROM `jobsapplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
@@ -296,16 +313,16 @@ function getData(){
 		mysqli_close($con);
 
 		break;
-		case "jobsPost":
+		case "jobspost":
 
-		$query = "SELECT * FROM `jobsPost` WHERE `email`='$email'";
+		$query = "SELECT * FROM `jobspost` WHERE `email`='$email'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
 
 		while ($row = mysqli_fetch_assoc($result)) {
 		$jobsPostIdTemp = $row['jobID'];
-		$query1 = "SELECT * FROM `jobsApplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
+		$query1 = "SELECT * FROM `jobsapplied` WHERE `jobsPostedBy`='$email' AND `jobsPostId`='$jobsPostIdTemp'";
 		$result1 = mysqli_query($con, $query1);
 		$candidateApplied = mysqli_num_rows($result1);
 		$row["candidateApplied"] = $candidateApplied;
@@ -317,8 +334,8 @@ function getData(){
 		
 			break;
 
-		case "defaultValues":
-		$query = "SELECT * FROM `defaultValues`";
+		case "defaultvalues":
+		$query = "SELECT * FROM `defaultvalues`";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
@@ -331,8 +348,8 @@ function getData(){
 		
 			break;
 
-		case "candidateRegData":
-		$query = "SELECT *, NULL AS password  FROM `candidateRegData` WHERE `createdBy`='$email'";
+		case "candidateregdata":
+		$query = "SELECT *, NULL AS password  FROM `candidateregdata` WHERE `createdBy`='$email'";
 		$result = mysqli_query($con, $query);		
 		if (mysqli_num_rows($result) > 0) {	
 		$data = array();
@@ -343,14 +360,14 @@ function getData(){
 		}	
 		mysqli_close($con);
 			break;
-		case "employerRegData":
+		case "employerregdata":
 		$email = $_SESSION['empusername'];				
 		require_once ("db.php");
 		if (isset($_SESSION["adminusername"])){
-			$query = "SELECT * FROM `employerRegData`";
+			$query = "SELECT * FROM `employerregdata`";
 		}
 		else{
-			$query = "SELECT * FROM `employerRegData` WHERE `email`='$email'";
+			$query = "SELECT * FROM `employerregdata` WHERE `email`='$email'";
 		}
 		
 		$result = mysqli_query($con, $query);		
@@ -376,10 +393,10 @@ function getData(){
 
 
 function insertData(){
-		$jobsPost = $_POST['tableName'];		
+		$jobspost = $_POST['tableName'];		
 		require_once ("db.php");
-		switch ($jobsPost) {
-		case "employerRegData":
+		switch ($jobspost) {
+		case "employerregdata":
 		$email = $_POST['user']['email'];
 		$companyname = $_POST['user']['companyname'];
 		$mobile = $_POST['user']['mobile'];
@@ -387,17 +404,17 @@ function insertData(){
 		
 		$password = stripslashes($_POST['user']['password']);
 		$password = mysqli_real_escape_string($con,$password);
-        $checkEmail = "SELECT * FROM `employerRegData` WHERE email='$email'";
+        $checkEmail = "SELECT * FROM `employerregdata` WHERE email='$email'";
 		$checkResult = mysqli_query($con,$checkEmail);
 		$checkRow = mysqli_num_rows($checkResult);
         if($checkRow==1){
 		 echo "This Email Id already registered";
          }
 		else{
-		$query = "INSERT INTO employerRegData (`email`,`password`, `companyname`,`mobile`) VALUES ('$email', '".md5($password)."', '$companyname','$mobile')";
+		$query = "INSERT INTO employerregdata (`email`,`password`, `companyname`,`mobile`) VALUES ('$email', '".md5($password)."', '$companyname','$mobile')";
 			if (mysqli_query($con, $query)) {
 		//insert default values
-		$queryLimit = "INSERT into `defaultValues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '0')";
+		$queryLimit = "INSERT into `defaultvalues` (email,jobsPostLimit,createNewEmpLimit) VALUES ('$email', '10', '0')";
 		mysqli_query($con,$queryLimit);
 				
 				echo "Employer added successfully";
@@ -407,8 +424,8 @@ function insertData(){
 			}			
 		}		
 			break;
-		case "candidateRegData":
-			candidateRegData();
+		case "candidateregdata":
+			candidateregdata();
 			break;
 		case "empRegDataUpdate":
 		$email = $_POST['user']['email'];
@@ -423,11 +440,11 @@ function insertData(){
 		$createNewEmpLimit = $_POST['user']['createNewEmpLimit'];
 		$jobsPostLimit = $_POST['user']['jobsPostLimit'];
 	 
-$query = "UPDATE employerRegData SET `companyname` = '$companyname', `indtype` = '$indtype',`companyorconsult` = '$companyorconsult',  `contactpername` = '$contactpername',`designation` = '$designation',`mobile` = '$mobile',`pincode` = '$pincode',`officeaddress` = '$officeaddress',`createNewEmpLimit` = '$createNewEmpLimit',`jobsPostLimit` = '$jobsPostLimit'  WHERE `email` = '$email'";
+$query = "UPDATE employerregdata SET `companyname` = '$companyname', `indtype` = '$indtype',`companyorconsult` = '$companyorconsult',  `contactpername` = '$contactpername',`designation` = '$designation',`mobile` = '$mobile',`pincode` = '$pincode',`officeaddress` = '$officeaddress',`createNewEmpLimit` = '$createNewEmpLimit',`jobsPostLimit` = '$jobsPostLimit'  WHERE `email` = '$email'";
  
 		if (mysqli_query($con, $query)) {
 			//update default values
-		$queryLimit = "UPDATE `defaultValues` SET `createNewEmpLimit` = '$createNewEmpLimit',`jobsPostLimit` = '$jobsPostLimit'  WHERE `email` = '$email'";
+		$queryLimit = "UPDATE `defaultvalues` SET `createNewEmpLimit` = '$createNewEmpLimit',`jobsPostLimit` = '$jobsPostLimit'  WHERE `email` = '$email'";
 		mysqli_query($con,$queryLimit);			
 				echo "Record Updated Successfully";
 		} else {
