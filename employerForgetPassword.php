@@ -14,14 +14,37 @@ if(isset($_POST['submit']))
                 $query = "UPDATE employerregdata SET `temppassword` = '$six_digit_random_number'  WHERE `email` = '$email_id'";
                 $result = mysqli_query($con,$query);
                     if($result){
-                        $to = $email_id;
-                        $subject = "Password";
-                        $txt = "Your temporary password is : $six_digit_random_number";
-                        $headers = "From: password@VoqeoIT.com" . "\r\n" .
-                        "CC: somebodyelse@VoqeoIT.com";
-                        //mail($to,$subject,$txt,$headers);
-                        echo "temp password = " . $six_digit_random_number . " ";
-                        echo "Email has sent with temporary password. Please click below to change the password";
+$to = $email_id;
+$subject = "VOQEOIT - Forgot Password";
+$message = "
+<html>
+<head>
+<title>VOQEO IT</title>
+</head>
+<body>
+<p>Change Password</p>
+<p>Please use the below temporary password to reset the password.</p>
+<table>
+<tr>
+<th>Temporary password</th>
+</tr>
+<tr>
+<td>$six_digit_random_number</td>
+</tr>
+</table>
+</body>
+</html>
+";
+
+// Always set content-type when sending HTML email
+$headers = "MIME-Version: 1.0" . "\r\n";
+$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+
+// More headers
+$headers .= 'From: <webmaster@VoqeoIT.com>' . "\r\n";
+$headers .= 'Cc: webmaster@VoqeoIT.com' . "\r\n";
+mail($to,$subject,$message,$headers);
+                        echo "Email has been sent with temporary password. Please click below to change the password";
                         ?>
                         <br>
                         <a href="changeemployerpassword.php?user=<?php echo $email_id; ?>">Change Password</a>

@@ -61,7 +61,7 @@
 </div>
 
 <div class="col-md-12">
-	<div class="panel panel-default table-scroll">
+	<div class="panel panel-default">
 		<table  ng-table="tableParams" show-filter="true" 
 		class="table table-condensed table-bordered table-striped">
         <tbody>

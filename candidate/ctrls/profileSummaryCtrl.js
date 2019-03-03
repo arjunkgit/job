@@ -19,7 +19,7 @@ candidateApp.controller("profileSummaryCtrl", function($scope,$rootScope, $filte
         $rootScope.cancelBtn = false;
         $scope.isDisable = true;
     };
-    var getProfileSummaryData = { "tableName": "candidateRegData", "type": "getUserData" };
+    var getProfileSummaryData = { "tableName": "candidateregdata", "type": "getUserData" };
     var cat2 = postData.getUserData(getProfileSummaryData);
     cat2.then(function (response) {
     	console.log("asdf");
@@ -38,7 +38,7 @@ candidateApp.controller("profileSummaryCtrl", function($scope,$rootScope, $filte
     
     $scope.updateProfile = function () {
         $scope.showLoader = true;
-        var updateUserDataParams = { "user": $scope.profileSummaryData, "tableName": "candidateRegData", "type": "updateUserRecord" };
+        var updateUserDataParams = { "user": $scope.profileSummaryData, "tableName": "candidateregdata", "type": "updateUserRecord" };
         var cat = postData.crud(updateUserDataParams);
         cat.then(function (response) {
             console.log(response);

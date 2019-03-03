@@ -224,4 +224,64 @@ if ($con->query($sql) === TRUE) {
 }
 mysqli_close($con);
 }
+
+
+
+// *************** Redirect based on login type ***************
+function redirectLoginAs($urlParams){
+	require_once("db.php");
+	$loginEmail = $urlParams[4];
+	$loginType = $urlParams[5];
+	$adminEmail = "";
+	if(isset($_SESSION["adminusername"])){
+		$adminEmail = $_SESSION["adminusername"];
+	}else{
+		$adminEmail = "na";
+	}
+	if(isRowAvailable('adminregdata',$adminEmail, $con) == true){
+		if($loginType == "candidate"){
+			if(isRowAvailable('candidateregdata', $loginEmail, $con) == true){
+				unset($_SESSION['adminusername']);
+				$_SESSION['username'] = $loginEmail ;
+				header("Location: ../../../dashboard.php");
+			}else{
+				echo "Invalid candidate request";
+			}
+
+		}else if($loginType == "employer"){
+			if(isRowAvailable('employerregdata', $loginEmail, $con) == true){
+				unset($_SESSION['adminusername']);
+				$_SESSION['empusername'] = $loginEmail;
+				header("Location: ../../../dashboard.php");
+			}else{
+				echo "Invalid employer request";
+			}
+		}else{
+
+		}
+		
+	 }else{
+		 echo "You are not authorised to access this facility";
+	 }
+}
+
+function isRowAvailable($_tableName, $_whereCondition , $_con){
+	
+	$tableName = $_tableName;
+	$whereCondition = $_whereCondition;
+	$con = $_con;
+	$checkEmail = "SELECT * FROM `$tableName` WHERE email='$whereCondition' ";
+	
+	$checkResult = mysqli_query($con,$checkEmail);
+	$checkRow = mysqli_num_rows($checkResult);
+	echo $checkEmail;
+	echo $checkRow;
+	if($checkRow == 1){
+		return true;
+	}else{
+		return false;
+	}
+}
 ?>
+
+

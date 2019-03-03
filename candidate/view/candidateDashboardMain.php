@@ -48,9 +48,11 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .panel-default > .panel-heading {
-    color: white;
-    background-color: #247177;
+    color: #00aab1;
+    background-color: #f9f9f9;
     border-color: #ddd;
+    font-size: 14px;
+    font-weight: 600;
 }
 .panel-group {
     margin-bottom: 20px;
@@ -76,7 +78,6 @@ box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 .empListCol1{
     color: #797979 !important;
-    text-align: right;
     font-size: 12px;
     font-weight: bold;
 

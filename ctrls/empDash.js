@@ -1,7 +1,7 @@
 var app = angular.module("myApp", ['ngMaterial', 'ngTable', 'ngMessages']);
 var base_path = "subPages/crudOperations.php";
 
-app.controller("myCtrl", function ($scope, $filter, $http, postData, NgTableParams) {
+app.controller("myCtrl", function ($scope, $filter, $sce, $http, postData, NgTableParams) {
 
 	$scope.showLoader = false;
 	$scope.isEnabled = false;
@@ -172,6 +172,7 @@ app.controller("myCtrl", function ($scope, $filter, $http, postData, NgTablePara
 		$scope.profile = {
 			email: profile.email,
 			companyname: profile.companyname,
+			empname: profile.empname,
 			indtype: profile.indtype,
 			companyorconsult: profile.companyorconsult,
 			contactpername: profile.contactpername,
@@ -335,18 +336,29 @@ app.controller("myCtrl", function ($scope, $filter, $http, postData, NgTablePara
 					$scope.globalJobId = jobid;
 					var noData = { "noData": "No Data Found" };
 					cat3.then(function (response) {
-						console.log(response);
+
 						$scope.resumeAvailable = false;
 						if (typeof response != 'undefined') {
 							if (typeof response.candidateData != 'undefined') {
+								console.log("check below");
+								console.log(response.candidateData[0]);
 								$scope.fullUserData = response.candidateData[0];
+								if (response.candidateData[0].profilePhoto != '') {
+									$scope.isCanPhotoAvailable = true;
+								} else {
+									$scope.isCanPhotoAvailable = false;
+								}
+								if (response.candidateData[0].summary != '') {
+									$scope.isCanSummaryAvailable = true;
+								} else {
+									$scope.isCanSummaryAvailable = false;
+								}
 								if (response.candidateData[0].resumeUploadURL != '') {
 									$scope.resumeAvailable = true;
 								} else {
 									$scope.resumeAvailable = false;
 								}
 								if (response.candidateData[0].dob != '') {
-									console.log(response.candidateData[0].dob);
 									var d = new Date(response.candidateData[0].dob);
 									date = [
 										('0' + d.getDate()).slice(-2),
@@ -357,22 +369,40 @@ app.controller("myCtrl", function ($scope, $filter, $http, postData, NgTablePara
 								} else {
 									$scope.fullUserData.dob = "DD/MM/YYYY";
 								}
-
-
-								console.log("is resumeAvailable : " + $scope.resumeAvailable);
 							} else {
 								$scope.fullUserData = noData;
+								$scope.isCanDetailsAvailable = false;
 							}
 							if (typeof response.emphistory != 'undefined') {
+								$scope.isEmpDetailsAvailable = true;
 								$scope.fullEmpHistory = response.emphistory;
+								$.each($scope.fullEmpHistory, function( key, value ) {
+									value.workedJoinDate = new Date(value.workedJoinDate);
+								});
+								$.each($scope.fullEmpHistory, function( key, value ) {
+									if(value.workedEndDate == ""){
+										value.workedEndDate = "Currently Working";
+									}else{
+										value.workedEndDate = new Date(value.workedEndDate);
+									}
+								});
+								$.each($scope.fullEmpHistory, function( key, value ) {
+									if(value.empHistory == ""){
+										value.empHistory = "NA";
+									}else{
+										value.empHistory = value.empHistory;
+									}
+								});
 							} else {
 								$scope.fullEmpHistory = noData;
+								$scope.isEmpDetailsAvailable = false;
 							}
-
 							if (typeof response.projecthistory != 'undefined') {
+								$scope.isProDetailsAvailable = true;
 								$scope.fullProjectHistory = response.projecthistory;
 							} else {
 								$scope.fullProjectHistory = noData;
+								$scope.isProDetailsAvailable = false;
 							}
 						}
 						$scope.showLoader = false;

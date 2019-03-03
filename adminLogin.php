@@ -91,7 +91,7 @@ if (!isset($_SESSION["adminusername"]))
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
               <input type="password" class="form-control" id="psw"  name="password" placeholder="Enter password" required>
             </div>
-              <button type="submit" class="btn btn-default btn-block" name="adminLoginSubmit">
+              <button type="submit" class="btn btn-success btn-block" name="adminLoginSubmit">
               <span class="glyphicon glyphicon-off"></span> Login</button>
           </form> 
   </div>

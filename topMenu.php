@@ -5,9 +5,9 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="index.php">
-		<span style="color: black; font-size: 1.6rem;line-height: 100%;font-weight: 500;text-decoration: none;text-transform: uppercase;font-family: sans-serif;">MNG</span>
-		<span style="font-weight: 300;font-size: 1.6rem;line-height: 100%;" class="span12">GBS</span>
+    <a class="navbar-brand" href="http://voqeoit.com">
+		<span style="color: black;font-weight: 600; font-size: 1.6rem;line-height: 100%;text-decoration: none;text-transform: uppercase;font-family: sans-serif;">VOQEO</span>
+		<span style="font-weight: 300;font-size: 1.6rem;line-height: 100%;" class="span12">IT</span>
 	<!--
 	    <img src="images/log.png" width="220" height="35" /> 
 	-->
@@ -15,7 +15,7 @@
 </div>
 
 <!--/.navbar-header-->
-<div class="navbar-collapse collapse" id="bs-example-navbar-collapse-1" style="height: 1px;    margin: -30px;">
+<div class="navbar-collapse collapse top-nav-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav">
         <li><a href="http://www.voqeoit.com">Home</a></li>
 		<li><a href="http://www.voqeoit.com/#services">Services</a></li>

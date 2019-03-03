@@ -1,6 +1,6 @@
 /*****************************************
 /* cyrillic-ext  google font*/ 
-  ******************************************/
+******************************************/
 /* cyrillic-ext */
 
 
@@ -49,6 +49,34 @@
 /*****************************************
 general styles
 ******************************************/
+.table-scroll{
+	overflow: hidden;
+    overflow-x: scroll;
+    margin-top: 15px;
+}
+.ng-table th.sortable .sort-indicator {
+    padding-right: 18px;
+    position: relative;
+    white-space: pre;
+}
+.md-toolbar-tools {
+	font-size: 15px;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #00aab1;
+}
+.btn-default
+textarea.form-control {
+    padding: 6px 10px;
+}
+.left-navbar>li>a {
+    font-weight: 500;
+    font-size: 14px;
+}
+.top-nav-collapse{
+	margin-right: -30px !important;
+}
 .vqH2{
 	color: rgb(36, 113, 119);
     font-size: 30px;
@@ -82,15 +110,15 @@ button.close
 	cursor: pointer;
 	background: red;	
 }
-.form-group
+/* .form-group
 {
 	margin-bottom: 5px !important;
-}
+} */
 /*form controls size padding-left: 10px !important;*/
-input[type="text"], input[type="email"], input[type="password"]{
+/* input[type="text"], input[type="email"], input[type="password"]{
 	
 	
-}
+} */
 
 /*divider*/
 .divide-section{
@@ -117,8 +145,7 @@ color: white;
 padding-bottom: 5px;
 padding-top: 5px;
 }
-.currentUp2{
-}
+ 
 .currentUp2 > .headings2{
 	text-align: center;
 	background-color: #247177;
@@ -158,10 +185,17 @@ color: #6c6c6c;
 }
 
 .btn-primary{
-	background-color: #0e5b62 !important;
+	background-color: #00aab1 !important;
 }
- 
- 
+.btn-primary:hover {
+    background-color: #00c0c7 !important;
+}
+.btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary:active.focus, .btn-primary:active:focus, .btn-primary:active:hover, .open>.dropdown-toggle.btn-primary.focus, .open>.dropdown-toggle.btn-primary:focus, .open>.dropdown-toggle.btn-primary:hover{
+    border-color: #00aab1;
+}
+ .btn-primary.active, .btn-primary:active, .open>.dropdown-toggle.btn-primary {
+    border-color: #00aab1;
+}
 /*dashboard*/
 .dashTitle{
 	color: #595959 !important;
@@ -1253,7 +1287,7 @@ input.form-control
 {
 	box-shadow: none;
 	background-color: #fff;
-	padding: 0 20px;
+	padding: 0 10px;
 	border-radius: 0px;
 }
 .input-group-addon
@@ -1502,6 +1536,7 @@ i.tw2
 {
 	font-size: 0.85em;
 	color: #999;
+	text-align: center;
 }
 .radio, .checkbox
 {
@@ -1533,7 +1568,7 @@ h4.m_1
 }
 .pagination > li span
 {
-	padding: 0;
+	padding: 5px;
 }
 .pagination > li > a, .pagination > li > span
 {
@@ -1666,10 +1701,10 @@ a.btn_1.fa.fa-star-o.icon_2:hover
 .btn-default, .widget-content input[type="button"]
 {
 	padding-bottom: 3px;
-	border-bottom: 2px solid #2185C5;
-	background: #2185C5;
+	border-bottom: 2px solid #00aab1;
+	background: #00aab1;
 	color: #ffffff;
-	border-color: #2185C5;
+	border-color: #00aab1;
 }
 .btn-default:hover
 {
@@ -2144,11 +2179,9 @@ label.col-md-3.control-lable
 }
 .radio label, .checkbox label, label
 {
-    font-size: 12px;
-    font-weight: 600;
+    font-weight: 100;
     vertical-align: middle;
-    margin-top: 5px;
-    color: #525252;
+    color: #868686;
 }
 .radios label:first-child
 {
@@ -2855,6 +2888,17 @@ p.sm_1
 }
 @media only screen and (max-width:768px)
 {
+	
+    .empListCol1{
+        text-align: left;
+    }
+	.full-pro-can-img {
+    	width: 210px !important;
+    	height: 210px !important;
+	}
+	.full-pro-can-name-main {
+		border: 0px solid #0e5b62 !important;
+	}
 	.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand
 	{
 		margin-left: 0;
@@ -2954,6 +2998,13 @@ p.sm_1
 }
 @media (max-width:736px)
 {
+	.top-nav-collapse{
+		margin: 0px;
+		
+	}
+	.top-nav-collapse ul{
+		width: 100%;
+	}
 	.navbar-nav
 	{
 		float: left;
@@ -3337,8 +3388,13 @@ p.sm_1
 		font-size: 22px;
 	}
 }
+
 @media (max-width:384px)
 {
+	
+	.layout-padding, .layout-padding-gt-sm, .layout-padding-gt-sm>*, .layout-padding-md, .layout-padding-md>*, .layout-padding>*, .layout-padding>.flex, .layout-padding>.flex-gt-sm, .layout-padding>.flex-md {
+		padding: 0px !important;
+	}
 	a.navbar-brand img
 	{
 		width: 110px;
@@ -3374,7 +3430,8 @@ p.sm_1
 	}
 	.col-md-4, .col-md-8, .col-md-3, .col-sm-2, .col-sm-6, .col-md-9, .col-md-5, .col-md-7, .col-md-6, .col-sm-10, .col-sm-4, .col-sm-8, .col-sm-3
 	{
-		padding: 0;
+		padding-left: 10px;
+		padding-right: 10px;
 	}
 	.single
 	{
@@ -3872,7 +3929,7 @@ p.sm_1
 }
 .pbringTop
 {
-	margin-top: -210px;
+	margin-top: -135px;
 	z-index: 1000;
 	position: relative;
 }
@@ -3905,7 +3962,7 @@ p.sm_1
 
 .clearfix:before, .clearfix:after { content: ""; display: table; }
 .clearfix:after { clear: both; }
-a {color:#0067ab; text-decoration:none;}
+a {color:#00aab1; text-decoration:none;}
 a:hover {text-decoration:underline;}
 .form1
 {
@@ -3955,7 +4012,7 @@ ul.pagination > li > a{
 
 
 .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover{
-	color: #54c2ca !important;
+	color: #00aab1 !important;
 
 background-color: transparent;
 	

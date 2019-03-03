@@ -48,7 +48,7 @@
 
 </style>
 
-<div ng-controller="manageEmp" data-ng-init="init()">
+<div ng-controller="addEmp" data-ng-init="init()">
 <div id="ResultData"  class="alert  alert-dismissable">
 	<span class=""></span> 
 	<a href="" class="close" data-dismiss="alert" aria-label="close">*</a>
@@ -61,69 +61,35 @@
 </div>
 
 <div class="col-md-12">
-	<div class="panel panel-default table-scroll">
-		<table  ng-table="tableParams" show-filter="true" 
-		class="table table-condensed table-bordered table-striped">
-        <tbody>
-          <tr ng-repeat="row in $data">
-                <td data-title="'Email Id'" filter="{email: 'text'}" 
-                	filter-data="email" sortable="'email'">
-                	{{ row.email }}</td>
-                <td data-title="'Company Name'" filter="{companyname: 'text'}" 
-                	filter-data="companyname" sortable="'companyname'">
-                	{{ row.companyname }}</td>
-    			<td data-title="'Mobile'" filter="{mobile: 'text'}" sortable="'mobile'">
-    	        	{{ row.mobile }}</td>
-				<td data-title="'Action'" > 
-					<button class="btn btn-info btn-sm" data-ng-click="editEmp(row)" style="cursor: pointer;">
-						<span class="glyphicon glyphicon-edit"></span> 
-					</button>
-					<button class="btn btn-info btn-sm"data-ng-click="deleteEmp(row)" style="cursor: pointer;">
-						<span class="glyphicon glyphicon-remove"></span> 
-					</button> 
-				</td>
-    	        	
-		  </tr>
-        </tbody>
-		</table>	  
-	</div>
-</div>
-
-<div>
-<div class="col-md-12" ng-show="editMode">
 <div class="panel panel-default">
-	  <md-subheader class="md-no-sticky">Edit Employer</md-subheader>
+	  <md-subheader class="md-no-sticky">Add New Employer</md-subheader>
 		 <md-content layout-padding>
 		    <div>
 		      <form name="userForm">
 		        <md-input-container class="md-block">
 		          <label>Email</label>
-		          <input type="email" name="email" ng-model="empRegEdit.email" ng-disabled="true">
+		          <input type="email" ng-required="true" placeholder="Email (required)" ng-model="empReg.email">
+		        </md-input-container>
+		        <md-input-container class="md-block">
+		          <label>Password</label>
+		          <input type="password" ng-required="true" placeholder="Password (required)" ng-model="empReg.password">
 		        </md-input-container>
 		        <md-input-container class="md-block">
 		          <label>Company Name</label>
-		          <input name="companyname" ng-model="empRegEdit.companyname">
+		          <input  ng-model="empReg.companyname">
 		        </md-input-container>
 		        <md-input-container class="md-block">
 		          <label>Mobile</label>
-		          <input name="mobile" ng-model="empRegEdit.mobile">
+		          <input  ng-model="empReg.mobile">
 		        </md-input-container>
-				<md-button ng-disabled="userForm.$invalid" data-loading-text="Updating Employer..." 
-				 type="submit" class="md-primary" data-ng-click="updateUser()">
-				Update Employer
+				<md-button ng-disabled="!empReg.email" ng-click="addEmp()" class="md-primary">
+					Add Employer
 				</md-button>
 		      </form>
 		    </div>
 		 </md-content>
-
 </div>	
 </div>
 
-
-
-
-
-	
 </div>
 
-</div>

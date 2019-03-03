@@ -51,10 +51,6 @@ app.config(function ($routeProvider) {
 		.when("/listJobs", {
 			templateUrl: "subPages/listJobs.php",
 			controller: "listJobs"
-		})
-		.when("/loginAs", {
-			templateUrl: "subPages/loginAs.php",
-			controller: "loginAs"
 		});
 });
 
@@ -108,7 +104,7 @@ app.controller("addEmp", function ($scope, $http, postData, NgTableParams) {
 	};
 });
 
- 
+
 app.controller("manageEmp", function ($scope, $http, postData, $route, NgTableParams, $location) {
 	$scope.isEmpDefault = false;
 	$scope.showLoader = false;
@@ -119,14 +115,14 @@ app.controller("manageEmp", function ($scope, $http, postData, $route, NgTablePa
 		var getJobs = { "tableName": "employerregdata", "type": "getData" };
 		var cat2 = postData.getPostedJobs(getJobs);
 		cat2.then(function (response) {
-			//response = { "data": [{ "id": "56", "email": "", "password": "d41d8cd98f00b204e9800998ecf8427e", "companyname": "", "indtype": "", "companyorconsult": "", "contactpername": "", "designation": "", "officeaddress": "", "country": "", "city": "", "pincode": "0", "mobile": "0", "alteremail": "", "gst": "", "agree": "", "getemail": "", "trn_date": "0000-00-00 00:00:00", "jobsPostLimit": "0", "createNewEmpLimit": "0" }] };
+			response = { "data": [{ "id": "56", "email": "", "password": "d41d8cd98f00b204e9800998ecf8427e", "companyname": "", "indtype": "", "companyorconsult": "", "contactpername": "", "designation": "", "officeaddress": "", "country": "", "city": "", "pincode": "0", "mobile": "0", "alteremail": "", "gst": "", "agree": "", "getemail": "", "trn_date": "0000-00-00 00:00:00", "jobsPostLimit": "0", "createNewEmpLimit": "0" }] };
 			console.log(response.data);
 			$scope.data = response.data;
 			$scope.tableParams = new NgTableParams({ page: 1, count: 5, sorting: { title: "desc" } }, { data: $scope.data });
 			$scope.showLoader = false;
 		});
 	};
- 
+
 	$scope.init2 = function () {
 		$scope.showLoader = true;
 		$scope.isEmpDefault = true;
@@ -169,21 +165,19 @@ app.controller("manageEmp", function ($scope, $http, postData, $route, NgTablePa
 		console.log("edit Emp List");
 	}
 	$scope.deleteEmp = function (emp) {
-		var result = confirm("Are you sure you want to delete?");
-        if (result) {
-			$scope.showLoader = true;
-			$scope.deleteEmpList = {
-				email: emp.email
-			};
+		$scope.showLoader = true;
+		$scope.deleteEmpList = {
+			email: emp.email
 
-			var paramsObj = { "user": $scope.deleteEmpList, "tableName": "employerDeleteData", "type": "deleteData" };
-			var cat = postData.crud(paramsObj);
-			cat.then(function (data) {
-				$scope.showLoader = false;
-				$scope.init();
-				postData.setResult("success", data);
-			});
-		}
+		};
+
+		var paramsObj = { "user": $scope.deleteEmpList, "tableName": "employerDeleteData", "type": "deleteData" };
+		var cat = postData.crud(paramsObj);
+		cat.then(function (data) {
+			$scope.showLoader = false;
+			$scope.init();
+			postData.setResult("success", data);
+		})
 	};
 
 
@@ -203,40 +197,7 @@ app.controller("listJobs", function ($scope) {
 	$scope.msg = "I love jobs";
 });
 
-app.controller("loginAs", function ($scope, $http, postData, $route, NgTableParams, $location)  {
-	$scope.msg = "login As here";
-	$scope.isLoginAsClicked = false;
-	$scope.loginAsType = "candidate";
 
-	$scope.loginAsClicked = function(){
-		$scope.isLoginAsClicked = true;
-		$scope.showLoader = true;
-		if($scope.loginAsType == "candidate"){
-			var getJobs1 = { "tableName": "candidateregdata", "type": "getData" };
-			var cat1 = postData.getPostedJobs(getJobs1);
-			cat1.then(function (response) {
-				console.log(response);
-				$scope.data = response.data;
-				$scope.tableParams = new NgTableParams({ page: 1, count: 5, sorting: { title: "desc" } }, { data: $scope.data });
-				$scope.showLoader = false;
-			});
-		}else if($scope.loginAsType == "employer" ){
-			var getJobs2 = { "tableName": "employerregdata", "type": "getData" };
-			var cat2 = postData.getPostedJobs(getJobs2);
-			cat2.then(function (response) {
-				console.log(response.data);
-				$scope.data = response.data;
-				$scope.tableParams = new NgTableParams({ page: 1, count: 5, sorting: { title: "desc" } }, { data: $scope.data });
-				$scope.showLoader = false;
-			});
-		}else{
-		}
-	};
-	//redirect to logins
-	$scope.loginHere = function(){
-
-	};
-});
 
 
 

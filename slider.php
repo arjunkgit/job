@@ -1,4 +1,4 @@
-﻿    <div class="container" >
+﻿    <div class="container-fluid" >
         <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <!-- Wrapper for slides -->
@@ -15,13 +15,13 @@
 
             <div class="carousel-inner">
                 <div class="item active">
-                    <img src="images/b1.jpg" alt="Los Angeles" style="width: 100%; height: auto">
+                    <img src="images/b5.jpg" alt="Los Angeles" style="width: 100%; height: auto">
                 </div>
                 <div class="item">
-                    <img src="images/b2.jpg" alt="Chicago" style="width: 100%; height: auto">
+                    <img src="images/b6.jpg" alt="Chicago" style="width: 100%; height: auto">
                 </div>
                 <div class="item">
-                    <img src="images/b4.JPG" alt="New york" style="width: 100%; height: 385px">
+                    <img src="images/b7.jpg" alt="New york" style="width: 100%; height: 385px">
                 </div>
             </div>
             <!-- Left and right controls -->

@@ -63,7 +63,7 @@
         <?php include('topMenu.php'); ?>
     </div>
 </nav>
-<div class="container searchBringFront">
+<div class="container-fluid searchBringFront">
     <form class="jobSearch" action="searchPage.php">
     <input type="text" placeholder="Search Job.. EX: Software Engineer, Support ..." name="search">
     <button type="submit">Search</button>

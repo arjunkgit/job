@@ -8,7 +8,7 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="panel panel-default">
-		  <div class="panel-heading">Overview</div>
+		  <div class="panel-heading">Statistcs</div>
 		  <div class="panel-body">
 			 <ul class="list-group">
 <?php 
@@ -34,14 +34,12 @@
 		  </div>
 		</div>	
 	</div>	
-  <!--
 	<div class="col-md-6">
 		<div class="panel panel-default">
 		  <div class="panel-heading">Panel Heading</div>
 		  <div class="panel-body">Panel Content</div>
 		</div>	
 	</div>	
--->
 </div>
 
 <!-- ctrl ends down-->

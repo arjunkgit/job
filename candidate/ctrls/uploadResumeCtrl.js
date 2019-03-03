@@ -4,7 +4,7 @@ candidateApp.controller("uploadResumeCtrl", function ($scope, $rootScope, postDa
 
     //get resume details
     $scope.getResumeData = function () {
-        var getResumeData = { "tableName": "candidateRegData", "type": "getUserData" };
+        var getResumeData = { "tableName": "candidateregdata", "type": "getUserData" };
         var cat2 = postData.getUserData(getResumeData);
         cat2.then(function (response) {
             console.log(response.data[0]);

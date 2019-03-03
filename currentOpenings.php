@@ -19,6 +19,15 @@
 			display : none;	
 			
 		}
+		.loginButtons {
+			width: 50%;
+			margin: 0 auto;
+		}
+		.action_btn {
+			display: inline-block;
+			width: calc(50% - 4px);
+			margin: 0 auto;
+		}
     </style>
 </head>
 <body>
@@ -118,12 +127,16 @@
 						}else{
 					?>
 					<div style="margin: 20px;padding: 15px;"></div>
-					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px;" onClick="openModel()">Login</button>
-					</div>
-					<div class="col-md-6">  
-						<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px; float: right;" onClick="openModel()">Register</button>
-					</div>
+					<div class="loginButtons">
+                    		<button name="loginButton" class="btn btn-primary btn-sm action_btn loginButton" type="button" value="login" onClick="openModel()">Login</button>
+                    		<button name="registerButton" class="btn btn-primary btn-sm action_btn registerButton" type="button" value="Register" onclick="openModel()">Register</button>
+                    </div>
+					<!--<div class="col-md-6">  -->
+					<!--	<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px;" onClick="openModel()">Login</button>-->
+					<!--</div>-->
+					<!--<div class="col-md-6">  -->
+					<!--	<button type="button" class="btn btn-primary btn-sm btn-block" style="width:100px; float: right;" onClick="openModel()">Register</button>-->
+					<!--</div>-->
 					<?php							
 						}
 					?>

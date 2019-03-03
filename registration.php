@@ -26,7 +26,7 @@
 </div>
 </nav>
 
-<div class="container" style="border: 1px solid #e6e6e6;padding-bottom: 10px;">
+<div class="container vqBox" style="padding-bottom: 10px;">
 <br>
   <h2>Register as</h2>
   <ul class="nav nav-pills">
@@ -38,26 +38,26 @@
    <h5 class="divide-section"><b>Login Details : </b></h5>
    <form style="padding: 10px;" class="form-horizontal" name="canregistration" action="candidateReg.php" method="post" enctype="multipart/form-data">
     <div class="form-group">
-      <label class="control-label col-sm-2" >Email : <span style="color:red">*</span></label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3" >Email : <span style="color:red">*</span></label>
+      <div class="col-sm-5">
         <input type="email" class="form-control form-fixer form-fixer"  placeholder="Enter email" name="email" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password :  <span style="color:red">*</span></label>
-      <div class="col-sm-4">          
+      <label class="control-label col-sm-3" for="pwd">Password :  <span style="color:red">*</span></label>
+      <div class="col-sm-5">          
         <input type="password" class="form-control form-fixer form-fixer"  placeholder="Enter password" name="password" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Retype Password :  <span style="color:red">*</span></label>
-      <div class="col-sm-4">          
+      <label class="control-label col-sm-3" for="pwd">Retype Password :  <span style="color:red">*</span></label>
+      <div class="col-sm-5">          
         <input type="password" class="form-control form-fixer"  placeholder="Re Enter password" name="repassword" required>
       </div>
     </div>
    <h5 class="divide-section"><b>About you :</b></h5>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Title:</label>
+      <label class="control-label col-sm-3" >Title:</label>
       <div class="col-sm-2">
 	  <select class="form-control form-fixer" name="title" >
 	    <option>Mr</option> 
@@ -66,49 +66,26 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >First Name :  <span style="color:red">*</span></label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3" >First Name :  <span style="color:red">*</span></label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer"  placeholder="First name" name="fname" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Last Name :</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3" >Last Name :</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer"  placeholder="Enter Last Name" name="lname">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Date Of Birth :</label>
-      <div class="col-sm-3">
-		<select name="day" class="form-control form-fixer">
-		<option value="0">Day</option>
-		<?php 
-		for($i=1;$i<13;$i++){
-			echo "<option value='".$i."'>" .$i. "</option>";
-		}
-		?>
-		</select>
+      <label class="control-label col-sm-3" >Date Of Birth :</label>
+      <div class="col-sm-5">
+      <input type="date" name="dob" class="form-control">
 		</div>
-      <div class="col-sm-4">
-		<select name="month" class="form-control form-fixer">
-		  <option value="null">Month</option>
-		  <option value="January">January</option>
-		  <option value="February">February</option>
-		</select>
-		</div>
-      <div class="col-sm-3">
-		<select name="year" class="form-control form-fixer">
-		  <option value="0000">Year</option>
-		  <option value="1985">1985</option>
-		  <option value="1986">1986</option>
-		  <option value="1987">1987</option>
-		  <option value="1988">1988</option>
-		</select>
-      </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Emplyoment Status:</label>
-      <div class="col-sm-3">
+      <label class="control-label col-sm-3" >Emplyoment Status:</label>
+      <div class="col-sm-5">
 		<select name="empStatus" class="form-control form-fixer">
 		  <option value="0000">Select</option>
 		  <option value="working">Working</option>
@@ -119,32 +96,32 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Address 1:</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Address 1:</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer" placeholder="Enter Address 1" name="address1">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Address 2:</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Address 2:</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer" placeholder="Enter Address 2" name="address2">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Address 3:</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Address 3:</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer" placeholder="Enter Address 3" name="address3">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Town/City:</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Town/City:</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer" placeholder="Enter Town/city" name="town">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Country :</label>
-      <div class="col-sm-3">
+      <label class="control-label col-sm-3">Country :</label>
+      <div class="col-sm-5">
 		<select name="country" class="form-control form-fixer">
 		  <option value="india">India</option>
 		  <option value="uk">UK</option>
@@ -153,32 +130,33 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Phone :</label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Phone :</label>
+      <div class="col-sm-5">
         <input type="text" class="form-control form-fixer" placeholder="Enter phone" name="phone">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Mobile :  <span style="color:red">*</span></label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-3">Mobile :  <span style="color:red">*</span></label>
+      <div class="col-sm-5">
         <input type="number" class="form-control form-fixer" placeholder="Enter Mobile" name="mobile" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">LinkedIn Profile URL :</label>
-      <div class="col-sm-6">
+      <label class="control-label col-sm-3">LinkedIn Profile URL :</label>
+      <div class="col-sm-5  ">
         <input type="url" class="form-control form-fixer" placeholder="Enter URL" name="linked">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Your CV :</label>
-      <div class="col-sm-3">
-	  <input type="file" class="form-control form-fixer" name="resume" accept="file_extension/*">
+      <label class="control-label col-sm-3">Your CV :</label>
+      <div class="col-sm-5">
+    <!-- <input type="file" class="form-control form-fixer" name="resume" accept="file_extension/*"> -->
+    <p class="form-control">Candidate can upload only after login</p>
       </div>
     </div>
 
     <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-3 col-sm-9">
 		<input type="submit" class="btn btn-default" name="registrationSubmit" value="Register" />
       </div>
     </div>
@@ -189,35 +167,35 @@
 </div>
 <div id="emp" class="tab-pane fade">
 <h5 class="divide-section"><b>Login Details : </b></h5>
-   <form class="form-horizontal" name="empregistration" action="employerReg.php" style="padding: 10px;" method="post">
+<form class="form-horizontal" name="empregistration" action="employerReg.php" style="padding: 10px;" method="post">
     <div class="form-group">
-      <label class="control-label col-sm-2" >Email : <span style="color:red">*</span></label>
-      <div class="col-sm-10">
-        <input type="email" class="form-control form-fixer form-fixer"  placeholder="Enter email" name="email" required>
+      <label class="control-label col-sm-4 col-md-3" >Email : <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">
+        <input type="email" class="form-control form-fixer"  placeholder="Enter email" name="email" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Password :  <span style="color:red">*</span></label>
-      <div class="col-sm-3">          
-        <input type="password" class="form-control form-fixer form-fixer"  placeholder="Enter password" name="password" required>
+      <label class="control-label col-sm-4 col-md-3" for="pwd">Password :  <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">          
+        <input type="password" class="form-control form-fixer"  placeholder="Enter password" name="password" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="pwd">Retype Password :  <span style="color:red">*</span></label>
-      <div class="col-sm-10">          
+      <label class="control-label col-sm-4 col-md-3" for="pwd">Retype Password :  <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">          
         <input type="password" class="form-control form-fixer"  placeholder="Re Enter password" name="repassword" required>
       </div>
     </div>
-<h5 class="divide-section"><b>About You : </b></h5>
+    <h5 class="divide-section"><b>About You : </b></h5>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Company name : </label>
-      <div class="col-sm-2">
+      <label class="control-label col-sm-4 col-md-3" >Company name : <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">
         <input type="text" class="form-control form-fixer"  placeholder="Company name" name="companyname" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Industry type : </label>
-      <div class="col-sm-3">
+      <label class="control-label col-sm-4 col-md-3" >Industry type : </label>
+      <div class="col-sm-5 col-md-4">
 	  <select class="form-control form-fixer" name="indtype" >
 	  <option value="SelectType">Select Type</option>		
 	  <option value="Application">Application</option>
@@ -228,8 +206,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Company or Consultant :  <span style="color:red">*</span></label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4 col-md-3" >Company or Consultant :  <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">
 	    <label class="radio-inline">
 	      <input  type="radio" name="companyorconsult" value="Company">Company
 	    </label>
@@ -239,26 +217,26 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Contact person name :  <span style="color:red">*</span></label>
-      <div class="col-sm-3">
+      <label class="control-label col-sm-4 col-md-3" >Contact person name :  <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">
         <input type="text" class="form-control form-fixer"  placeholder="Contact Person Name" name="contactpername" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Designation :</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4 col-md-3" >Designation :</label>
+      <div class="col-sm-5 col-md-4">
         <input type="text" class="form-control form-fixer"  placeholder="Designation" name="designation">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" >Office Address :</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4 col-md-3" >Office Address :</label>
+      <div class="col-sm-5 col-md-4">
         <input type="text" class="form-control form-fixer"  placeholder="Office Address" name="officeaddress">
       </div>
     </div> 
      <div class="form-group">
-      <label class="control-label col-sm-2">Country :</label>
-      <div class="col-sm-3">
+      <label class="control-label col-sm-4 col-md-3">Country :</label>
+      <div class="col-sm-5 col-md-4">
 		<select name="country" class="form-control form-fixer">
 		  <option value="india">India</option>
 		  <option value="uk">UK</option>
@@ -267,34 +245,35 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">City :</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4 col-md-3">City :</label>
+      <div class="col-sm-5 col-md-4">
         <input type="text" class="form-control form-fixer" placeholder="City" name="city">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Pincode :</label>
-      <div class="col-sm-3"> 
+      <label class="control-label col-sm-4 col-md-3">Pincode :</label>
+      <div class="col-sm-5 col-md-4"> 
         <input type="text" class="form-control form-fixer" placeholder="Pincode" name="pincode">
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2">Mobile :  <span style="color:red">*</span></label>
-      <div class="col-sm-4">
+      <label class="control-label col-sm-4 col-md-3">Mobile :  <span style="color:red">*</span></label>
+      <div class="col-sm-5 col-md-4">
         <input type="number" class="form-control form-fixer" placeholder="Enter Mobile" name="mobile" required>
       </div>
     </div> 
     <div class="form-group">
-      <label class="control-label col-sm-2">Alternate Email :</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-4 col-md-3">Alternate Email :</label>
+      <div class="col-sm-5 col-md-4">
         <input type="email" class="form-control form-fixer" placeholder="Alternate Email" name="alteremail">
       </div>
     </div>
-    <div class="col-md-1"></div>
-    <h5 class="col-md-11">From 1st July 2017 GST is mandatory for all transaction</h5>
     <div class="form-group">
-      <label class="control-label col-sm-2">GST:</label>
-      <div class="col-sm-10">
+      <label class="control-label col-sm-7">From 1st July 2017 GST is mandatory for all transaction</label>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-4 col-md-3">GST :</label>
+      <div class="col-sm-8 col-md-9">
 	    <label class="radio-inline">
 	      <input type="radio" name="gst">GST Unregistered
 	    </label>
@@ -303,27 +282,27 @@
 	    </label>
       </div>
     </div>
-    <div class="form-group">
-      <label class="control-label col-sm-2">Upload Profile Photo :</label>
-      <div class="col-sm-3">
+    <!-- <div class="form-group">
+      <label class="control-label col-sm-4 col-md-3">Upload Profile Photo :</label>
+      <div class="col-sm-5 col-md-4">
 	  <input type="file" class="form-control form-fixer" name="profilephoto" accept="file_extension/*">
       </div>
-    </div>
+    </div> -->
     <div class="form-group">
-    <div class="col-md-1"></div>
-      <div class="col-sm-11">
-		<label class="checkbox-inline"><input type="checkbox" name="agree" value="agree">I Agree to <a href="#">Terms & Condition</a></label>
+    <div class="col-sm-4 col-md-3"></div>
+      <div class="col-sm-8 col-md-9">
+    		<label class="checkbox-inline"><input type="checkbox" name="agree" value="agree" required>I Agree to <a href="#">Terms & Condition</a></label>
       </div>
     </div>
     <div class="form-group">
-    <div class="col-md-1"></div>
-      <div class="col-sm-11">
-		<label class="checkbox-inline"><input type="checkbox" name="getemail" value="getemail">I want to receive promotions on my email id</label>
+    <div class="col-sm-4 col-md-3"></div>
+      <div class="col-sm-8 col-md-9">
+    		<label class="checkbox-inline"><input type="checkbox" name="getemail" value="getemail">I want to receive promotions on my email id</label>
       </div>
     </div>
     <div class="form-group">        
-      <div class="col-sm-offset-2 col-sm-10">
-		<input type="submit" class="btn btn-default" name="registrationSubmit" value="Register" />
+      <div class="col-sm-offset-4 col-sm-8 col-md-offset-3 col-md-9">
+		    <input type="submit" class="btn btn-default" name="registrationSubmit" value="Register" />
       </div>
     </div>
 <br>

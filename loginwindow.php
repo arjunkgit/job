@@ -22,7 +22,7 @@
                             <div class="checkbox">
                                 <p>Forgot <a href="candidateForgetPassword.php">Password?</a></p>
                             </div>
-                            <button type="submit" class="btn btn-success btn-block" name="candidateLoginSubmit"><span class="glyphicon glyphicon-off"></span> Login</button>
+                            <button type="submit" class="btn btn-default btn-block" name="candidateLoginSubmit"><span class="glyphicon glyphicon-off"></span> Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -43,7 +43,7 @@
                             <div class="checkbox">
                                 <p>Forgot <a href="employerForgetPassword.php">Password?</a></p>
                             </div>
-                            <button type="submit" class="btn btn-success btn-block" name="empLoginSubmit"><span class="glyphicon glyphicon-off"></span> Login</button>
+                            <button type="submit" class="btn btn-default btn-block" name="empLoginSubmit"><span class="glyphicon glyphicon-off"></span> Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">

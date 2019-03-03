@@ -29,29 +29,31 @@ fieldset[disabled] .btn-default:hover {
 .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td{
 text-align: center !important;
 color: #545454;
+padding: 5px;
 }
 .ShowAsLink{
     padding: 5px;
     cursor: pointer;
-    background: #247177;
+    background: #00aab1;
     color: white;
 }
 .ShowAsLink:hover{
-    color: #99ffe8;
+    color: #ffffff;
 }
 .EDResumeHeading{
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 100;
     padding: 10px;
-    color: black;
+    color: #00aab1;
     text-align: center;
     border-bottom: 1px solid #d4d4d4;
 }
 .panel-default>.panel-heading {
-    color: #fff;
-    background-color: #0e5b62;
+    color: #00aab1;
+    background-color: #f9f9f9;
     border-color: #ddd;
     font-size: 14px;
-    font-weight: bold;
+    font-weight: 600;
 }
 .btn-group-sm>.btn, .btn-sm {
     padding: 5px 10px;
@@ -60,6 +62,47 @@ color: #545454;
     border-radius: 3px;
     margin-left: 3px;
     margin-right: 3px;
+}
+.full-pro-can-img{
+    width: 100%;
+    height: 100%;
+}
+.full-pro-can-table .table>tbody>tr>td{
+    padding: 8px;
+    text-align: left !important;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border-bottom: 1px solid #ececec;
+}
+.full-pro-can-name-main{
+    border: 1px solid #dedede;
+    padding: 5px;
+    text-align:center;
+}
+.full-pro-can-name{
+    font-size: 18px;
+    font-weight: 600;
+    color: #00aab1;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding-top: 10px;
+}
+.gen-heading{
+
+    color: #00aab1 !important;
+    text-align: center;
+    font-size: 18px;
+padding: 10px;
+}
+th {
+    background: #f9f9f9;
+    color: #008cb5 !important;
+}
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #ffffff;
+}
+.panel-group{
+    margin-top: 15px;
 }
 </style>
 <div class="container" id="mainCtrlEmpDashboard" ng-app="myApp" ng-controller="myCtrl">
@@ -75,18 +118,20 @@ color: #545454;
     </div>
 
     <div class="row">
-        <div class="col-md-3">
-            <ul class="nav nav-sidebar vqBox">
+        <div class="col-md-2">
+            <ul class="nav nav-sidebar vqBox left-navbar">
                 <li><a href="#" ng-click="selectDivs(0)">Post New Job</a></li>
                 <li><a href="#" ng-click="selectDivs(1)">View Posted Jobs</a></li>
                 <li><a href="#" ng-click="selectDivs(2)">Profile Edit</a></li>
+                <!--
                 <li><a href="#" ng-click="selectDivs(3)">Add Users</a></li>
                 <li><a href="#" ng-click="selectDivs(4)">Manage Users</a></li>
+                -->
                 <li><a href="#" ng-click="selectDivs(7)">Search Candidate</a></li>
             </ul>
         </div>
-        <div class="col-md-9">
-            <div class="panel-group">
+        <div class="col-md-10">
+            <div class="panel-group right-panel">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <span ng-show="!editMode">Post New Job</span>
@@ -110,6 +155,14 @@ color: #545454;
                                     {{getError(userForm.jobDesc.$error, 'jobDesc')}}
                                 </span>
                             </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Min Salary</label>
+                                <input type="text" class="form-control" id="minSalary" name="minalary" placeholder="Min Salary"
+                                    data-ng-model='tempUser.minSalary'>
+                                <span class="help-block error" data-ng-show="userForm.minSalary.$invalid && userForm.minSalary.$dirty">
+                                    {{getError(userForm.minSalary.$error, 'minSalary')}}
+                                </span> 
+                            </div>   
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Max Salary</label>
                                 <input type="text" class="form-control" id="maxSalary" name="maxSalary" placeholder="Max Salary"
@@ -272,9 +325,19 @@ color: #545454;
                             <form name="projectForm">
                                 <md-input-container class="md-block">
                                     <label>Email</label>
-                                    <input md-maxlength="30" required md-no-asterisk name="name" ng-disabled="true"
-                                        ng-model="profile[0].email">
+                                    <input md-maxlength="30" required md-no-asterisk name="name" ng-disabled="true" ng-model="profile[0].email">
                                 </md-input-container>
+                                <div layout="row">
+                                    <md-input-container flex="50">
+                                        <label>Name</label>
+                                        <input name="empname" ng-disabled="isEdit" ng-model="profile[0].empname">
+                                    </md-input-container>
+
+                                    <md-input-container flex="50">
+                                        <label>ID</label>
+                                        <input name="id" ng-disabled="true" ng-model="profile[0].id">
+                                    </md-input-container>
+                                </div>
                                 <md-input-container class="md-block">
                                     <label>Company Name</label>
                                     <input md-maxlength="50" required md-no-asterisk name="companyname" ng-disabled="isEdit"
@@ -458,139 +521,148 @@ color: #545454;
             </div>
 <!-- panel 6 -->
             <div class="panel-group">
-                <div class="panel panel-default">
-                <!-- <div class="">
-                    <button class="btn btn-info btn-sm" data-ng-click="selectDivs(5)" style="cursor: pointer;">
-                        <span class="glyphicon glyphicon-chevron-left">Go Back</span>
-                    </button>                        
-                </div> -->
-                <div class="panel-heading">Candidate Full View</div>
-                    <div class="panel-body">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 animated fadeInUp">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Profile Details</div>
-                                <div class="panel-body">
-                                    <h5 class="EDResumeHeading">{{fullUserData.ResumeHeading}}</h5>
-                                    <!-- starts full view -->
-                                    <div class="col-md-2 dashTitle">Name: </div>
-                                    <div class="col-md-4 dashContent">
-                                        <span class="profile_over_view">
-                                        {{fullUserData.title}} {{fullUserData.fname}} {{fullUserData.lname}}</span>
-                                    </div>
-                                    <div class="col-md-2 dashTitle">Date of birth: </div>
-                                    <div class="col-md-4 dashContent">
-                                        <span class="profile_over_view">
-                                            {{fullUserData.dob}}</span>
-                                    </div>
-
-                                    <div class="col-md-2 dashTitle">Address: </div>
-                                    <div class="col-md-10 dashContent">
-                                        <span class="profile_over_view">
-                                        {{fullUserData.address1}}, 
-                                        {{fullUserData.address2}},
-                                        {{fullUserData.address3}},
-                                        {{fullUserData.town}} - {{fullUserData.pincode}}
-                                        {{fullUserData.country}}                                       
-                                    </span>
-                                    </div>
-                                    <div class="col-md-2 dashTitle">Mobile : </div>
-                                    <div class="col-md-3 dashContent">
-                                        <span class="profile_over_view">
-                                            {{fullUserData.mobile}}</span>
-                                    </div>
-                                    <div class="col-md-2 dashTitle">Gender: </div>
-                                    <div class="col-md-1 dashContent">
-                                        <span class="profile_over_view">
-                                            {{fullUserData.gender}}</span>
-                                    </div>
-                                    <div class="col-md-2 dashTitle">Total Exp: </div>
-                                    <div class="col-md-2 dashContent">
-                                        <span class="profile_over_view">
-                                            {{fullUserData.TotalExp}}</span>
-                                    </div>
-
-                                    <!-- Ends full view -->
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Candidate Summary</div>
-                                <div class="panel-body">
-                                    <div class="col-md-12 dashContent">
-                                        <span class="profile_over_view">
-                                            {{fullUserData.summary}}</span>
+                    <h3 class="gen-heading">Candidate Full View</h3>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Profile Details</div>
+                        <div class="panel-body">
+                            <h5 class="EDResumeHeading">{{fullUserData.ResumeHeading}}</h5>
+                            <div class="row">
+                            <!-- starts full view -->                                        
+                                <div class="col-md-4">
+                                    <div class="full-pro-can-name-main">
+                                        <img ng-show="isCanPhotoAvailable" src="{{fullUserData.profilePhoto}}" class="full-pro-can-img">
+                                        <div class="full-pro-can-name">{{fullUserData.title}} {{fullUserData.fname}} {{fullUserData.lname}}</div>                                            
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Employement History</div>
-                                <div class="panel-body">
-                                    <table class="table table-condensed table-bordered table-striped">
-									 <tr> 
-									   <th>Worked Company</th>
-									   <th>Working in same Job ?</th>
-									   <th>Worked Join Date</th>
-									   <th>Worked End Date</th>
-									   <th>Worked Month</th>
-									   <th>Worked Year</th>
-									   <th>History</th>
-									 </tr>
+                                <div class="col-md-8 table-responsive full-pro-can-table">
+                                    <table class="table">
                                         <tbody>
-                                            <tr ng-repeat="emp in fullEmpHistory track by $index">
-                                                <td>{{emp.workedCompany}}</td>
-                                                <td>{{emp.workedCurrentJob == "true" ? "Yes" : "No"}}</td>
-                                                <td>{{emp.workedJoinDate}}</td>                                                
-                                                <td>{{emp.workedEndDate}}</td>                   
-                                                <td>{{emp.workedMonth}}</td>                 
-                                                <td>{{emp.workedYear}}</td> 
-                                                <td>{{emp.emphistory}}</td>
-                                                
+                                            <tr>
+                                                <td>Date of birth : </td>
+                                                <td>{{fullUserData.dob}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Gender : </td>
+                                                <td>{{fullUserData.gender}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mobile : </td>
+                                                <td>{{fullUserData.mobile}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email : *</td>
+                                                <td>{{fullUserData.email}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Qualification : </td>
+                                                <td>{{fullUserData.qua}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Linked In URL : </td>
+                                                <td>{{fullUserData.linked}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Current Designation : </td>
+                                                <td>{{fullUserData.CurrentDesignation}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Current Comapany : </td>
+                                                <td>{{fullUserData.CurrentComapany}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Exp : </td>
+                                                <td>{{fullUserData.TotalExp}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address : </td>
+                                                <td>
+                                                {{fullUserData.address1}}, 
+                                                {{fullUserData.address2}},
+                                                {{fullUserData.address3}},
+                                                {{fullUserData.town}} - {{fullUserData.pincode}}
+                                                {{fullUserData.country}}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
 
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Project Details</div>
-                                <div class="panel-body">
-	                                <table class="table table-condensed table-bordered table-striped">
-									 <tr>
-									   <th>Client</th>
-									   <th>Duration</th>
-									   <th>Project Title</th>
-									   <th>Project Details</th>
-									 </tr>
-	                                    <tbody>
-	                                        <tr ng-repeat="pro in fullProjectHistory track by $index">
-	                                            <td>{{pro.client}}</td>
-	                                            <td>{{pro.duration}}</td>
-	                                            <td>{{pro.projectTitle}}</td>                                                
-	                                            <td>{{pro.projectDetails}}</td>                                                
-	                                        </tr>
-	                                    </tbody>
-	                                </table>
-                                </div>
                             </div>
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Resume</div>
-                                <div class="panel-body">
-                                    <div class="col-md-12 dashContent" ng-show="resumeAvailable">
-                                        <span class="profile_over_view">
-                                        	Download Candidate Resume  : <a href="{{fullUserData.resumeUploadURL}}">{{fullUserData.resumeUploadName}}</a>
-                                        </span>
-                                    </div>
-                                    <div class="col-md-12 dashContent"  ng-show="!resumeAvailable">
-                                        <span class="profile_over_view">
-                                        No Resume Uploaded
-                                        </span>
-                                    </div>                                    
-                                </div>
+                            <!-- Ends full view -->
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Candidate Summary</div>
+                        <div class="panel-body">
+                                <span ng-show="isCanSummaryAvailable" class="profile_over_view">{{fullUserData.summary}}</span>
+                                <div ng-show="!isCanSummaryAvailable">Not Available</div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Employement History</div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table ng-show="isEmpDetailsAvailable" class="table table-condensed table-bordered table-striped">
+                                    <tr> 
+                                    <th>Worked Company</th>
+                                    <th>Working in same Job ?</th>
+                                    <th>Worked Join Date</th>
+                                    <th>Worked End Date</th>
+                                    <th>History</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr ng-repeat="emp in fullEmpHistory track by $index" ng-bind-html-unsafe="emp.empHistory">
+                                            <td>{{emp.workedCompany}}</td>
+                                            <td>{{emp.workedCurrentJob == "true" ? "Yes" : "No"}}</td>
+                                            <td>{{emp.workedJoinDate | date : "d/MM/y"}}</td>
+                                            <td>{{emp.workedEndDate | date : "d/MM/y"}}</td>
+                                            <td>{{emp.empHistory}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
+                            <div ng-show="!isEmpDetailsAvailable">Not Available</div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Project Details</div>
+                        <div class="panel-body table-responsive">
+                            <div class="table-responsive">
+                                <table ng-show="isProDetailsAvailable" class="table table-condensed table-bordered table-striped">
+                                    <tr>
+                                    <th>Client</th>
+                                    <th>Duration</th>
+                                    <th>Project Title</th>
+                                    <th>Project Details</th>
+                                    </tr>
+                                    <tbody>
+                                        <tr ng-repeat="pro in fullProjectHistory track by $index">
+                                            <td>{{pro.client}}</td>
+                                            <td>{{pro.duration}}</td>
+                                            <td>{{pro.projectTitle}}</td>                                                
+                                            <td>{{pro.projectDetails}}</td>                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div ng-show="!isProDetailsAvailable">Not Available</div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Resume</div>
+                        <div class="panel-body">
+                            <div class="col-md-12 dashContent" ng-show="resumeAvailable">
+                                <span class="profile_over_view">
+                                    Download Candidate Resume  : <a href="{{fullUserData.resumeUploadURL}}">{{fullUserData.resumeUploadName}}</a>
+                                </span>
+                            </div>
+                            <div class="col-md-12 dashContent"  ng-show="!resumeAvailable">
+                                <span class="profile_over_view">Not available</span>
+                            </div>                                    
                         </div>
                     </div>
                 </div>
-            </div>
 <!-- panel 7 -->
             <div class="panel-group">
                 <div class="panel panel-default">
@@ -656,6 +728,7 @@ color: #545454;
         </div>
     </div>
 </div>
+
 
   <!-- Angular Material requires Angular.js Libraries -->
   <!-- 

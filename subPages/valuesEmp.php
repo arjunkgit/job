@@ -48,7 +48,7 @@
 
 </style>
 
-<div ng-controller="manageEmp" data-ng-init="init()">
+<div ng-controller="manageEmp" data-ng-init="init2()">
 <div id="ResultData"  class="alert  alert-dismissable">
 	<span class=""></span> 
 	<a href="" class="close" data-dismiss="alert" aria-label="close">*</a>
@@ -60,8 +60,11 @@
 	</div>
 </div>
 
+
+<div>
+
 <div class="col-md-12">
-	<div class="panel panel-default table-scroll">
+	<div class="panel panel-default">
 		<table  ng-table="tableParams" show-filter="true" 
 		class="table table-condensed table-bordered table-striped">
         <tbody>
@@ -69,58 +72,22 @@
                 <td data-title="'Email Id'" filter="{email: 'text'}" 
                 	filter-data="email" sortable="'email'">
                 	{{ row.email }}</td>
-                <td data-title="'Company Name'" filter="{companyname: 'text'}" 
-                	filter-data="companyname" sortable="'companyname'">
-                	{{ row.companyname }}</td>
-    			<td data-title="'Mobile'" filter="{mobile: 'text'}" sortable="'mobile'">
-    	        	{{ row.mobile }}</td>
+                <td data-title="'Create New Employer Limit'" filter="{createNewEmpLimit: 'text'}" 
+                	filter-data="createNewEmpLimit" sortable="'createNewEmpLimit'">
+                	{{ row.createNewEmpLimit }}</td>
+                <td data-title="'Jobs Post Limit'" filter="{jobsPostLimit: 'text'}" 
+                	filter-data="jobsPostLimit" sortable="'jobsPostLimit'">
+                	{{ row.jobsPostLimit }}</td>
 				<td data-title="'Action'" > 
-					<button class="btn btn-info btn-sm" data-ng-click="editEmp(row)" style="cursor: pointer;">
+					<button class="btn btn-info btn-sm" data-ng-click="editEmpLimit(row)" style="cursor: pointer;">
 						<span class="glyphicon glyphicon-edit"></span> 
 					</button>
-					<button class="btn btn-info btn-sm"data-ng-click="deleteEmp(row)" style="cursor: pointer;">
-						<span class="glyphicon glyphicon-remove"></span> 
-					</button> 
-				</td>
-    	        	
+				</td>    	        	
 		  </tr>
         </tbody>
 		</table>	  
 	</div>
 </div>
-
-<div>
-<div class="col-md-12" ng-show="editMode">
-<div class="panel panel-default">
-	  <md-subheader class="md-no-sticky">Edit Employer</md-subheader>
-		 <md-content layout-padding>
-		    <div>
-		      <form name="userForm">
-		        <md-input-container class="md-block">
-		          <label>Email</label>
-		          <input type="email" name="email" ng-model="empRegEdit.email" ng-disabled="true">
-		        </md-input-container>
-		        <md-input-container class="md-block">
-		          <label>Company Name</label>
-		          <input name="companyname" ng-model="empRegEdit.companyname">
-		        </md-input-container>
-		        <md-input-container class="md-block">
-		          <label>Mobile</label>
-		          <input name="mobile" ng-model="empRegEdit.mobile">
-		        </md-input-container>
-				<md-button ng-disabled="userForm.$invalid" data-loading-text="Updating Employer..." 
-				 type="submit" class="md-primary" data-ng-click="updateUser()">
-				Update Employer
-				</md-button>
-		      </form>
-		    </div>
-		 </md-content>
-
-</div>	
-</div>
-
-
-
 
 
 	

@@ -54,7 +54,7 @@
             <div class="checkbox">
           <p>Forgot <a href="#">Password?</a></p>
             </div>
-              <button type="submit" class="btn btn-success btn-block" name="empLoginSubmit">
+              <button type="submit" class="btn btn-default btn-block" name="empLoginSubmit">
               <span class="glyphicon glyphicon-off"></span> Login</button>
           </form> 
 		</div>
