@@ -48,46 +48,74 @@
 
 </style>
 
-<div ng-controller="manageEmp" data-ng-init="init2()">
-<div id="ResultData"  class="alert  alert-dismissable">
-	<span class=""></span> 
-	<a href="" class="close" data-dismiss="alert" aria-label="close">*</a>
-	<span id="ResultMessage"></span>
-</div>
-<div class="dialog-background" ng-show="showLoader">
-    <div class="dialog-loading-wrapper">
-        <md-progress-circular class="dialog-loading-icon"  md-diameter="55px"></md-progress-circular>
+<div ng-controller="valuesEmp" data-ng-init="init()">
+<h3>Employer Limits</h3>
+<br>
+	<div id="ResultData"  class="alert  alert-dismissable">
+		<span class=""></span> 
+		<a href="" class="close" data-dismiss="alert" aria-label="close">*</a>
+		<span id="ResultMessage"></span>
 	</div>
-</div>
-
-
+	<div class="dialog-background" ng-show="showLoader">
+	    <div class="dialog-loading-wrapper">
+	        <md-progress-circular class="dialog-loading-icon"  md-diameter="55px"></md-progress-circular>
+		</div>
+	</div>
 <div>
 
-<div class="col-md-12">
-	<div class="panel panel-default">
-		<table  ng-table="tableParams" show-filter="true" 
-		class="table table-condensed table-bordered table-striped">
-        <tbody>
-          <tr ng-repeat="row in $data">
-                <td data-title="'Email Id'" filter="{email: 'text'}" 
-                	filter-data="email" sortable="'email'">
-                	{{ row.email }}</td>
-                <td data-title="'Create New Employer Limit'" filter="{createNewEmpLimit: 'text'}" 
-                	filter-data="createNewEmpLimit" sortable="'createNewEmpLimit'">
-                	{{ row.createNewEmpLimit }}</td>
-                <td data-title="'Jobs Post Limit'" filter="{jobsPostLimit: 'text'}" 
-                	filter-data="jobsPostLimit" sortable="'jobsPostLimit'">
-                	{{ row.jobsPostLimit }}</td>
-				<td data-title="'Action'" > 
-					<button class="btn btn-info btn-sm" data-ng-click="editEmpLimit(row)" style="cursor: pointer;">
-						<span class="glyphicon glyphicon-edit"></span> 
-					</button>
-				</td>    	        	
-		  </tr>
-        </tbody>
-		</table>	  
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<table  ng-table="tableParams" show-filter="true" 
+			class="table table-condensed table-bordered table-striped">
+	        <tbody>
+	          <tr ng-repeat="row in $data">
+	                <td data-title="'Email Id'" filter="{email: 'text'}" 
+	                	filter-data="email" sortable="'email'">
+	                	{{ row.email }}</td>
+	                <td data-title="'Create New Employer Limit'" filter="{createNewEmpLimit: 'text'}" 
+	                	filter-data="createNewEmpLimit" sortable="'createNewEmpLimit'">
+	                	{{ row.createNewEmpLimit }}</td>
+	                <td data-title="'Jobs Post Limit'" filter="{jobsPostLimit: 'text'}" 
+	                	filter-data="jobsPostLimit" sortable="'jobsPostLimit'">
+	                	{{ row.jobsPostLimit }}</td>
+					<td data-title="'Action'" > 
+						<button class="btn btn-info btn-sm" data-ng-click="editEmpVal(row)" style="cursor: pointer;">
+							<span class="glyphicon glyphicon-edit"></span> 
+						</button>
+					</td>    	        	
+			  </tr>
+	        </tbody>
+			</table>	  
+		</div>
 	</div>
-</div>
+
+	<div class="col-md-12" ng-show="editEmpValue">
+		<div class="panel panel-default">
+		  <md-subheader class="md-no-sticky">Edit Employer Values</md-subheader>
+			 <md-content layout-padding>
+			    <div>
+			      <form name="userForm">
+			        <md-input-container class="md-block">
+			          <label>Email</label>
+			          <input type="email" name="email" ng-model="empDefVal.email" ng-disabled="true">
+			        </md-input-container>
+			        <md-input-container class="md-block">
+			          <label>Create New Employer Limit</label>
+			          <input name="createNewEmpLimit" ng-model="empDefVal.createNewEmpLimit ">
+			        </md-input-container>
+			        <md-input-container class="md-block">
+			          <label>Jobs Post Limit</label>
+			          <input name="jobsPostLimit" ng-model="empDefVal.jobsPostLimit ">
+			        </md-input-container>
+					<md-button ng-disabled="userForm.$invalid" data-loading-text="Updating Employer..." 
+					 type="submit" class="md-primary" data-ng-click="updateEmpValues()">
+					Update Employer values
+					</md-button>
+			      </form>
+			    </div>
+			 </md-content>
+		</div>	
+	</div>
 
 
 	

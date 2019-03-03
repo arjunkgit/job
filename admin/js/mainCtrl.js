@@ -42,7 +42,7 @@ app.config(function ($routeProvider) {
 		})
 		.when("/valuesEmp", {
 			templateUrl: "subPages/valuesEmp.php",
-			controller: "manageEmp"
+			controller: "valuesEmp"
 		})
 		.when("/listCandidate", {
 			templateUrl: "subPages/listCandidate.php",
@@ -119,7 +119,6 @@ app.controller("manageEmp", function ($scope, $http, postData, $route, NgTablePa
 		var getJobs = { "tableName": "employerregdata", "type": "getData" };
 		var cat2 = postData.getPostedJobs(getJobs);
 		cat2.then(function (response) {
-			//response = { "data": [{ "id": "56", "email": "", "password": "d41d8cd98f00b204e9800998ecf8427e", "companyname": "", "indtype": "", "companyorconsult": "", "contactpername": "", "designation": "", "officeaddress": "", "country": "", "city": "", "pincode": "0", "mobile": "0", "alteremail": "", "gst": "", "agree": "", "getemail": "", "trn_date": "0000-00-00 00:00:00", "jobsPostLimit": "0", "createNewEmpLimit": "0" }] };
 			console.log(response.data);
 			$scope.data = response.data;
 			$scope.tableParams = new NgTableParams({ page: 1, count: 5, sorting: { title: "desc" } }, { data: $scope.data });
@@ -164,10 +163,7 @@ app.controller("manageEmp", function ($scope, $http, postData, $route, NgTablePa
 			companyname: emp.companyname,
 			mobile: emp.mobile
 		};
-	}
-	$scope.editEmpLimit = function (emp) {
-		console.log("edit Emp List");
-	}
+	};
 	$scope.deleteEmp = function (emp) {
 		var result = confirm("Are you sure you want to delete?");
         if (result) {
@@ -189,8 +185,48 @@ app.controller("manageEmp", function ($scope, $http, postData, $route, NgTablePa
 
 });
 
-app.controller("editEmp", function ($scope, $http, postData, NgTableParams, $location) {
+app.controller("valuesEmp", function ($scope, $http, postData, NgTableParams, $location) {
+	$scope.showLoader = false;
+	$scope.empValuesList = {};
+	
+	angular.element(document).ready(function () { });
 
+	$scope.init = function () {
+		$scope.editEmpValue = false;
+		$scope.showLoader = true;
+		var getJobs = { "tableName": "defaultvalues", "type": "getData" };
+		var cat2 = postData.getPostedJobs(getJobs);
+		cat2.then(function (response) {
+			$scope.data = response.data;
+			$scope.tableParams = new NgTableParams({ page: 1, count: 5, sorting: { title: "desc" } }, { data: $scope.data });
+			$scope.showLoader = false;
+		});
+	};
+
+	$scope.editEmpVal = function (emp) {
+		$scope.editEmpValue = true;
+		$scope.empDefVal = {
+			email: emp.email,
+			createNewEmpLimit: emp.createNewEmpLimit,
+			jobsPostLimit : emp.jobsPostLimit 
+		};
+	};
+
+	$scope.updateEmpValues = function () {
+		$scope.showLoader = true;
+		var paramsObj = { "user": $scope.empDefVal, "tableName": "defaultvalues", "type": "updateData" };
+		var cat = postData.crud(paramsObj);
+
+		cat.then(function (data) {
+			$scope.empDefVal = {
+				//	   	email : null
+			};
+			$scope.editEmpValue = false;
+			$scope.showLoader = false;
+			$scope.init();
+			postData.setResult("success", data);
+		})
+	};
 
 
 });

@@ -48,7 +48,8 @@
 
 </style>
 
-<div ng-controller="manageEmp">
+<div ng-controller="editEmp">
+
 <div id="ResultData"  class="alert  alert-dismissable">
 	<span class=""></span> 
 	<a href="" class="close" data-dismiss="alert" aria-label="close">*</a>

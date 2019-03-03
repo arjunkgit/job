@@ -62,6 +62,9 @@ function handleAdminData(){
 	case "insertData":
 		insertData();
 		break;
+	case "updateData":
+		updateData();
+		break;
 	case "deleteData":
 		$jobId = $_POST['user']['email'];
 		deleteData($jobId);
@@ -112,6 +115,37 @@ function saveUserData(){
 		}
 
 	}		
+}
+
+
+function updateData(){
+		$data = array();
+		$email = $GLOBALS['gAdminEmail'];
+		$tableName = $_POST['tableName'];		
+		require_once ("db.php");
+
+		switch ($tableName) {
+case "defaultvalues":
+		$email = $_POST['user']['email'];
+		$createNewEmpLimit = $_POST['user']['createNewEmpLimit'];
+		$jobsPostLimit = $_POST['user']['jobsPostLimit'];
+$query = "UPDATE defaultvalues SET `email` = '$email',`createNewEmpLimit` = '$createNewEmpLimit', `jobsPostLimit` = '$jobsPostLimit' WHERE `email` = '$email'";
+			if (mysqli_query($con, $query)) {
+					echo "Record updated successfully";
+			} else {
+			    echo "Error in updating record";
+			}
+
+		break;
+
+		default:
+			invalidRequest();
+
+
+		}
+
+	
+	
 }
 
 function saveData(){
@@ -185,7 +219,26 @@ $query = "UPDATE employerregdata SET `companyname` = '$companyname',`empname` = 
 		} else {
 		    echo "Error in updating record";
 		}
-			break;
+		break;
+			
+		case "defaultvalues":
+		$isAdmin = $GLOBALS['gAdminEmail'];
+		$email = $_POST['user']['email'];
+		$createNewEmpLimit = $_POST['user']['createNewEmpLimit'];
+		$jobsPostLimit = $_POST['user']['jobsPostLimit'];
+		echo "12344";
+		if($isAdmin){
+			$query = "UPDATE defaultvalues SET `email` = '$email',`createNewEmpLimit` = '$createNewEmpLimit', `jobsPostLimit` = '$jobsPostLimit' WHERE `email` = '$email'";
+			if (mysqli_query($con, $query)) {
+					echo "Record updated successfully";
+			} else {
+			    echo "Error in updating record";
+			}
+		}else{
+			    echo "Authentication Error !";			
+		}
+		break;
+
 		default:
 			invalidRequest();
 
@@ -443,7 +496,7 @@ function insertData(){
 		$jobspost = $_POST['tableName'];		
 		require_once ("db.php");
 		switch ($jobspost) {
-		case "employerregdata":
+case "employerregdata":
 		$email = $_POST['user']['email'];
 		$companyname = $_POST['user']['companyname'];
 		$mobile = $_POST['user']['mobile'];
@@ -472,10 +525,10 @@ function insertData(){
 			}
 		}		
 			break;
-		case "candidateregdata":
+case "candidateregdata":
 			candidateregdata();
 			break;
-		case "empRegDataUpdate":
+case "empRegDataUpdate":
 		$email = $_POST['user']['email'];
 		$companyname = $_POST['user']['companyname'];
 		$empname = $_POST['user']['empname'];
