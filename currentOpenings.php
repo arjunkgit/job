@@ -28,6 +28,38 @@
 			width: calc(50% - 4px);
 			margin: 0 auto;
 		}
+		
+.jobSearch input[type=text] {
+    padding: 10px !important;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    width: 80%;
+    border-radius: 0px;
+}
+.jobSearch button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background: #247177;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+.jobSearch button:hover {
+    background: #144245;
+}
+.jobSearch::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.searchBringFront{
+    position: relative;
+    z-index: 999;
+}		
     </style>
 </head>
 <body>
@@ -48,6 +80,14 @@
 			<?php include('ourServicesLeft.php'); ?>			
 		</div>
 		<div id="currentBox" class="col-md-6" style="padding: 2px;">
+		<div class="searchBringFront">
+		    <p class="search-job-headline">Search for Jobs</p>
+			<form class="jobSearch" action="searchPage.php">
+			<input type="text" placeholder="Search Job.. EX: Software Engineer, Support ..." name="search">
+			<button type="submit">Search</button>
+			</form>
+		</div>
+		<br>
 		<?php
 		 require_once("db.php");
 
@@ -64,7 +104,7 @@
         $total_rows = mysqli_fetch_array($result)[0];
         $total_pages = ceil($total_rows / $no_of_records_per_page);
 
-        $sql = "SELECT * FROM jobspost LIMIT $offset, $no_of_records_per_page";
+        $sql = "SELECT * FROM jobspost  ORDER BY jobID ASC LIMIT $offset, $no_of_records_per_page";
 //        $res_data = mysqli_query($con,$sql);
 //        while($row = mysqli_fetch_array($res_data)){
          		
@@ -78,7 +118,13 @@
 		?>
 			<div class="col-md-12" style="padding: 2px;"> 
 			    <div class="panel panel-primary">
-			      <div class="panel-heading"><h5><?php echo $row["jobName"]; ?></h5></div>
+			      <div class="panel-heading">
+			      <h5>
+			      	<a target="_blank"  href="jobview.php?id=<?php echo $row["jobID"]; ?>">
+			      	<?php echo $row["jobName"]; ?>			      	
+			      </a>
+			      </h5>
+			      </div>
 			      <div class="panel-body" style="padding: 0px;">
 			      	<div class="jobID"></div>
 					<div class="current-role col-md-12 current-body-font"><p style="color: #ababab;"> <?php if($row["jobExp"] != "" ){ ?> <span class="glyphicon glyphicon-list-alt"></span> <?php echo $row["jobExp"]; ?> <?php } ?> <?php if($row["city"] != ""){ ?> <span class="glyphicon glyphicon-map-marker"></span> <?php echo $row["city"]; ?> <?php } ?> </p></div>
@@ -141,13 +187,32 @@
 						}
 					?>
 					<br>
+ <div class="col-md-12">
+<div style="margin-top:5px;margin-bottom: 5px;">Share this job via :  </div>    
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://voqeoit.com/job/jobview.php?id=<?php echo $row["jobID"]; ?>" data-a2a-title="Apply to this job : <?php echo $row["jobName"]; ?>">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_google_plus"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_button_whatsapp"></a>
+<a class="a2a_button_google_gmail"></a>
+</div>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+</div>					
 			      </div>
 			    </div>
 			</div>
 		<?php
 			}
-		}
-		?>		
+		}else{
+      ?>
+    <div>Thank you for your interest. <br>We do not have this job opening at the moment. Please search for new job </div>
+    
+    <?php
+      }		?>		
 		<div  style="clear: both;">
 		    <ul class="pagination">
 		        <li><a href="?pageno=1">&laquo;&laquo; First</a></li>
