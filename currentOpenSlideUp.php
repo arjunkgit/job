@@ -1,3 +1,9 @@
+<?php
+ require_once("db.php");
+         $sql = "SELECT * FROM jobspost  ORDER BY jobID ASC LIMIT 10, 10";
+         		$res_data = mysqli_query($con, $sql);
+
+?>
 <style>
   .panel-default {
     border-color: unset;
@@ -28,39 +34,32 @@
 <div class="currentUp">
 <div class="headings" >Current Openings</h5></div>
  <marquee height="450px"  scrollamount="5" direction = "up">
+<?php
+	if ($res_data->num_rows > 0) {
+		while($row = $res_data->fetch_assoc()) { 
+?> 
 <div class="panel panel-default">
-  <div class="panel-heading">Software Engineer</div>
-  <div class="panel-body">Location : Bangalore</div>
+  <div class="panel-heading"><?php echo $row["jobName"]; ?></div>
+  <div class="panel-body">
+	<div>
+  	<?php if($row["minSalary"] != "" || !empty($row["minSalary"])){
+		?>
+		<span class="current-postedby col-md-12 current-body-font">
+		<p class="salarySnippet">₹<?php echo $row["minSalary"]; echo " to  ₹"; echo $row["maxSalary"];?></p>
+		</span>
+		<?php
+		}
+	?>	
+	</div>
+	<div>
+		<p><?php echo $row["qua"]; ?></p>
+        <p><?php echo $row["city"]; ?>, <?php echo $row["state"]; ?></p>
+	</div>
+  </div>
 </div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Support Engineer</div>
-  <div class="panel-body">Location : Mysore</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Test Engineer</div>
-  <div class="panel-body">Location : Chennai</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Test Engineer</div>
-  <div class="panel-body">Location : Chennai</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Design Engineer</div>
-  <div class="panel-body">Location : Bangalore</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Test Engineer</div>
-  <div class="panel-body">Location : Chennai</div>
-</div>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Test Engineer</div>
-  <div class="panel-body">Location : Chennai</div>
-</div>
+<?php
+ 		}
+ 	}
+ ?>
 </marquee>	
 </div>
